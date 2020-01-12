@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon } from "atomize";
+import { Button } from "atomize";
 
 class Buttons extends React.Component {
     constructor(props) {
@@ -16,9 +16,7 @@ class Buttons extends React.Component {
         })
         axios.post(this.props.link,this.props.data)
         .then(res => {
-            auth.login(() => {
-                this.props.history.push('/dashboard');
-            })
+            this.props.history.push(this.props.linkto);
         })
         .catch(error => {
             alert(error)
