@@ -11,12 +11,13 @@ class NormalCheckBox extends React.Component {
     
         this.toggleState = this.toggleState.bind(this);
     }
-    
+
     toggleState(e) {
         this.setState({
             checkedManagingWithState: e.target.checked
         });
     }
+    
     render() {
         const { checkedManagingWithState } = this.state;
         return (

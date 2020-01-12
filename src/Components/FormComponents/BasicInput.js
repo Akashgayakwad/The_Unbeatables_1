@@ -3,7 +3,7 @@ import { Input } from "atomize";
 
 function BasicInput(props) {
     return (
-        <Input name={props.name} placeholder="Basic Input" />
+        <Input name={props.name} placeholder={props.placeholder} />
     )
 }
 
