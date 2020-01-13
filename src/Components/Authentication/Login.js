@@ -1,110 +1,16 @@
-import React from 'react'
-import { Input, Div, Button, Modal, Icon, Text, Anchor } from "atomize";
+import React, {useState} from 'react'
+import { Div, Button, Modal, Icon, Text, Input, Label, Checkbox, Anchor } from "atomize";
 import axios from 'axios'
 
-const AlignCenterModal = ({ isOpen, onClose, handleSubmit, email, password, showPassword, isLoading }) => {
-return (
-    <Modal isOpen={isOpen} onClose={onClose} align="center" rounded="md">
-        <Div d="flex" m={{ b: "4rem" }}>
-            <Text p={{ l: "0.5rem", t: "0.25rem" }} textSize="header" textAlign="center">
-                Login
-            </Text>
-            <Label align="center" textWeight="600" m={{ b: "0.5rem" }}>
-                Email
-                <Input
-                    placeholder="Email"
-                    value={email}
-                    p={{ x: "2.5rem" }}
-                    prefix={
-                        <Icon
-                            name="UserSolid"
-                            color="warning800"
-                            size="16px"
-                            cursor="pointer"
-                            pos="absolute"
-                            top="50%"
-                            left="0.75rem"
-                            transform="translateY(-50%)"
-                        />
-                    }
-                />
-            </Label>
-            <Label align="center" textWeight="600" m={{ b: "0.5rem" }}>
-                Email
-                <Input
-                    placeholder="Password"
-                    value={password}
-                    type={showPassword ? "text" : "password"}
-                    suffix={
-                        <Button
-                            pos="absolute"
-                            onClick={() => this.setState({ showPassword: !showPassword })}
-                            bg="transparent"
-                            w="3rem"
-                            top="0"
-                            right="0"
-                            rounded={{ r: "md" }}
-                        >
-                    <Icon
-                        name={showPassword ? "EyeSolid" : "Eye"}
-                        color={showPassword ? "danger800" : "success800"}
-                        size="16px"
-                    />
-                    </Button>
-                }
-            />
-            </Label>
-            
-            <Div m={{ t: "3rem" }} textAlign="center">
-                <Anchor href="#" d="block">
-                    Need help?{" "}
-                </Anchor>
-                <Anchor href="#" d="block" m=".2rem">
-                    Create an account{" "}
-                </Anchor>
-            </Div>
-        </Div>
-        <Div d="flex" justify="flex-end">
-            <Button
-                onClick={onClose}
-                bg="gray200"
-                textColor="medium"
-                m={{ r: "1rem" }}
-            >
-                Cancel
-            </Button>
-            <Button disabled={isLoading} onClick={handleSubmit} bg="info700">
-                Login
-            </Button>
-        </Div>
-    </Modal>
-);
-}
-
-
-
-class AlignedModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: false,
-            showModal: false,
-            showPassword: false,
-            email: "",
-            password: ""
-        };
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    handleSubmit() {
-        const auth = {
-            email: this.props.email,
-            password: this.props.password
-        }
-        this.setState({
-            isLoading: true
-        })
-        axios.post("",auth)
+const AlignCenterModal = ({ isOpen, onClose }) => {
+    const [isPasswordVisible, togglePasswordVisibility] = useState(false);
+    const [isLoading, toogleLoading] = useState(false);
+    var [email, handleChangeEmail] = useState('');
+    var [password, handleChangePassword] = useState('');
+    
+    function handleSubmit(e) {
+        toogleLoading(!isLoading)
+        axios.post('',{email,password})
         .then(res => {
             this.props.history.push('/');
         })
@@ -113,8 +19,121 @@ class AlignedModal extends React.Component {
         })
     }
 
+    return (
+        <Modal isOpen={isOpen} onClose={onClose} align="center" rounded="md">
+            <Icon
+                name="Cross"
+                pos="absolute"
+                top="1rem"
+                right="1rem"
+                size="16px"
+                onClick={onClose}
+                cursor="pointer"
+            />
+            <Div>
+                <Text
+                    tag="h1"
+                    textSize="heading"
+                    m={{ t: "3rem" }}
+                    textAlign="center"
+                >
+                    Sign in
+                </Text>
+                <Div d="flex" flexDir="column" align="center" w="80%" m="0 auto">
+                    <form classsName="form-signin" style={{ width: "100%" }} onSubmit={handleSubmit}>
+                        <Input 
+                            placeholder="Email"
+                            required={true}
+                            p={{ x: "2.5rem" }}
+                            m={{ t: "1.5rem" }} 
+                            onChange={(e) => handleChangeEmail(email=e.target.value)}
+                            prefix={
+                                <Icon
+                                    name="UserSolid"
+                                    color="warning800"
+                                    size="16px"
+                                    cursor="pointer"
+                                    pos="absolute"
+                                    top="50%"
+                                    left="0.75rem"
+                                    transform="translateY(-50%)"
+                                />  
+                            }
+                            />
+                        <Input
+                            m={{ t: "1rem" }}
+                            required={true}
+                            placeholder="Password"
+                            type={isPasswordVisible ? "text" : "password"}
+                            onChange={(e) => handleChangePassword(password=e.target.value)}
+                            suffix={
+                                <Button
+                                    type="button"
+                                    pos="absolute"
+                                    onClick={() => togglePasswordVisibility(!isPasswordVisible)}
+                                    bg="transparent"
+                                    w="3rem"
+                                    top="0"
+                                    right="0"
+                                    rounded={{ r: "md" }}
+                                >
+                                    <Icon
+                                        name={isPasswordVisible ? "EyeSolid" : "Eye"}
+                                        color={isPasswordVisible ? "danger800" : "success800"}
+                                        size="16px"
+                                    />
+                                </Button>
+                            }
+                        />    
+                        <Div d="flex" align="center" m={{ t: "1rem" }}>
+                            <Div d="flex" flexGrow="1">
+                                <Button 
+                                    bg="info700" 
+                                    type="submit"
+                                    disabled={isLoading}
+                                    hoverBg="info700"
+                                    onClick={handleSubmit}
+                                >
+                                    Login
+                                </Button>
+                            </Div>
+                            <Label align="center" textWeight="600">
+                                <Checkbox
+                                    checked={true}
+                                    inactiveColor="success400"
+                                    activeColor="success700"
+                                    size="24px"
+                                />
+                                Remember Me
+                            </Label>
+                        </Div>
+                    </form>
+                    <Div m={{ t: "3rem" }} textAlign="center">
+                        <Anchor href="#" d="block">
+                            Need help?{" "}
+                        </Anchor>
+                        <Anchor href="#" d="block" m=".2rem">
+                            Create an account{" "}
+                        </Anchor>
+                    </Div>
+                </Div>
+            </Div>
+        </Modal>
+    );
+};
+
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            showModal: false
+        };
+    }
+
     render() {
         const { showModal } = this.state;
+        
         return (
             <div>
                 <Button
@@ -123,20 +142,15 @@ class AlignedModal extends React.Component {
                     m={{ b: "1rem" }}
                     onClick={() => this.setState({ showModal: true })}
                 >
-                    Login
+                Login
                 </Button>
                 <AlignCenterModal
                     isOpen={showModal}
                     onClose={() => this.setState({ showModal: false })}
-                    email={this.state.email}
-                    password={this.state.password}
-                    showPassword={this.state.showPassword}
-                    isLoading={this.state.isLoading}
-                    handleSubmit={this.handleSubmit}
                 />
             </div>
         );
     }
-}
+}   
 
-export default AlignedModal;
+export default Login;
