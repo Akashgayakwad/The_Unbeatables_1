@@ -92,7 +92,6 @@ const AlignCenterModal = ({ isOpen, onClose }) => {
                                     type="submit"
                                     disabled={isLoading}
                                     hoverBg="info700"
-                                    onClick={handleSubmit}
                                 >
                                     Login
                                 </Button>
