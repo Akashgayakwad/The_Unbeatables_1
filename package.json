@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "atomize": "^1.0.19",
     "axios": "^0.19.1",
     "radium": "^0.26.0",
     "react": "^16.12.0",
