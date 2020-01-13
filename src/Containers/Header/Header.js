@@ -1,11 +1,13 @@
-import React,{Component, useDebugValue} from 'react';
+import React,{Component} from 'react';
 
 class Header extends Component{
     render(){
         return(
-            <nav className="navbar navbar-expand-lg navbar-dark bg-default">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-default fixed-top">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Airport Authority of India</a>
+                    <a className="navbar-brand" href="#" style={{fontSize:"20px"}}>
+                        <img src="./logo.png" alt="brand-logo"/>
+                        <span style={{lineHeight:'20px',alignItems:'center',marginLeft:'10px'}}>Airport Authority of India</span></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -30,25 +32,27 @@ class Header extends Component{
                             <li className="nav-item">
                                 <a className="nav-link nav-link-icon" href="#">
                                     <i className="ni ni-favourite-28"></i>
-                                    <span className="nav-link-inner--text d-lg-none">Discover</span>
+                                    <span className="nav-link-inner--text">Discover</span>
                                 </a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link nav-link-icon" href="#">
                                     <i className="ni ni-notification-70"></i>
-                                    <span className="nav-link-inner--text d-lg-none">Profile</span>
+                                    <span className="nav-link-inner--text">Profile</span>
                                 </a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i className="ni ni-settings-gear-65"></i>
-                                    <span className="nav-link-inner--text d-lg-none">Settings</span>
+                                    <span className="nav-link-inner--text">Login</span>
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-                                    <a className="dropdown-item" href="#">Action</a>
-                                    <a className="dropdown-item" href="#">Another action</a>
+                                    <a className="dropdown-item" href="#">Employee Login</a>
+                                    <a className="dropdown-item" href="#">AO Login</a>
                                     <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">Something else here</a>
+                                    <a className="dropdown-item" href="#">SignUp</a>
+                                    <div className="dropdown-divider"></div>
+                                    <a className="dropdown-item" href="#">Reset Password</a>
                                 </div>
                             </li>
                         </ul>
