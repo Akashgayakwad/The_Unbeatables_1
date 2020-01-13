@@ -1,4 +1,4 @@
-import React,{Component, useDebugValue} from 'react';
+import React,{Component} from 'react';
 
 class Header extends Component{
     render(){
@@ -6,7 +6,7 @@ class Header extends Component{
             <nav className="navbar navbar-expand-lg navbar-dark bg-default fixed-top">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#" style={{fontSize:"20px"}}>
-                        <img src="./logo.png"/>
+                        <img src="./logo.png" alt="brand-logo"/>
                         <span style={{lineHeight:'20px',alignItems:'center',marginLeft:'10px'}}>Airport Authority of India</span></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

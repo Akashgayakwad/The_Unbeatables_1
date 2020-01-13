@@ -1,91 +1,12 @@
 import React, { Component } from 'react';
-import {BrowserRouter,Route,Link} from 'react-router-dom';
+import {BrowserRouter,Route} from 'react-router-dom';
+// import Dashboard from './../../Components/Dashboard/Dashboard';
 class Main extends Component{
     render(){
         return(
             <BrowserRouter>
                 <div className="container" style={{height:"500px"}}>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
-                    <p>bakchodi</p>
+                    {/* <Route exact path="/dashboard/" Component={Dashboard}></Route> */}
                 </div>
             </BrowserRouter>
         )
