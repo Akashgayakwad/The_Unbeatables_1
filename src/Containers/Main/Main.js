@@ -3,6 +3,7 @@ import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import Dashboard from './../../Components/Dashboard/Dashboard';
 import Signpad from './../../Components/Signpad/Signpad';
 import Mainform from '../../Components/AerodromeLicensing/Mainform';
+import Form1 from '../../Components/AerodromeLicensing/Form1.js/Form1';
 class Main extends Component{
     render(){
         return(
@@ -18,7 +19,9 @@ class Main extends Component{
                         <Route exact path="/sign">
                             <Signpad/>
                         </Route>
-                        
+                        <Route exact path='/form1'>
+                            <Form1/>
+                        </Route>
                     </Switch>   
                 </div>
             </BrowserRouter>
