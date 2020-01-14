@@ -6,8 +6,8 @@ import Mainform from '../../Components/AerodromeLicensing/Mainform';
 import Form1 from '../../Components/AerodromeLicensing/Form1/Form1';
 import Form2 from '../../Components/AerodromeLicensing/Form2/Form2';
 import Form5 from '../../Components/AerodromeLicensing/Form5/Form5';
-import Form6 from '../../Components/AerodromeLicensing/Form2/Form6';
-import Form8 from '../../Components/AerodromeLicensing/Form2/Form8';
+import Form6 from '../../Components/AerodromeLicensing/Form6/Form6';
+import Form8 from '../../Components/AerodromeLicensing/Form8/Form8';
 
 class Main extends Component{
     render(){
