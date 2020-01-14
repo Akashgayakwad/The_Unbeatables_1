@@ -4,7 +4,7 @@ const Card = () =>{
     return(
         <div class="card card-nav-tabs">
         <div class="card-header card-header-warning">
-            Featured
+            Licence Approved
         </div>
         <div class="card-body">
             <h4 class="card-title">ProjectNumber:Airport Name</h4>

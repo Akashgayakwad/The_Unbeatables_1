@@ -16,7 +16,7 @@ class Header extends Component{
                             <div className="row">
                                 <div className="col-6 collapse-brand">
                                     <a href="index.html">
-                                        <img src="assets/img/brand/blue.png"/>
+                                        <img src="./logo-blue.png" style={{height:"50px",width:"auto"}}/>
                                     </a>
                                 </div>
                                 <div className="col-6 collapse-close">
@@ -37,14 +37,14 @@ class Header extends Component{
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link nav-link-icon" href="#">
-                                    <i className="ni ni-notification-70"></i>
+                                    <i className="ni ni-single-02"></i>
                                     <span className="nav-link-inner--text">Profile</span>
                                 </a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i className="ni ni-settings-gear-65"></i>
-                                    <span className="nav-link-inner--text">Login</span>
+                                    <i className="ni ni-lock-circle-open"></i>
+                                    <span className="nav-link-inner--text">Login &#x2BC6;</span>
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
                                     <a className="dropdown-item" href="#">Employee Login</a>

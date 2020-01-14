@@ -5,18 +5,19 @@ class Displaycardlist extends Component{
         super(props);
     }
     render(){
-        const list = this.props.list;
-        const Cardlist = () => (
-            <div>
-                {list.map(item =>{
-                  <Displaycard/>  
-                })}
-            </div>
-        )
-    
-    }
-        return(
+        const list = [1,2,3,4,5,6,7,8];
 
+        const Cardlist = list.map((item,key) => {
+            return(
+                <Displaycard/>
+            )
+        });
+    
+        return(
+            <div>
+                {Cardlist}
+            </div>
+            
         )
     }
 }

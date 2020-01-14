@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter,Route, Switch} from 'react-router-dom';
-// import Dashboard from './../../Components/Dashboard/Dashboard';
+import Dashboard from './../../Components/Dashboard/Dashboard';
+import Signpad from './../../Components/Signpad/Signpad';
 import Mainform from '../../Components/AerodromeLicensing/Mainform';
-// import {BrowserRouter,Route,Link} from 'react-router-dom';
 class Main extends Component{
     render(){
         return(
@@ -12,7 +12,13 @@ class Main extends Component{
                         <Route exact path='/license'>
                             <Mainform/>
                         </Route>
-                        {/* <Route exact path="/dashboard/" Component={Dashboard}></Route> */}
+                        <Route exact path="/dashboard">
+                            <Dashboard/>
+                        </Route>
+                        <Route exact path="/sign">
+                            <Signpad/>
+                        </Route>
+                        
                     </Switch>   
                 </div>
             </BrowserRouter>
