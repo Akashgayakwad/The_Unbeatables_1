@@ -8,6 +8,7 @@ import Form2 from '../../Components/AerodromeLicensing/Form2/Form2';
 import Form5 from '../../Components/AerodromeLicensing/Form5/Form5';
 import Form6 from '../../Components/AerodromeLicensing/Form6/Form6';
 import Form8 from '../../Components/AerodromeLicensing/Form8/Form8';
+import TestForm from '../../Components/AerodromeLicensing/TestForm/TestForm';
 
 class Main extends Component{
     render(){
@@ -38,6 +39,9 @@ class Main extends Component{
                         </Route>
                         <Route exact path='/form8'>
                             <Form8/>
+                        </Route>
+                        <Route exact path='/testform'>
+                            <TestForm/>
                         </Route>
                     </Switch>   
                 </div>
