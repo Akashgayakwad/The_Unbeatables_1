@@ -16,7 +16,7 @@ class InputForm extends Component {
             switch(this.props.type) {
                 case 0:
                     return (<div class="form-group">
-                                    <h6>{this.props.name}</h6>
+                                <h6>{this.props.name}</h6>
                                 <input 
                                     type="text" 
                                     class="form-control" 
