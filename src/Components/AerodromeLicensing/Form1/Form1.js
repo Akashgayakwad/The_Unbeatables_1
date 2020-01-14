@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
+import InputForm from '../FormComponents/InputForm'
+import Checkbox from '../FormComponents/Checkbox'
 
 export class Form1 extends Component {
     
@@ -24,7 +25,6 @@ export class Form1 extends Component {
         return (
             <div>
                 <InputForm type={0} name="Full name of applicant" onChange={this.handleChange('nameofApplicant')} placeholder="Name" />
-                <InputForm type={0} name="Number" onChange={this.handleChange('number')} placeholder="Number" />
             </div>
         )
     }
