@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import RadioButton from '../FormComponents/RadioButton'
 import CheckBox from '../FormComponents/CheckBox'
+import ImageUpload from '../FormComponents/ImageUpload'
 
 class TestForm extends Component {
     
     state = {
         nameofApplicant:"",
-        checkBox:""
+        checkBox:"",
+        file:null
     }
 
     handleChange = input => (e) => {
@@ -14,12 +16,17 @@ class TestForm extends Component {
             [input] : e.target.value
         })
     }
+
+    handleChangeFile = input => (e) => {
+        this.setState({
+            [input] : e.target.file
+        })
+    }
     
     render() {
         return (
             <div>
-                <RadioButton name="jahdbajsd" value1="Yes" value2="No" handleChange={this.handleChange('nameofApplicant')} check={this.state.nameofApplicant}/>
-                <CheckBox name="jahdbajsd" value1="Yes" value2="No" handleChange={this.handleChange('checkBox')} check={this.state.checkBox}/>
+                <ImageUpload handleChange={this.handleChangeFile('file')}/>
             </div>
         )
     }
