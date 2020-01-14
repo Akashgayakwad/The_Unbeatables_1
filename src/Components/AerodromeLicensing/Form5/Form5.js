@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
-import Labels from '../../FormComponents/Labels'
+import InputForm from '../FormComponents/InputForm'
+import Labels from '../FormComponents/Labels'
 
-export class Form1 extends Component {
+export class Form5 extends Component {
     
     state = {
         nameofApplicantdef:"",
@@ -72,4 +72,4 @@ export class Form1 extends Component {
     }
 }
 
-export default Form1
+export default Form5

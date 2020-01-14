@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
+import InputForm from '../FormComponents/InputForm'
 
-export class Form1 extends Component {
+export class Form8 extends Component {
     
     state = {
         challanno:"",
@@ -43,4 +43,4 @@ export class Form1 extends Component {
     }
 }
 
-export default Form1
+export default Form8

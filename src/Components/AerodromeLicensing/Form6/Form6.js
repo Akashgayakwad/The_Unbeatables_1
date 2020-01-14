@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
-import Labels from '../../FormComponents/Labels'
+import InputForm from '../FormComponents/InputForm'
+import Labels from '../FormComponents/Labels'
 
 export class Form6 extends Component {
     

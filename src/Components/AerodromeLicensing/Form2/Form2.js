@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
+import InputForm from '../FormComponents/InputForm'
 
-export class Form1 extends Component {
+export class Form2 extends Component {
     
     state = {
         placename:"",
@@ -17,9 +17,6 @@ export class Form1 extends Component {
         orientation:"",
         lengthrunwaymeter:"",
         lengthrunwayfeet:""
-
-
-
     }
 
 // 0 for normal input Form
@@ -60,7 +57,6 @@ export class Form1 extends Component {
                 <InputForm type={0} name="Orientation of runway (s)" onChange={this.handleChange('orientation')} placeholder="Orientation of runway (s)(in meters)" />
                 <InputForm type={0} name="Length of runway (s)(in meter)" onChange={this.handleChange('lengthrunwaymeter')} placeholder="Length of runway (s)(in meter)" />
                 <InputForm type={0} name="Length of runway (s)(in feet)" onChange={this.handleChange('lengthrunwayfeet')} placeholder="Length of runway (s)(in feet)" />
-                                   
                 
 
             </div>
@@ -68,4 +64,4 @@ export class Form1 extends Component {
     }
 }
 
-export default Form1
+export default Form2
