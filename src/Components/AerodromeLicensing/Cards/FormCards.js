@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {Link} from 'react-router-dom' 
 export default class FormCards extends Component {
 
     constructor(props) {
@@ -30,7 +30,7 @@ export default class FormCards extends Component {
                     <h4 class="card-title">{this.props.header}</h4>
                     {handleStatus()}
                     <p class="card-text">{this.props.details}</p>
-                    {(this.props.buttonStatus) ? <button type="button" href={this.props.link} class="btn btn-primary">{this.props.button}</button> : <button type="button" href={this.props.link} class="btn btn-primary" disabled>{this.props.button}</button>}
+                    {(this.props.buttonStatus) ? <Link to={this.props.link}><button type="button" class="btn btn-primary">{this.props.button}</button></Link> : <button type="button" href={this.props.link} class="btn btn-primary" disabled>{this.props.button}</button>}
                 </div>
             </div>
         )

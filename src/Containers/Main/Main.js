@@ -4,6 +4,8 @@ import Dashboard from './../../Components/Dashboard/Dashboard';
 import Signpad from './../../Components/Signpad/Signpad';
 import Mainform from '../../Components/AerodromeLicensing/Mainform';
 import Details from './../../Components/Details/Details';
+import Form1 from '../../Components/AerodromeLicensing/Form1/Form1';
+
 class Main extends Component{
     render(){
         return(
@@ -21,6 +23,9 @@ class Main extends Component{
                         </Route>
                         <Route exact path="/details/:id" component={Details}>
                             <Details/>
+                        </Route>
+                        <Route exact path='/form1/:id'>
+                            <Form1/>
                         </Route>
                     </Switch>   
                 </div>
