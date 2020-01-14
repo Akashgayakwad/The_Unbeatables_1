@@ -6,7 +6,7 @@ class Displaycardlist extends Component{
     }
     render(){
         const list = [1,2,3,4,5,6,7,8];
-
+        
         const Cardlist = list.map((item,key) => {
             return(
                 <Displaycard/>

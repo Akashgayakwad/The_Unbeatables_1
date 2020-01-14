@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 
 const Card = () =>{
     return(
@@ -9,7 +10,7 @@ const Card = () =>{
         <div class="card-body">
             <h4 class="card-title">ProjectNumber:Airport Name</h4>
             <p class="card-text">Status:license has been issued for this Project</p>
-            <a href="javascript:;" class="btn btn-primary">View Details</a>
+            <Link to="/details/1" class="btn btn-primary">View Details</Link>
         </div>
         </div>
     )
