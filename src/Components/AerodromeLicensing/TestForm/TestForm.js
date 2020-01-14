@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import RadioButton from '../FormComponents/RadioButton'
 import CheckBox from '../FormComponents/CheckBox'
 import ImageUpload from '../FormComponents/ImageUpload'
+import Date from '../FormComponents/Date'
 
 class TestForm extends Component {
     
     state = {
         nameofApplicant:"",
         checkBox:"",
-        file:null
+        file:null,
+        gender:"",
+        typo:"",
+        date: new Date()
     }
 
     handleChange = input => (e) => {
@@ -23,10 +27,14 @@ class TestForm extends Component {
         })
     }
     
+    // <ImageUpload handleChange={this.handleChangeFile('file')}/>
+    // <CheckBox name="Gender" value1="Male" value2= "Female" handleChange={this.handleChange('gender')} check={this.state.gender}/>
+    // <RadioButton name="Alphabets or number" value1="ABCD" value2= "1234" handleChange={this.handleChange('typo')} check={this.state.typo}/>
+
     render() {
         return (
             <div>
-                <ImageUpload handleChange={this.handleChangeFile('file')}/>
+                <Date name="Todays Date" handleChange={this.handleChange('date')} check={this.state.typo} placeholder="adn"/>
             </div>
         )
     }
