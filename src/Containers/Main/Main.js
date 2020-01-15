@@ -3,6 +3,7 @@ import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import Dashboard from './../../Components/Dashboard/Dashboard';
 import Signpad from './../../Components/Signpad/Signpad';
 import Mainform from '../../Components/AerodromeLicensing/Mainform';
+import Details from './../../Components/Details/Details';
 import Form1 from '../../Components/AerodromeLicensing/Form1/Form1';
 import Form2 from '../../Components/AerodromeLicensing/Form2/Form2';
 import Form5 from '../../Components/AerodromeLicensing/Form5/Form5';
@@ -28,6 +29,9 @@ class Main extends Component{
                         </Route>
                         <Route exact path="/sign">
                             <Signpad/>
+                        </Route>
+                        <Route exact path="/details/:id" component={Details}>
+                            <Details/>
                         </Route>
                         <Route exact path='/form1'>
                             <Form1/>
