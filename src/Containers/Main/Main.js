@@ -8,7 +8,11 @@ import Form2 from '../../Components/AerodromeLicensing/Form2/Form2';
 import Form5 from '../../Components/AerodromeLicensing/Form5/Form5';
 import Form6 from '../../Components/AerodromeLicensing/Form6/Form6';
 import Form8 from '../../Components/AerodromeLicensing/Form8/Form8';
+import Form4 from '../../Components/AerodromeLicensing/Form4/Form4';
+import Form7 from '../../Components/AerodromeLicensing/Form7/Form7';
+import Form9 from '../../Components/AerodromeLicensing/Form9/Form9';
 import TestForm from '../../Components/AerodromeLicensing/TestForm/TestForm';
+import TableForm from '../../Components/AerodromeLicensing/FormComponents/TableForm.js'
 
 class Main extends Component{
     render(){
@@ -39,6 +43,18 @@ class Main extends Component{
                         </Route>
                         <Route exact path='/form8'>
                             <Form8/>
+                        </Route>
+                        <Route exact path='/form4'>
+                            <Form4/>
+                        </Route>
+                        <Route exact path='/form7'>
+                            <Form7/>
+                        </Route>
+                        <Route exact path='/form9'>
+                            <Form9/>
+                        </Route>
+                        <Route exact path='/TableForm'>
+                            <TableForm/>
                         </Route>
                         <Route exact path='/testform'>
                             <TestForm/>

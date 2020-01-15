@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
-import Labels from '../../FormComponents/Labels'
+
+import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
+import CheckBox from '../FormComponents/CheckBox'
 
 
-export class Form5 extends Component {
+export class Form7 extends Component {
     
     state = {
         
@@ -27,6 +28,9 @@ export class Form5 extends Component {
     render() {
         return (
             <div>
+               <h2>
+               AERODROME MANUAL
+               </h2>
                <Labels head="Is an Aerodrome Manual enclosed with this application?" faded="(Ref Rule 81)"/>
                 
                <CheckBox name="Manual Enclosure" value1="Yes" value2= "No" handleChange={this.handleChange('ManualEnclosure')} check={this.state.ManualEnclosure}/>
@@ -37,3 +41,5 @@ export class Form5 extends Component {
             </div>
         )
 }   }
+
+export default Form7

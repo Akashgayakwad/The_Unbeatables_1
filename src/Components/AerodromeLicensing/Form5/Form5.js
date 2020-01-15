@@ -44,25 +44,36 @@ export class Form5 extends Component {
     render() {
         return (
             <div>
-                <Labels head="Ministry of Defence" faded=""/>
+                <Labels head="PERMISSIONS AND APPROVALS" faded="Attach the attested copies, if not submitted earlier with CA93"/>
+                <h5>
+                    Ministry of Defence
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthoritydef')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthoritydef')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovaldef')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovaldef')} placeholder="Reference of Approval" />
                 
-                <Labels head="Ministry of Home Affairs" faded=""/>
+                
+                <h5>
+                    Ministry of Home Affairs
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityha')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityha')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalha')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Refernce of Approval" onChange={this.handleChange('ReferenceofApprovalha')} placeholder="Reference of Approval" />
                 
-                <Labels head="Owner of the land" faded=""/>
+                
+                <h5>
+                Owner of the land
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityownland')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityownland')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalownland')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalownland')} placeholder="Reference of Approval" />
                 
-                <Labels head="Local authority such as municipal corporation / committee or urban land development Board/ authority of the State or its Country and Town Planning Department" faded=""/>
+                <h5>
+                Local authority such as municipal corporation / committee or urban land development Board/ authority of the State or its Country and Town Planning Department
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityloc')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityloc')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval"/>

@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
-import Labels from '../../FormComponents/Labels'
+import InputForm from '../FormComponents/InputForm'
+import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
 import Date from '../FormComponents/Date'
+import ImageUpload from '../FormComponents/ImageUpload'
 
 
-export class Form5 extends Component {
+export class Form9 extends Component {
     
     state = {
         
         otherinfo:"",
         Date: new Date(),
         Name:"",
-        PositionHeld:"",
+       
 
         
     }
@@ -45,3 +46,4 @@ export class Form5 extends Component {
             </div>
         )
 }   }
+export default Form9

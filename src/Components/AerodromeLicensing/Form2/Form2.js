@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
+import Labels from '../FormComponents/Labels'
 
 export class Form2 extends Component {
     
@@ -34,6 +35,7 @@ export class Form2 extends Component {
     render() {
         return (
             <div>
+                <Labels head="DETAILS OF AERODROME (as required to be shown on the license)" faded=""/>
                 <InputForm type={0} name="Place name by which the aerodrome is to be known in all future references" onChange={this.handleChange('placename')} placeholder="Place name by which the aerodrome is to be known in all future references" />
                 <InputForm type={0} name="Name and Address of the owner of Aerodrome" onChange={this.handleChange('addressofApplicant')} placeholder="Name and Address of the owner of Aerodrome"/>
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('telephonenumber')} placeholder="Telephone Number" />

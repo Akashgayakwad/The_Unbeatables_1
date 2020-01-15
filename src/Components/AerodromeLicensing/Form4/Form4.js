@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import InputForm from '../../FormComponents/InputForm'
-import Labels from '../../FormComponents/Labels'
+
+import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
 import Date from '../FormComponents/Date'
+import CheckBox from '../FormComponents/CheckBox'
 
 
-export class Form5 extends Component {
+export class Form4 extends Component {
     
     state = {
         
@@ -32,14 +33,21 @@ export class Form5 extends Component {
     render() {
         return (
             <div>
-                <Labels head="Are you owner of the Aerodrome?" faded=""/>
-                <CheckBox name="Ownership" value1="Yes" value2= "No" handleChange={this.handleChange('Ownership')} check={this.state.Ownership}/>
-
+                <Labels head="CONTROL OF THE AERODROME" faded=""/>
+                <CheckBox name="Are you owner of the Aerodrome?" value1="Yes" value2= "No" handleChange={this.handleChange('Ownership')} check={this.state.Ownership}/>
+                <h6>
+                    <strong>
+                        If NO, Please State:
+                    </strong>
+                </h6>
                 
-                <Labels head="If NO, Please State" faded=""/>
+                
+                
                 <TextArea name="Details of the rights you hold over the land" onChange={this.handleChange('YourRights')} placeholder="Details of the rights you hold over the land"/>
-                <Labels head="The period you hold these rights" faded=""/>
-                
+                <br/>
+                <h6>
+                The period you hold these rights
+                </h6>
                 <Date name="From" handleChange={this.handleChange('FromDate')} placeholder="From"/>
                 <Date name="To" handleChange={this.handleChange('ToDate')} placeholder="To"/>
                 <Date name="Termination" handleChange={this.handleChange('Termination')} placeholder="Termination"/>
@@ -48,3 +56,6 @@ export class Form5 extends Component {
             </div>
         )
 }   }
+
+export default Form4
+

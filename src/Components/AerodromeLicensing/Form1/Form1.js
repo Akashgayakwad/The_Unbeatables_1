@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
+import Labels from '../FormComponents/Labels'
 
 class Form1 extends Component {
     
@@ -27,6 +28,7 @@ class Form1 extends Component {
     render() {
         return (
             <div>
+                <Labels head="DETAILS OF LICENCEE (as required to be shown on the license)" faded=""/>
                 <InputForm type={0} name="Full name of applicant" onChange={this.handleChange('nameofApplicant')} placeholder="Name" />
                 <InputForm type={0} name="Address of applicant" onChange={this.handleChange('addressofApplicant')} placeholder="Address"/>
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('telephonenumber')} placeholder="Telephone Number" />
