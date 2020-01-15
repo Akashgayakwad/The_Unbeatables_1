@@ -6,6 +6,7 @@ import Date from '../FormComponents/Date'
 import TableForm from '../FormComponents/TableForm'
 import FileUpload from '../FormComponents/FileUpload'
 import TextArea from '../FormComponents/TextArea'
+import DynamicInput from '../FormComponents/DynamicInput'
 
 class TestForm extends Component {
 
