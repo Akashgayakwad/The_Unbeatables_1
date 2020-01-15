@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
+import ImageUpload from '../FormComponents/ImageUpload'
 
 export class Form2 extends Component {
     
@@ -17,7 +18,8 @@ export class Form2 extends Component {
         gridreference:"",
         orientation:"",
         lengthrunwaymeter:"",
-        lengthrunwayfeet:""
+        lengthrunwayfeet:"",
+        file:null
     }
 
 // 0 for normal input Form
@@ -49,7 +51,10 @@ export class Form2 extends Component {
                 <InputForm type={0} name="Grid reference in WGS 84" onChange={this.handleChange('gridreference')} placeholder="Grid reference in WGS 84" />
                 
                 {//attach a survey map, scale1:10,000 showing by means of broken line the exact boundaries of the aerodrome
-    }
+    }           <h6>
+                    Attach a survey map, scale 1:10,000 showing by means of broken line the exact boundaries of the aerodrome         
+                </h6>
+                <ImageUpload handleChange={this.handleChangeFile('file')}/>
                 <InputForm type={0} name="Elevation of the Aerodrome reference point (AMSL) (in feet)" onChange={this.handleChange('elevationreferencefeet')} placeholder="Elevation of the Aerodrome reference point (AMSL)(in feet)" />
                 <InputForm type={0} name="Elevation of the Aerodrome reference point (AMSL) (in meter)" onChange={this.handleChange('elevationreferencemeter')} placeholder="Elevation of the Aerodrome reference point (AMSL)(in meters)" />
                 
