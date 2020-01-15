@@ -1,28 +1,29 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
+import Date from '../FormComponents/Date'
 
 export class Form5 extends Component {
     
     state = {
         nameofApplicantdef:"",
         AddressofAuthoritydef:"",
-        DateofApprovaldef:"",
+        DateofApprovaldef:new Date(),
         ReferenceofApprovaldef:"",
         
         nameofApplicantha:"",
         AddressofAuthorityha:"",
-        DateofApprovalha:"",
+        DateofApprovalha:new Date(),
         ReferenceofApprovalha:"",
 
         nameofApplicantownland:"",
         AddressofAuthorityownland:"",
-        DateofApprovalownland:"",
+        DateofApprovalownland:new Date(),
         ReferenceofApprovalownland:"",
 
         nameofApplicantloc:"",
         AddressofAuthorityloc:"",
-        DateofApprovalloc:"",
+        DateofApprovalloc:new Date(),
         ReferenceofApprovalloc:"",
 
         
@@ -46,26 +47,26 @@ export class Form5 extends Component {
                 <Labels head="Ministry of Defence" faded=""/>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthoritydef')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthoritydef')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovaldef')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovaldef')} placeholder="Reference of Approval" />
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovaldef')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovaldef')} placeholder="Reference of Approval" />
                 
                 <Labels head="Ministry of Home Affairs" faded=""/>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityha')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityha')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovalha')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovalha')} placeholder="Reference of Approval" />
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalha')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Refernce of Approval" onChange={this.handleChange('ReferenceofApprovalha')} placeholder="Reference of Approval" />
                 
                 <Labels head="Owner of the land" faded=""/>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityownland')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityownland')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovalownland')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovalownland')} placeholder="Reference of Approval" />
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalownland')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalownland')} placeholder="Reference of Approval" />
                 
                 <Labels head="Local authority such as municipal corporation / committee or urban land development Board/ authority of the State or its Country and Town Planning Department" faded=""/>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityloc')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityloc')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovalloc')} placeholder="Reference of Approval" />
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalloc')} placeholder="Reference of Approval" />
                 
             </div>
         )

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
+import Date from '../FormComponents/Date'
 
 export class Form8 extends Component {
     
     state = {
         challanno:"",
         amount:"",
-        datedrawee:"",
+        datedrawee: new Date(),
         namedrawee:""
         
     }
@@ -32,7 +33,7 @@ export class Form8 extends Component {
                     //Attach a sheet showing the calculation of amount as per runway length)
 
                 }
-                <InputForm type={0} name="Date of drawing the fees" onChange={this.handleChange('datedrawee')} placeholder="Date of drawing the fees" />
+                <Date name="Date of drawing the fees" handleChange={this.handleChange('datedrawee')} placeholder="Date of drawing the fees"/>
                 <InputForm type={0} name="Name of the drawee bank" onChange={this.handleChange('namedrawee')} placeholder="Name of the drawee bank" />
                 
                 

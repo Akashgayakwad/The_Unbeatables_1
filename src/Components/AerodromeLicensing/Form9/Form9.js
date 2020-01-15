@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InputForm from '../../FormComponents/InputForm'
 import Labels from '../../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
+import Date from '../FormComponents/Date'
 
 
 export class Form5 extends Component {
@@ -9,7 +10,7 @@ export class Form5 extends Component {
     state = {
         
         otherinfo:"",
-        Date:"",
+        Date: new Date(),
         Name:"",
         PositionHeld:"",
 
@@ -32,7 +33,7 @@ export class Form5 extends Component {
             <div>
                 <Labels head="Any Other Information" faded="The information may include details in annex 1, 2 and 3"/>
                 <TextArea name="Other Information" onChange={this.handleChange('otherinfo')} placeholder="Any other information"/>
-                <InputForm type={0} name="Date" onChange={this.handleChange('Date')} placeholder="Reference of Approval" />
+                <Date name="Date " handleChange={this.handleChange('Date')} placeholder="Date"/>
                 <InputForm type={0} name="Name" onChange={this.handleChange('Name')} placeholder="Reference of Approval" />
                 <Labels head="Position Held" faded="With Official seal"/>
                 <ImageUpload handleChange={this.handleChangeFile('file')}/>
