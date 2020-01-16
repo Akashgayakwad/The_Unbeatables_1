@@ -67,7 +67,7 @@ class Main extends Component{
                         </Route>
                         <Route exact path='/form3'>
                             <Form3/>
-                        </Route>
+                        </Route>    
                         <Route exact path='/form5'>
                             <Form5/>
                         </Route>
