@@ -17,6 +17,18 @@ export class DefectForm extends Component {
                     value:"ajsbnjkasbn",
                     defect:false,
                     reason:""
+                },
+                {
+                    particulars: "bsjhabsd",
+                    value:"aoubfiuasfb",
+                    defect:true,
+                    reason:"lorem ipsum"
+                },
+                {
+                    particulars: "abnsabsdsbdn",
+                    value:"ajsbnjkasbn",
+                    defect:false,
+                    reason:""
                 }
             ]
         }
@@ -52,9 +64,14 @@ export class DefectForm extends Component {
                                             ></input>
                                     </div>
                                     <div class="col col-lg-2">
-                                        <button type="button" class="btn btn-icon btn-2 btn-danger" data-container="body" data-toggle="popover" data-color="danger" data-placement="bottom" data-content={element.reason}>
+                                        <button type="button" class="btn btn-icon btn-2 btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content={element.reason}>
                                             Show Error
                                         </button>
+                                    </div>
+                                    <div class="collapse" id={"collapseExample"+i}>
+                                            <div class="card card-body">
+                                                {element.reason}
+                                            </div>
                                     </div>
                                 </div>
                         </div> : 
