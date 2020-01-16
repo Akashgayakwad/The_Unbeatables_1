@@ -12,24 +12,24 @@ export class RadioButton extends Component {
                     <h6>{this.props.name}</h6>
                     <input
                         class="custom-control-input" 
-                        id="customRadio1"
+                        id="id1"
                         type="radio"
                         value={this.props.value1}
                         checked={this.props.check === this.props.value1}
                         onChange={this.props.handleChange}
                     />
-                    <label class="custom-control-label" for="customRadio1">{this.props.value1}</label>
+                    <label class="custom-control-label" for="id1">{this.props.value1}</label>
                 </div>
                 <div class="custom-control custom-radio mb-3">
                     <input
                         class="custom-control-input" 
-                        id="customRadio2"
+                        id="id2"
                         type="radio"
                         value={this.props.value2}
                         checked={this.props.check === this.props.value2}
                         onChange={this.props.handleChange}
                     />
-                    <label class="custom-control-label" for="customRadio2">{this.props.value2}</label>
+                    <label class="custom-control-label" for="id2">{this.props.value2}</label>
                 </div>
             </form>
         );
