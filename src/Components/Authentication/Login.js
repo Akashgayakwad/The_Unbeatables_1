@@ -16,25 +16,23 @@ export class Login extends Component {
 
     login(res) {
         let postData = res.accessToken;
-        PostData('auth/google',postData).then((results) => {
-            console.log(postData);
-            let responseJson = results;
-            if(responseJson.userData) {
-                sessionStorage.setItem('userData', JSON.stringify(responseJson));
-                this.setState({redirectToReferrer:true})
-            }
+        localStorage.setItem("token",postData);
+        this.setState({
+            redirectToReferrer:true
+        }, ()=>{
+            console.log(localStorage.getItem("token"));
         })
     }
 
     render() {
-        
+
         const responseGoogle = (response) => {
             this.login(response)
         }
 
         switch(this.state.redirectToReferrer) {
             case true : 
-                return(<Redirect to='/dashboard' />)
+                return(<Redirect to='/card' />)
             case false :
                 return (
                     <div>

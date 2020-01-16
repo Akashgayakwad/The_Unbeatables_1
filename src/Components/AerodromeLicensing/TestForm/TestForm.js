@@ -69,6 +69,9 @@ class TestForm extends Component {
     // <DetailsForm/>
     // <DefectForm/>
 
+    // <CheckBox name="Alphabets or number" id1="ABCD" id2="123" value1= "ABCD" value2= "1234" handleChange={this.handleChange('typo')} check={this.state.typo}/>
+                // {this.handlePopup(this.state.popup)}
+
     render() {
         return (
             <div>
