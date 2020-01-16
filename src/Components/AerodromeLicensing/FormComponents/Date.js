@@ -18,4 +18,4 @@ export class Date extends Component {
     }
 }
 
-export default Date
+export default Date;
