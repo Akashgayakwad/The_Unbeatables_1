@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import Date from '../FormComponents/Date'
+import ImageUpload from '../FormComponents/ImageUpload'
 
 export class Form5 extends Component {
     
@@ -10,21 +11,25 @@ export class Form5 extends Component {
         AddressofAuthoritydef:"",
         DateofApprovaldef:new Date(),
         ReferenceofApprovaldef:"",
+        filedef:null,
         
         nameofApplicantha:"",
         AddressofAuthorityha:"",
         DateofApprovalha:new Date(),
         ReferenceofApprovalha:"",
+        fileha:null,
 
         nameofApplicantownland:"",
         AddressofAuthorityownland:"",
         DateofApprovalownland:new Date(),
         ReferenceofApprovalownland:"",
+        fileownland:null,
 
         nameofApplicantloc:"",
         AddressofAuthorityloc:"",
         DateofApprovalloc:new Date(),
         ReferenceofApprovalloc:"",
+        fileloc:null,
 
         
     }
@@ -40,6 +45,11 @@ export class Form5 extends Component {
             [input] : e.target.value
         })
     }
+    handleChangeFile = input => (e) => {
+        this.setState({
+            [input] : e.target.file
+        })
+    }
     
     render() {
         return (
@@ -52,7 +62,7 @@ export class Form5 extends Component {
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthoritydef')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovaldef')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovaldef')} placeholder="Reference of Approval" />
-                
+                <ImageUpload handleChange={this.handleChangeFile('filedef')}/>
                 
                 <h5>
                     Ministry of Home Affairs
@@ -61,7 +71,7 @@ export class Form5 extends Component {
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityha')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalha')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Refernce of Approval" onChange={this.handleChange('ReferenceofApprovalha')} placeholder="Reference of Approval" />
-                
+                <ImageUpload handleChange={this.handleChangeFile('fileha')}/>
                 
                 <h5>
                 Owner of the land
@@ -70,7 +80,7 @@ export class Form5 extends Component {
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityownland')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalownland')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalownland')} placeholder="Reference of Approval" />
-                
+                <ImageUpload handleChange={this.handleChangeFile('fileownland')}/>
                 <h5>
                 Local authority such as municipal corporation / committee or urban land development Board/ authority of the State or its Country and Town Planning Department
                 </h5>
@@ -78,7 +88,7 @@ export class Form5 extends Component {
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityloc')} placeholder="Address" />
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalloc')} placeholder="Reference of Approval" />
-                
+                <ImageUpload handleChange={this.handleChangeFile('fileloc')}/>
             </div>
         )
     }

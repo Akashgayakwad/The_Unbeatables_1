@@ -33,6 +33,11 @@ export class Form2 extends Component {
             [input] : e.target.value
         })
     }
+    handleChangeFile = input => (e) => {
+        this.setState({
+            [input] : e.target.file
+        })
+    }
     // DETAILS OF AERODROME (as required to be shown on the license)
     render() {
         return (
@@ -50,8 +55,7 @@ export class Form2 extends Component {
                 <InputForm type={0} name="State / District in which situated" onChange={this.handleChange('state_district')} placeholder="State / District in which situated" />
                 <InputForm type={0} name="Grid reference in WGS 84" onChange={this.handleChange('gridreference')} placeholder="Grid reference in WGS 84" />
                 
-                {//attach a survey map, scale1:10,000 showing by means of broken line the exact boundaries of the aerodrome
-    }           <h6>
+               <h6>
                     Attach a survey map, scale 1:10,000 showing by means of broken line the exact boundaries of the aerodrome         
                 </h6>
                 <ImageUpload handleChange={this.handleChangeFile('file')}/>
