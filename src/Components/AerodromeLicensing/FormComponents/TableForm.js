@@ -8,7 +8,6 @@ export class TableForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name:"",
             List:[
                 {
                     name:"Initial briefing with operator to review requirements for licensing.",
@@ -183,6 +182,8 @@ export class TableForm extends Component {
         }
     }
 
+
+
     handleChangeTable = (name,i) => (e) => {
         let List = this.state.List
         if(name === "activitycs") {
@@ -200,7 +201,7 @@ export class TableForm extends Component {
         })
     }
     
-    handleChange = input => (e) => {
+    handleChangeName = input => (e) => {
         this.setState({
             [input] : e.target.value
         })
@@ -216,8 +217,8 @@ export class TableForm extends Component {
         return (
             <div>
             <Labels head="Aerodrome License Issue Check sheet"/>
-            <InputForm type={0} name="Name of Aerodrome Operator" onChange={this.handleChange('nameofAeroOp')} placeholder="Name of Aerodrome Operator" />
-            <Date name="Date of Assessment " handleChange={this.handleChange('DateAssessment')} placeholder="Date of Assessment"/>  
+            <InputForm type={0} name="Name of Aerodrome Operator" onChange={this.handleChangeName('nameofAeroOp')} placeholder="Name of Aerodrome Operator" />
+            <Date name="Date of Assessment " handleChange={this.handleChangeName('DateAssessment')} placeholder="Date of Assessment"/>  
             <table class="table">
                 <thead>
                     <tr>
@@ -252,7 +253,7 @@ export class TableForm extends Component {
                 </tbody>
             </table>
             
-            <Date name="Date " handleChange={this.handleChange('Date')} placeholder="Date"/>
+            <Date name="Date " handleChange={this.handleChangeName('Date')} placeholder="Date"/>
             {
                 //Signature to be added
             }
@@ -260,8 +261,9 @@ export class TableForm extends Component {
             
 
             </div>
+
     )
     }
 }
 
-export default TableForm
+export default TableForm;

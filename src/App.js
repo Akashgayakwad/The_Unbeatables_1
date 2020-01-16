@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // import Login from './Components/Authentication/Login'
-import Header from './Containers/Header/Header'
-import Main from './Containers/Main/Main'
-import Footer from './Containers/Footer/Footer'
+import Header from './Containers/Header/Header';
+import Main from './Containers/Main/Main';
+import Chatbot from './Containers/Chatbot/Chatbot';
+import Footer from './Containers/Footer/Footer';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <div>
         <Header/>
         <Main/>
+        <Chatbot/>
         <Footer/>
       </div>
     );
