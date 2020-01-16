@@ -23,27 +23,8 @@ class TestForm extends Component {
     }
 
     handleChange = input => (e) => {
-        const ab = e.target.value
         this.setState({
             [input] : e.target.value
-        }, () => {
-            if(input === "typo"){
-                console.log("hi",ab);
-                if(ab === "ABCD") {
-                    this.setState({
-                        popup:true
-                    },() => {
-                        console.log(this.state.popup);
-                    })
-                }
-                else if(ab === "1234") {
-                    this.setState({
-                        popup:false
-                    },() => {
-                        console.log(this.state.popup);
-                    })
-                }
-            }
         })
     }
 

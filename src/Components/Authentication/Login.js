@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import GoogleLogin from 'react-google-login';
-import { PostData } from './PostData';
 import {Redirect} from 'react-router-dom'
 
 export class Login extends Component {
