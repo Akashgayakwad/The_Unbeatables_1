@@ -1,0 +1,38 @@
+.rcw-conversation-container > .rcw-header {
+    background-color: #23374d;
+  }
+  .rcw-conversation-container > .rcw-header > .rcw-title {
+    color: wheat;
+  }
+   
+  .rcw-launcher{
+      background-color: #23374d ;
+  }
+
+  .rcw-message > .rcw-response,.rcw-message >.rcw-snippet {
+    background-color: #5e72e4;
+    color: white;
+    border: 1px solid #5e72e4;
+    box-shadow: 0 5px 7px rgba(50,50,93,.11), 0 2px 5px rgba(0,0,0,.08);
+  }
+
+  .rcw-snippet-title{
+      color: white !important;
+  }
+  .rcw-snippet-details > a{
+    color: wheat !important;
+}
+
+.rcw-snippet-details > a:hover, .rcw-snippet-details > a:active{
+    color: goldenrod !important;
+}
+.rcw-launcher .rcw-badge{
+    color: palegoldenrod;
+    background: #11cdef;
+}
+  .rcw-client{
+      color: white;
+      background-color: #11cdef;
+      border: 1px solid #11cdef;
+      box-shadow: 0 5px 7px rgba(50,50,93,.11), 0 2px 5px rgba(0,0,0,.08);
+  }
