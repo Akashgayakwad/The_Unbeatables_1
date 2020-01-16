@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios, { post } from 'axios';
+import { Redirect } from 'react-router';
 
 export class AuthCard extends Component {
 
@@ -7,27 +9,41 @@ export class AuthCard extends Component {
     
         this.state = {
             card: null,
-            popup: false
+            name: "restadmin@airport-licensing",
+            redirectToReferrer:false
         }
     }
     
     handleChange = (name) => (e) => {
         this.setState({
             [name] : e.target.file,
-        }, () => {
-            this.setState({
-                popup:true
-            })
         })
     }
 
-    handlePopup = (value) => {
-        return (value ? (<button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-        ) : null);
+    handleSubmit(e) {
+        const {name , card} = this.state
+        fetch('https://a1d4d44f.ngrok.io/explorer/Wallet/Card_importCard', {
+          // content-type header should not be specified!
+            method: 'POST',
+            body: {card,name},
+        })
+            .then(response => response.json())
+            .then(success => {
+                this.setState({
+                    redirectToReferrer : true
+                })
+                console.log(success);
+            })
+            .catch(error => console.log(error)
+        );
     }
 
 
     render() {
+        if(this.state.redirectToReferrer) {
+            return (<Redirect to="/dashboard"/>)
+        }
+
         return (
             <div>
                 <div class="info">
@@ -43,15 +59,13 @@ export class AuthCard extends Component {
                                 <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
                                     <span class="fileinput-new">Select File</span>
                                     <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="..." onChange={this.handleChange('card')}/>
+                                    <input type="file" name="..." onClick={this.handleChange('card')}/>
                                 </span>
-                                    <a href="javascript:;" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-                                    <i class="fa fa-times"></i>Remove</a>
+                                <button type="button" onClick={(e) => {this.handleSubmit(e)}} class="btn btn-success btn-round fileinput-exists">Submit</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                {this.handlePopup(this.state.popup)}
             </div>
         )
     }
