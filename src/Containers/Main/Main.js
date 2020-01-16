@@ -10,6 +10,8 @@ import Form5 from '../../Components/AerodromeLicensing/Form5/Form5';
 import Form6 from '../../Components/AerodromeLicensing/Form6/Form6';
 import Form8 from '../../Components/AerodromeLicensing/Form8/Form8';
 import TestForm from '../../Components/AerodromeLicensing/TestForm/TestForm';
+import Login from '../../Components/Authentication/Login';
+import AuthCard from '../../Components/Authentication/AuthCard';
 
 class Main extends Component{
 
@@ -38,6 +40,12 @@ class Main extends Component{
                         </Route>
                         <Route exact path="/dashboard">
                             <Dashboard/>
+                        </Route>
+                        <Route exact path='/login'>
+                            <Login/>
+                        </Route>
+                        <Route exact path='/card'>
+                            <AuthCard/>
                         </Route>
                         <Route exact path="/sign">
                             <Signpad setImageURL={setImageURL}/>
