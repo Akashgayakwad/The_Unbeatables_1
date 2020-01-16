@@ -38,7 +38,7 @@ class Dashboard extends Component{
         return(
             <div>
                 <Filtertab data={this.state.data} tabSwitchHandler={(tab) =>tabSwitchHandler()} />
-                {/* adsad */}
+                {/* afsdfsdgg */}
             </div>
         )
     }
