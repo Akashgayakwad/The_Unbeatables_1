@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios, { post } from 'axios';
 import { Redirect } from 'react-router';
 
 export class AuthCard extends Component {

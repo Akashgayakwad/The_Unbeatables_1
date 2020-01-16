@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import Date from './Date'
+import Date from '../FormComponents/Date'
 import Labels from '../FormComponents/Labels'
 import InputForm from '../FormComponents/InputForm'
+import './tableForm.css'
 
 export class TableForm extends Component {
 
@@ -214,45 +215,46 @@ export class TableForm extends Component {
     }
 
     render() {
+        
         return (
             <div>
             <Labels head="Aerodrome License Issue Check sheet"/>
             <InputForm type={0} name="Name of Aerodrome Operator" onChange={this.handleChangeName('nameofAeroOp')} placeholder="Name of Aerodrome Operator" />
             <Date name="Date of Assessment " handleChange={this.handleChangeName('DateAssessment')} placeholder="Date of Assessment"/>  
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="text-center">Phase</th>
-                        <th class="text-center">Activity</th>
-                        <th class="text-center">COMPLIANCE STATUS</th>
-                        <th class="text-center">OUTSTANDING ISSUES</th>
-                        <th class="text-center">Remarks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.List.map((item,i) => {return(<tr>
-                        <td class="text-center">{i+1}</td>
-                        <td>{item.name}</td>
-                        <td>
-                            <div class="form-group">
-                                <input type="text" placeholder="Enter Reason" onChange={this.handleChangeTable('activitycs',i)} class="form-control"/>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <input type="text" placeholder="Enter Reason" onChange={this.handleChangeTable('activityoi',i)} class="form-control"/>
-                            </div>
-                        </td>
-                        <td class="text-right">
-                            <div class="form-group">
-                                <input type="text" placeholder="Enter Reason" onChange={this.handleChangeTable('activitys',i)}  class="form-control"/>
-                            </div>
-                        </td>
-                    </tr>)})
-                }
-                </tbody>
-            </table>
-            
+                    <table class="table">
+                        <thead class="container">
+                            <tr class="row justify-content-md-center">
+                                <th class="col col-lg-1 text-center">Phase</th>
+                                <th class="col col-lg-5 text-center">Activity</th>
+                                <th class="col col-lg-2 text-center">COMPLIANCE STATUS</th>
+                                <th class="col col-lg-2 text-center">OUTSTANDING ISSUES</th>
+                                <th class="col col-lg-2 text-center">Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody class="container" >
+                            {this.state.List.map((item,i) => {return(
+                            <tr class="row justify-content-md-center">
+                                <td class="col col-lg-1 text-center">{i+1}</td>
+                                <td class="col col-lg-5" id="item-name">{item.name}</td>
+                                <td class="col col-lg-2">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Enter Reason" onChange={this.handleChangeTable('activitycs',i)} class="form-control"/>
+                                    </div>
+                                </td>
+                                <td class="col col-lg-2">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Enter Reason" onChange={this.handleChangeTable('activityoi',i)} class="form-control"/>
+                                    </div>
+                                </td>
+                                <td class="col col-lg-2">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Enter Reason" onChange={this.handleChangeTable('activitys',i)}  class="form-control"/>
+                                    </div>
+                                </td>
+                            </tr>)})
+                        }
+                        </tbody>
+                    </table>
             <Date name="Date " handleChange={this.handleChangeName('Date')} placeholder="Date"/>
             {
                 //Signature to be added

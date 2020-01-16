@@ -3,13 +3,12 @@ import RadioButton from '../FormComponents/RadioButton'
 import CheckBox from '../FormComponents/CheckBox'
 import ImageUpload from '../FormComponents/ImageUpload'
 import Date from '../FormComponents/Date'   
-import TableForm from '../FormComponents/TableForm'
+import TableForm from '../TableForm/TableForm'
 import FileUpload from '../FormComponents/FileUpload'
 import TextArea from '../FormComponents/TextArea'
 import DynamicInput from '../FormComponents/DynamicInput'
 import DetailsForm from '../FormComponents/DetailsForms'
 import DefectForm from '../FormComponents/DefectForm'
-
 
 class TestForm extends Component {
 
@@ -75,7 +74,7 @@ class TestForm extends Component {
     render() {
         return (
             <div>
-                <DefectForm/>
+                <TableForm />
             </div>
         )
     }

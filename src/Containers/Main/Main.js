@@ -13,7 +13,7 @@ import Form4 from '../../Components/AerodromeLicensing/Form4/Form4';
 import Form7 from '../../Components/AerodromeLicensing/Form7/Form7';
 import Form9 from '../../Components/AerodromeLicensing/Form9/Form9';
 import TestForm from '../../Components/AerodromeLicensing/TestForm/TestForm';
-import TableForm from '../../Components/AerodromeLicensing/FormComponents/TableForm.js';
+import TableForm from '../../Components/AerodromeLicensing/TableForm/TableForm.js';
 import Login from '../../Components/Authentication/Login';
 import AuthCard from '../../Components/Authentication/AuthCard';
 
@@ -81,7 +81,7 @@ class Main extends Component{
                         <Route exact path='/form9'>
                             <Form9/>
                         </Route>
-                        <Route exact path='/TableForm'>
+                        <Route exact path='/tableform'>
                             <TableForm/>
                         </Route>
                         <Route exact path='/testform'>
