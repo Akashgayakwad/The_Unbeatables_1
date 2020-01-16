@@ -4,7 +4,7 @@ function Labels(props) {
     return (
         <div class="container">
             <h3>
-            {props.head}
+            {props.head}<br/>
             <small class="text-muted">{props.faded}</small>
             </h3>
         </div>
