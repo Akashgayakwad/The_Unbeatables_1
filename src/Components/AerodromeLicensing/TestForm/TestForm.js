@@ -8,6 +8,8 @@ import FileUpload from '../FormComponents/FileUpload'
 import TextArea from '../FormComponents/TextArea'
 import DynamicInput from '../FormComponents/DynamicInput'
 import DetailsForm from '../FormComponents/DetailsForms'
+import DefectForm from '../FormComponents/DefectForm'
+
 
 class TestForm extends Component {
 
@@ -64,12 +66,13 @@ class TestForm extends Component {
     // <FileUpload handleChange={this.handleChangeFile('file')}/>
     // <CheckBox name="Alphabets or number" id1="ABCD" id2="123" value1= "ABCD" value2= "1234" handleChange={this.handleChange('typo')} check={this.state.typo}/>
                 // {this.handlePopup(this.state.popup)}
+    // <DetailsForm/>
+    // <DefectForm/>
 
     render() {
         return (
             <div>
-                <DetailsForm/>
-                
+                <DefectForm/>
             </div>
         )
     }
