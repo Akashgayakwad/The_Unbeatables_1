@@ -6,9 +6,11 @@ import Mainform from '../../Components/AerodromeLicensing/Mainform';
 import Details from './../../Components/Details/Details';
 import Form1 from '../../Components/AerodromeLicensing/Form1/Form1';
 import Form2 from '../../Components/AerodromeLicensing/Form2/Form2';
+import Form3 from '../../Components/AerodromeLicensing/Form3/Form3';
 import Form5 from '../../Components/AerodromeLicensing/Form5/Form5';
 import Form6 from '../../Components/AerodromeLicensing/Form6/Form6';
 import Form8 from '../../Components/AerodromeLicensing/Form8/Form8';
+import formRenew from '../../Components/AerodromeLicensing/formRenew/formRenew';
 import TestForm from '../../Components/AerodromeLicensing/TestForm/TestForm';
 
 class Main extends Component{
@@ -35,6 +37,9 @@ class Main extends Component{
                         <Route exact path='/form2'>
                             <Form2/>
                         </Route>
+                        <Route exact path='/form3'>
+                            <Form3/>
+                        </Route>
                         <Route exact path='/form5'>
                             <Form5/>
                         </Route>
@@ -47,6 +52,10 @@ class Main extends Component{
                         <Route exact path='/testform'>
                             <TestForm/>
                         </Route>
+                        <Route exact path='/testform'>
+                            <formRenew/>
+                        </Route>
+
                     </Switch>   
                 </div>
             </BrowserRouter>
