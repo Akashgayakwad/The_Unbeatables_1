@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import GoogleLogin from 'react-google-login';
-import {Redirect} from 'react-router-dom'
+import {Redirect,Link} from 'react-router-dom'
 
 export class Login extends Component {
+
     constructor(props) {
         super(props)
     
@@ -15,11 +16,11 @@ export class Login extends Component {
 
     login(res) {
         let postData = res.accessToken;
-        localStorage.setItem("token",postData);
+        sessionStorage.setItem("token",postData);
         this.setState({
             redirectToReferrer:true
         }, ()=>{
-            console.log(localStorage.getItem("token"));
+            // console.log(localStorage.getItem("token"));
         })
     }
 
@@ -31,7 +32,7 @@ export class Login extends Component {
 
         switch(this.state.redirectToReferrer) {
             case true : 
-                return(<Redirect to='/card' />)
+                return(<Redirect to="/redirect"/>)
             case false :
                 return (
                     <div>

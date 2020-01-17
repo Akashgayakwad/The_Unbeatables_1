@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router';
+import axios from "axios"
 
 export class AuthCard extends Component {
 
@@ -9,7 +10,10 @@ export class AuthCard extends Component {
         this.state = {
             card: null,
             name: "restadmin@airport-licensing",
-            redirectToReferrer:false
+            redirectToReferrer:false,
+            participant:"",
+            identity:"",
+            version:"",
         }
     }
     
@@ -20,18 +24,32 @@ export class AuthCard extends Component {
     }
 
     handleSubmit(e) {
-        const {name , card} = this.state
-        fetch('https://a1d4d44f.ngrok.io/explorer/Wallet/Card_importCard', {
-          // content-type header should not be specified!
+        const {name , card} = this.state;
+        const access_token = sessionStorage.getItem('token');
+        console.log(access_token);
+        fetch('https://a1d4d44f.ngrok.io/api/wallet/import', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
             method: 'POST',
-            body: {card,name},
-        })
+            body: {
+                "card":card,
+                "name":name}
+            })
             .then(response => response.json())
             .then(success => {
-                this.setState({
-                    redirectToReferrer : true
-                })
-                console.log(success);
+                console.log('sucess');
+                axios.get(`https://a1d4d44f.ngrok.io/api/system/ping`)
+                    .then(res => {
+                    const {participant,identity,version} = res.data; 
+                    this.setState({ participant,identity,version}, 
+                        this.setState({
+                            redirectToReferrer : true
+                        }));
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             })
             .catch(error => console.log(error)
         );

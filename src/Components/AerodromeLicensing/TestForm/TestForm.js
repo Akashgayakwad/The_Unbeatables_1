@@ -9,6 +9,7 @@ import TextArea from '../FormComponents/TextArea'
 import DynamicInput from '../FormComponents/DynamicInput'
 import DetailsForm from '../FormComponents/DetailsForms'
 import DefectForm from '../FormComponents/DefectForm'
+import Dropdown from '../FormComponents/Dropdown'
 
 class TestForm extends Component {
 
@@ -55,7 +56,7 @@ class TestForm extends Component {
     render() {
         return (
             <div>
-                <TableForm />
+                <Dropdown/>
             </div>
         )
     }

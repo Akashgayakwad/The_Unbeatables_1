@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter,Route, Switch} from 'react-router-dom';
+import {BrowserRouter,Route, Switch, Redirect} from 'react-router-dom';
 import Dashboard from './../../Components/Dashboard/Dashboard';
 import Signpad from './../../Components/Signpad/Signpad';
 import Mainform from '../../Components/AerodromeLicensing/Mainform';
@@ -44,6 +44,15 @@ class Main extends Component{
                         <Route exact path='/license'>
                             <Mainform/>
                         </Route>
+                        <Route path='/redirect' component={() => { 
+                            window.location.href = 'https://a1d4d44f.ngrok.io/auth/google'; 
+                            // return <Redirect to="/card"/>;
+                        }}/>
+                        <Route path='/auth/google/callback' component={() => { 
+                            // window.location.href = 'https://a1d4d44f.ngrok.io/auth/google';
+                            // console.log(sessionStorage.getItem('token'));
+                            return <Redirect to="/card"/>;
+                        }}/>
                         <Route exact path="/dashboard">
                             <Dashboard/>
                         </Route>
