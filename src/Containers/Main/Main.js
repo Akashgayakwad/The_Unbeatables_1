@@ -12,6 +12,9 @@ import Form8 from '../../Components/AerodromeLicensing/Form8/Form8';
 import TestForm from '../../Components/AerodromeLicensing/TestForm/TestForm';
 import Login from '../../Components/Authentication/Login';
 import AuthCard from '../../Components/Authentication/AuthCard';
+import Error404 from './../../Components/Extras/Error404';
+import Requestform from './../../Components/RequestForm/Requestform';
+import  Loginsignup from './../../Components/Extras/Loginsignup';
 
 class Main extends Component{
 
@@ -33,10 +36,13 @@ class Main extends Component{
 
         return(
             <BrowserRouter>
-                <div className="container" style={{height:"auto",marginTop:"150px"}}>
+                <div className="container" style={{height:"auto",marginTop:"100px",marginBottom:"50px"}}>
                     <Switch>
                         <Route exact path='/license'>
                             <Mainform/>
+                        </Route>
+                        <Route exact path='/login'>
+                            <Loginsignup/>
                         </Route>
                         <Route exact path="/dashboard">
                             <Dashboard/>
@@ -52,6 +58,9 @@ class Main extends Component{
                         </Route>
                         <Route exact path="/details/:id" >
                             <Detaillist/>
+                        </Route>
+                        <Route exact path="/request" >
+                            <Requestform/>
                         </Route>
                         <Route exact path='/form1'>
                             <Form1/>
@@ -70,6 +79,9 @@ class Main extends Component{
                         </Route>
                         <Route exact path='/testform'>
                             <TestForm/>
+                        </Route>
+                        <Route path='*'>
+                            <Error404/>
                         </Route>
                     </Switch>   
                 </div>

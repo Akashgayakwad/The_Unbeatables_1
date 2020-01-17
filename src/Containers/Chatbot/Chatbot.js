@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Widget,addResponseMessage, addLinkSnippet, addUserMessage  } from 'react-chat-widget';
  
 import 'react-chat-widget/lib/styles.css';
@@ -10,17 +11,24 @@ class Chatbot extends Component {
         addResponseMessage("Hey there! I am Foxy. How can I help you?");
       }
       handleNewUserMessage = (newMessage) => {
-        console.log(`New message incomig! ${newMessage}`);
-        // Now send the message throught the backend API
-        // var response = "Bhaag mc";
-        // addResponseMessage(response);
-        addLinkSnippet(    
-        {
-            title: 'Licence Application',
-            link: 'https://github.com/Wolox/react-chat-widget',
-            target: '_blank'
-          }
-          )
+        
+        axios.post('https://airport-licensing-server.shri99.now.sh/dialogflow', {
+          text: newMessage
+        })
+        .then(function (response) {
+          addResponseMessage(response);
+        })
+        .catch(function (error) {
+          addResponseMessage("Opps!Unable to connect to chat server at the moment.");
+        }); 
+
+        // addLinkSnippet(    
+        // {
+        //     title: 'Licence Application',
+        //     link: 'https://github.com/Wolox/react-chat-widget',
+        //     target: '_blank'
+        //   }
+          // )
       }
     render() {
     return (
