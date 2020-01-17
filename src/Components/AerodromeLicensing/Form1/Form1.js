@@ -9,8 +9,10 @@ class Form1 extends Component {
         type:0,
         "firstName":"",
         "lastName": "",
-        "phoneNumber": "",
-        "email": "",
+        "telephoneNumber": "",
+        "faxnumber":"",
+        "email_telex_number": "",
+        "nationality": "",
         "designation": "",
         "line1": "",
         "line": "",
@@ -81,6 +83,44 @@ class Form1 extends Component {
                     name="Last Name of applicant" 
                     onChange={this.handleChange('lastName')} 
                     placeholder="Last Name"/>
+
+                <h6>
+                    Address of applicant
+                </h6>
+                <br/>
+                <InputForm 
+                    type={this.state.type} 
+                    name="Line 1" 
+                    onChange={this.handleChange('line1')} 
+                    placeholder="Line 1" />
+                <InputForm 
+                    type={this.state.type} 
+                    name="Line 2" 
+                    onChange={this.handleChange('line')} 
+                    placeholder="Line 2" />
+                <InputForm 
+                    type={this.state.type} 
+                    name="City" 
+                    onChange={this.handleChange('city')} 
+                    placeholder="City" />
+                <InputForm 
+                    type={this.state.type} 
+                    name="State" 
+                    onChange={this.handleChange('state')} 
+                    placeholder="state" />
+                <InputForm 
+                    type={this.state.type} 
+                    name="Country" 
+                    onChange={this.handleChange('state')} 
+                    placeholder="country" />
+                {
+                    //Airports Authority of India mei country ka kya matlab
+                }
+                <InputForm 
+                    type={this.state.type} 
+                    name="Postal Code" 
+                    onChange={this.handleChange('postalcode')} 
+                    placeholder="Postal Code" />
                 <InputForm 
                     type={this.state.type} 
                     name="Telephone Number" 
@@ -101,6 +141,7 @@ class Form1 extends Component {
                     name="Nationality" 
                     onChange={this.handleChange('nationality')} 
                     placeholder="Nationality" />
+                
             </div>
         )
     }
