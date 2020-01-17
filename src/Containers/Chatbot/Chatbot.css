@@ -6,7 +6,13 @@
   }
    
   .rcw-launcher{
+      /* bottom: 10px  !important; */
       background-color: #23374d ;
+      z-index: 5040;
+  }
+  .rcw-widget-container{
+      /* bottom: 10px !important; */
+        z-index: 5040;
   }
 
   .rcw-message > .rcw-response,.rcw-message >.rcw-snippet {
