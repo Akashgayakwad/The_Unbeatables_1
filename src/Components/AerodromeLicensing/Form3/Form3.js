@@ -9,17 +9,56 @@ import TextArea from '../FormComponents/TextArea'
 export class Form3 extends Component {
 
     state={
-        category:"",
-        privatePurpose:"",
-        ownA:"",
-        otherA:"",
-        priorPermission:"",
-        nightUse:"",
-        nightdetails:"",
-        CNS_ATM:"",
-        met:"",
-        aviation:"",
-        typeAircraft:"",
+        "categoryState": "",
+        "purposeOfPrivate": "",
+        "onlyYourAircratf": null,
+        "priorPermissionForOtherAircraft": null,
+        "allWeatherRequired": null,
+        "detailsOfProposedLighting": "",
+        "detailsCNS_ATN": "",
+        "detailsMET_Facilities": "",
+        "otherAviationActivies": "",
+        "heaviestAircraftType": "",
+        "heaviestAircraftWeight": 0,
+        "heaviestAircraftLength": 0,
+        "heaviestAircraftWidth": 0,
+    }
+
+    handleSubmit = (e) => {
+        const fields = {
+            "aerodromeActivities": {
+                "$class": "org.example.airportlicensing.AerodromeActivities",
+                "categoryState": this.state,
+                "purposeOfPrivate": "",
+                "onlyYourAircratf": true,
+                "priorPermissionForOtherAircraft": true,
+                "allWeatherRequired": true,
+                "detailsOfProposedLighting": "",
+                "detailsCNS_ATN": "",
+                "detailsMET_Facilities": "",
+                "otherAviationActivies": "",
+                "heaviestAircraftType": "",
+                "heaviestAircraftWeight": 0,
+                "heaviestAircraftLength": 0,
+                "heaviestAircraftWidth": 0,
+                "id": ""
+            },
+        }
+
+        const access_token = sessionStorage.getItem('token');
+        fetch('', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
+            method: 'POST',
+            body: {fields}
+            })
+            .then(response => response.json())
+            .then(success => {
+                console.log('sucess');
+            })
+            .catch(error => console.log(error)
+        );
     }
 
     handleChange = input => (e) => {
@@ -52,9 +91,9 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck3"
                             type="checkbox"
-                            value="Yes"
-                            checked={this.state.ownA === "Yes"}
-                            onChange={this.handleChange('ownA')}
+                            value={true}
+                            checked={this.state.onlyYourAircratf === true}
+                            onChange={this.handleChange('onlyYourAircratf')}
                         />
                         <label class="custom-control-label" for="customCheck3">Yes</label>
                     </div>
@@ -63,9 +102,9 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck4"
                             type="checkbox"
-                            value="No"
-                            checked={this.state.ownA === "No"}
-                            onChange={this.handleChange('ownA')}
+                            value={false}
+                            checked={this.state.onlyYourAircratf === false}
+                            onChange={this.handleChange('onlyYourAircratf')}
                         />
                         <label class="custom-control-label" for="customCheck4">No</label>
                     </div>
@@ -79,7 +118,7 @@ export class Form3 extends Component {
                             type="checkbox"
                             value="Yes"
                             checked={this.state.otherA === "Yes"}
-                            onChange={this.handleChange('otherA')}
+                            onChange={this.handleChange()}
                         />
                         <label class="custom-control-label" for="customCheck5">Yes</label>
                     </div>
@@ -102,9 +141,9 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck7"
                             type="checkbox"
-                            value="Yes"
-                            checked={this.state.priorPermission === "Yes"}
-                            onChange={this.handleChange('priorPermission')}
+                            value={true}
+                            checked={this.state.priorPermissionForOtherAircraft === true}
+                            onChange={this.handleChange('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck7">Yes</label>
                     </div>
@@ -113,9 +152,9 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck8"
                             type="checkbox"
-                            value="No"
-                            checked={this.state.priorPermission === "No"}
-                            onChange={this.handleChange('priorPermission')}
+                            value={false}
+                            checked={this.state.priorPermissionForOtherAircraft === false}
+                            onChange={this.handleChange('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck8">No</label>
                     </div>
