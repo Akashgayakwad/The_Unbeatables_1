@@ -18,11 +18,6 @@
     "styletron-engine-atomic": "^1.4.4",
     "styletron-react": "^5.2.6"
   },
-  "proxy": {
-    "https://a1d4d44f.ngrok.io/auth/google/callback": {
-        "target": "http://localhost:3000/card"
-    }
-  },
   "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
