@@ -87,7 +87,7 @@ class Form1 extends Component {
                 <h6>
                     Address of applicant
                 </h6>
-                <br/>
+                
                 <InputForm 
                     type={this.state.type} 
                     name="Line 1" 
@@ -113,9 +113,7 @@ class Form1 extends Component {
                     name="Country" 
                     onChange={this.handleChange('state')} 
                     placeholder="country" />
-                {
-                    //Airports Authority of India mei country ka kya matlab
-                }
+                
                 <InputForm 
                     type={this.state.type} 
                     name="Postal Code" 
