@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
+import Date from '../FormComponents/Date'
+import ImageUpload from '../FormComponents/ImageUpload'
 
 export class Form5 extends Component {
     
     state = {
         nameofApplicantdef:"",
         AddressofAuthoritydef:"",
-        DateofApprovaldef:"",
+        DateofApprovaldef:new Date(),
         ReferenceofApprovaldef:"",
+        filedef:null,
         
         nameofApplicantha:"",
         AddressofAuthorityha:"",
-        DateofApprovalha:"",
+        DateofApprovalha:new Date(),
         ReferenceofApprovalha:"",
+        fileha:null,
 
         nameofApplicantownland:"",
         AddressofAuthorityownland:"",
-        DateofApprovalownland:"",
+        DateofApprovalownland:new Date(),
         ReferenceofApprovalownland:"",
+        fileownland:null,
 
         nameofApplicantloc:"",
         AddressofAuthorityloc:"",
-        DateofApprovalloc:"",
+        DateofApprovalloc:new Date(),
         ReferenceofApprovalloc:"",
+        fileloc:null,
 
         
     }
@@ -39,34 +45,50 @@ export class Form5 extends Component {
             [input] : e.target.value
         })
     }
+    handleChangeFile = input => (e) => {
+        this.setState({
+            [input] : e.target.file
+        })
+    }
     
     render() {
         return (
             <div>
-                <Labels head="Ministry of Defence" faded=""/>
+                <Labels head="PERMISSIONS AND APPROVALS" faded="Attach the attested copies, if not submitted earlier with CA93"/>
+                <h5>
+                    Ministry of Defence
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthoritydef')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthoritydef')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovaldef')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovaldef')} placeholder="Reference of Approval" />
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovaldef')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovaldef')} placeholder="Reference of Approval" />
+                <ImageUpload handleChange={this.handleChangeFile('filedef')}/>
                 
-                <Labels head="Ministry of Home Affairs" faded=""/>
+                <h5>
+                    Ministry of Home Affairs
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityha')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityha')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovalha')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovalha')} placeholder="Reference of Approval" />
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalha')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Refernce of Approval" onChange={this.handleChange('ReferenceofApprovalha')} placeholder="Reference of Approval" />
+                <ImageUpload handleChange={this.handleChangeFile('fileha')}/>
                 
-                <Labels head="Owner of the land" faded=""/>
+                <h5>
+                Owner of the land
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityownland')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityownland')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovalownland')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovalownland')} placeholder="Reference of Approval" />
-                
-                <Labels head="Local authority such as municipal corporation / committee or urban land development Board/ authority of the State or its Country and Town Planning Department" faded=""/>
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalownland')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalownland')} placeholder="Reference of Approval" />
+                <ImageUpload handleChange={this.handleChangeFile('fileownland')}/>
+                <h5>
+                Local authority such as municipal corporation / committee or urban land development Board/ authority of the State or its Country and Town Planning Department
+                </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityloc')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityloc')} placeholder="Address" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval" />
-                <InputForm type={0} name="Date of Approval" onChange={this.handleChange('ReferenceofApprovalloc')} placeholder="Reference of Approval" />
-                
+                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval"/>
+                <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalloc')} placeholder="Reference of Approval" />
+                <ImageUpload handleChange={this.handleChangeFile('fileloc')}/>
             </div>
         )
     }

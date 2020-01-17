@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router';
+import axios from "axios"
 
 export class AuthCard extends Component {
 
@@ -7,27 +9,58 @@ export class AuthCard extends Component {
     
         this.state = {
             card: null,
-            popup: false
+            name: "restadmin@airport-licensing",
+            redirectToReferrer:false,
+            participant:"",
+            identity:"",
+            version:"",
         }
     }
     
     handleChange = (name) => (e) => {
         this.setState({
             [name] : e.target.file,
-        }, () => {
-            this.setState({
-                popup:true
-            })
         })
     }
 
-    handlePopup = (value) => {
-        return (value ? (<button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-        ) : null);
+    handleSubmit(e) {
+        const {name , card} = this.state;
+        const access_token = sessionStorage.getItem('token');
+        console.log(access_token);
+        fetch('https://a1d4d44f.ngrok.io/api/wallet/import', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
+            method: 'POST',
+            body: {
+                "card":card,
+                "name":name}
+            })
+            .then(response => response.json())
+            .then(success => {
+                console.log('sucess');
+                axios.get(`https://a1d4d44f.ngrok.io/api/system/ping`)
+                    .then(res => {
+                    const {participant,identity,version} = res.data; 
+                    this.setState({ participant,identity,version}, 
+                        this.setState({
+                            redirectToReferrer : true
+                        }));
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            })
+            .catch(error => console.log(error)
+        );
     }
 
 
     render() {
+        if(this.state.redirectToReferrer) {
+            return (<Redirect to="/dashboard"/>)
+        }
+
         return (
             <div>
                 <div class="info">
@@ -43,15 +76,13 @@ export class AuthCard extends Component {
                                 <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
                                     <span class="fileinput-new">Select File</span>
                                     <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="..." onChange={this.handleChange('card')}/>
+                                    <input type="file" name="..." onClick={this.handleChange('card')}/>
                                 </span>
-                                    <a href="javascript:;" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
-                                    <i class="fa fa-times"></i>Remove</a>
+                                <button type="button" onClick={(e) => {this.handleSubmit(e)}} class="btn btn-success btn-round fileinput-exists">Submit</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                {this.handlePopup(this.state.popup)}
             </div>
         )
     }

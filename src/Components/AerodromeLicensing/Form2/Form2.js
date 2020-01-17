@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
+import Labels from '../FormComponents/Labels'
+import ImageUpload from '../FormComponents/ImageUpload'
 
 export class Form2 extends Component {
     
@@ -16,24 +18,52 @@ export class Form2 extends Component {
         gridreference:"",
         orientation:"",
         lengthrunwaymeter:"",
-        lengthrunwayfeet:""
+        lengthrunwayfeet:"",
+        file:null,
+        runways: [{name : ""}]
     }
-
-// 0 for normal input Form
-// 1 form under evaluation but needs any change
-// 2 for sucessful Form only readme 
-// 3 for incorrect form needs change with the error
-// 4 for incorect and rejected so diabled with the error
 
     handleChange = input => (e) => {
         this.setState({
             [input] : e.target.value
         })
     }
-    // DETAILS OF AERODROME (as required to be shown on the license)
+
+    handleChangeFile = input => (e) => {
+        this.setState({
+            [input] : e.target.file
+        })
+    }
+
+    handleRunwayChange = evt => {
+        this.setState({ name: evt.target.value });
+    };
+
+    handleRunwayNameChange = idx => evt => {
+        const newRunways = this.state.runways.map((runway, sidx) => {
+            if (idx !== sidx) return runway;
+            return { ...runway, name: evt.target.value };
+        });
+    
+        this.setState({ runways: newRunways });
+    };
+    
+    handleAddRunway = () => {
+        this.setState({
+            runways: this.state.runways.concat([{ name: "" }])
+        });
+    };
+
+    handleRemoveRunway = idx => () => {
+        this.setState({
+            runways: this.state.runways.filter((s, sidx) => idx !== sidx)
+        });
+    };
+
     render() {
         return (
             <div>
+                <Labels head="DETAILS OF AERODROME (as required to be shown on the license)" faded=""/>
                 <InputForm type={0} name="Place name by which the aerodrome is to be known in all future references" onChange={this.handleChange('placename')} placeholder="Place name by which the aerodrome is to be known in all future references" />
                 <InputForm type={0} name="Name and Address of the owner of Aerodrome" onChange={this.handleChange('addressofApplicant')} placeholder="Name and Address of the owner of Aerodrome"/>
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('telephonenumber')} placeholder="Telephone Number" />
@@ -46,19 +76,44 @@ export class Form2 extends Component {
                 <InputForm type={0} name="State / District in which situated" onChange={this.handleChange('state_district')} placeholder="State / District in which situated" />
                 <InputForm type={0} name="Grid reference in WGS 84" onChange={this.handleChange('gridreference')} placeholder="Grid reference in WGS 84" />
                 
-                {//attach a survey map, scale1:10,000 showing by means of broken line the exact boundaries of the aerodrome
-    }
+                <h6>
+                    Attach a survey map, scale 1:10,000 showing by means of broken line the exact boundaries of the aerodrome         
+                </h6>
+                <br/>
+                    <ImageUpload handleChange={this.handleChangeFile('file')}/>
+                <br/>
                 <InputForm type={0} name="Elevation of the Aerodrome reference point (AMSL) (in feet)" onChange={this.handleChange('elevationreferencefeet')} placeholder="Elevation of the Aerodrome reference point (AMSL)(in feet)" />
                 <InputForm type={0} name="Elevation of the Aerodrome reference point (AMSL) (in meter)" onChange={this.handleChange('elevationreferencemeter')} placeholder="Elevation of the Aerodrome reference point (AMSL)(in meters)" />
-                
-                {// There maybe multiple runways
-    }
-                
-                <InputForm type={0} name="Orientation of runway (s)" onChange={this.handleChange('orientation')} placeholder="Orientation of runway (s)(in meters)" />
-                <InputForm type={0} name="Length of runway (s)(in meter)" onChange={this.handleChange('lengthrunwaymeter')} placeholder="Length of runway (s)(in meter)" />
-                <InputForm type={0} name="Length of runway (s)(in feet)" onChange={this.handleChange('lengthrunwayfeet')} placeholder="Length of runway (s)(in feet)" />
-                
-
+                <div>
+                <h6>Orientation and length of runway (s) (in feet and meter)</h6>
+                    {this.state.runways.map((runway, idx) => (
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col col-lg-10">
+                                <div class="form-group" >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder={`Runway ${idx + 1}`}
+                                        value={runway.name}
+                                        onChange={this.handleRunwayNameChange(idx)}
+                                    />
+                                </div>
+                                </div>
+                                <div class="col col-lg-2">                                
+                                    <button 
+                                        class="btn btn-primary" 
+                                        onClick={this.handleRemoveRunway(idx)} 
+                                        type="button">
+                                        Remove
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                    ))}
+                    <button class="btn btn-primary" onClick={this.handleAddRunway} type="button">Add Runway</button>
+                </div>
+                <br/>
             </div>
         )
     }
