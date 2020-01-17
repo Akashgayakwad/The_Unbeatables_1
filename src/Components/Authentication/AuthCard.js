@@ -27,7 +27,7 @@ export class AuthCard extends Component {
         const {name , card} = this.state;
         const access_token = sessionStorage.getItem('token');
         console.log(access_token);
-        fetch('https://a1d4d44f.ngrok.io/api/wallet/import', {
+        fetch('http://3653ec57.ngrok.io/api/wallet/import', {
             headers: {
                     "X-Access-Token":access_token,
                 },
@@ -39,17 +39,17 @@ export class AuthCard extends Component {
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
-                axios.get(`https://a1d4d44f.ngrok.io/api/system/ping`)
-                    .then(res => {
-                    const {participant,identity,version} = res.data; 
-                    this.setState({ participant,identity,version}, 
-                        this.setState({
-                            redirectToReferrer : true
-                        }));
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
+                // axios.get(`http://3653ec57.ngrok.io/api/system/ping`)
+                //     .then(res => {
+                //     const {participant,identity,version} = res.data; 
+                //     this.setState({ participant,identity,version}, 
+                //         this.setState({
+                //             redirectToReferrer : true
+                //         }));
+                //     })
+                //     .catch(error => {
+                //         console.log(error);
+                //     })
             })
             .catch(error => console.log(error)
         );

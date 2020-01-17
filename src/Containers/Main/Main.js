@@ -45,14 +45,15 @@ class Main extends Component{
                             <Mainform/>
                         </Route>
                         <Route path='/redirect' component={() => { 
-                            window.location.href = 'https://a1d4d44f.ngrok.io/auth/google'; 
+                            window.location.href = 'http://3653ec57.ngrok.io/auth/google'; 
                             // return <Redirect to="/card"/>;
                         }}/>
-                        <Route path='/auth/google/callback' component={() => { 
-                            // window.location.href = 'https://a1d4d44f.ngrok.io/auth/google';
-                            // console.log(sessionStorage.getItem('token'));
-                            return <Redirect to="/card"/>;
-                        }}/>
+                        {// <Route path='' component={() => { 
+                        //     // window.location.href = 'https://a1d4d44f.ngrok.io/auth/google';
+                        //     // console.log(sessionStorage.getItem('token'));
+                        //     return <Redirect to="/card"/>;
+                        // }}/>
+                        }
                         <Route exact path="/dashboard">
                             <Dashboard/>
                         </Route>
