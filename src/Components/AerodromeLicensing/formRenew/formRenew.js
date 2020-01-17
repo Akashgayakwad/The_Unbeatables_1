@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import FileUpload from '../FormComponents/FileUpload'
 import Date from '../FormComponents/Date'
-export class renewForm  extends Components{
+import Labels from '../FormComponents/Labels'
+export class formRenew  extends Component{
     state={
         aerodromeLicense:"",
         nameAerodrome:"",
