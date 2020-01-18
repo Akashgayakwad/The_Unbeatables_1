@@ -10,7 +10,7 @@ export class Form8 extends Component {
     state = {
         challanno:"",
         amount:"",
-        datedrawee: new Date(),
+        datedrawee: "",
         namedrawee:"",
         sign: null
     }
@@ -74,7 +74,21 @@ export class Form8 extends Component {
                 {
                     //Attach a sheet showing the calculation of amount as per runway length)
                 }
-                <Date name="Date of drawing the fees" handleChange={this.handleChange('datedrawee')} placeholder="Date of drawing the fees"/>
+                <div>
+                    <div class="form-group">
+                    <h6>Date of drawing the fees</h6>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                                this.setState({
+                                    datedrawee: e.target.value.toString()
+                                })
+                            }} type="date" placeholder="Date of drawing the fees"></input>
+                        </div>
+                    </div>
+                </div>
                 <InputForm type={0} name="Name of the drawee bank" onChange={this.handleChange('namedrawee')} placeholder="Name of the drawee bank" />
                 <Signpad setImageURL={setImageURL}/>
                 

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Signpad from '../../Signpad/Signpad' 
 import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
-import Date from '../FormComponents/Date'
 import CheckBox from '../FormComponents/CheckBox'
 import BooleanCheckbox from '../FormComponents/BooleanCheckbox'
 
@@ -13,9 +12,9 @@ export class Form4 extends Component {
         Ownership:true,
         popup:false,
         YourRights:"",
-        FromDate: new Date(),
-        ToDate: new Date(),
-        Termination:new Date(),
+        FromDate: "",
+        ToDate: "",
+        Termination: "",
         sign:null
     }
 
@@ -55,6 +54,7 @@ export class Form4 extends Component {
                 "id": ""
             },
         }
+        
 
         const access_token = sessionStorage.getItem('token');
         fetch('', {
@@ -83,9 +83,51 @@ export class Form4 extends Component {
             (<div>
                 <h6><strong>IF NO – Please state:</strong></h6>
                 <TextArea name="Details of the rights you hold over the land" onChange={this.handleChange('YourRights')} placeholder="Details of the rights you hold over the land"/>
-                <Date name="From" onChange={this.handleChange('FromDate')} placeholder="From"/>
-                <Date name="To" handleChange={this.handleChange('ToDate')} placeholder="To"/>
-                <Date name="Termination" handleChange={this.handleChange('Termination')} placeholder="Termination"/>
+                <div>
+                    <div class="form-group">
+                    <h6>From</h6>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                                this.setState({
+                                    FromDate: e.target.value.toString()
+                                })
+                            }} type="date" placeholder={this.props.placeholder}></input>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                    <h6>To</h6>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                                this.setState({
+                                    ToDate: e.target.value.toString()
+                                })
+                            }} type="date" placeholder={this.props.placeholder}></input>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                    <h6>To</h6>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                                this.setState({
+                                    Termination: e.target.value.toString()
+                                })
+                            }} type="date" placeholder={this.props.placeholder}></input>
+                        </div>
+                    </div>
+                </div>
             </div>) : null)
     }
     
@@ -121,20 +163,18 @@ export class Form4 extends Component {
                         id="N"
                         type="checkbox"
                         value={false}
-                        checked={this.state.Ownership}
+                        checked={this.state.Ownership===false}
                         onChange={this.handleChange("Ownership")}
                     />
                     <label class="custom-control-label" for="N">No</label>
                 </div>
-
                 {this.handlePopup(this.state.popup)}
                 <h6>
                 The period you hold these rights
                 </h6>
-                 <Signpad setImageURL={setImageURL}/>
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
 }   }
 
 export default Form4
-

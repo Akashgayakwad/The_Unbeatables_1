@@ -32,16 +32,16 @@ export class Form3 extends Component {
                 "categoryState": this.state.categoryState,
                 "purposeOfPrivate": this.state.purposeOfPrivate,
                 "onlyYourAircratf": this.state.onlyYourAircratf,
-                "priorPermissionForOtherAircraft": true,
-                "allWeatherRequired": true,
-                "detailsOfProposedLighting": "",
-                "detailsCNS_ATN": "",
-                "detailsMET_Facilities": "",
-                "otherAviationActivies": "",
-                "heaviestAircraftType": "",
-                "heaviestAircraftWeight": 0,
-                "heaviestAircraftLength": 0,
-                "heaviestAircraftWidth": 0,
+                "priorPermissionForOtherAircraft": this.state.priorPermissionForOtherAircraft,
+                "allWeatherRequired": this.state.allWeatherRequired,
+                "detailsOfProposedLighting": this.state.detailsOfProposedLighting,
+                "detailsCNS_ATN": this.state.detailsCNS_ATN,
+                "detailsMET_Facilities": this.state.detailsMET_Facilities,
+                "otherAviationActivies": this.state.otherAviationActivies,
+                "heaviestAircraftType": this.state.heaviestAircraftLength,
+                "heaviestAircraftWeight": this.heaviestAircraftWeight,
+                "heaviestAircraftLength": this.state.heaviestAircraftLength,
+                "heaviestAircraftWidth": this.state.heaviestAircraftWidth,
                 "id": ""
             },
         }
@@ -68,7 +68,8 @@ export class Form3 extends Component {
         })
     }
 
-    handleChangeChekbox = input => (e) => {
+    handleChangeCheckbox = input => (e) => {
+        console.log(e.target.value);
         if(e.target.value === "Yes") {
             this.setState({
                 [input] : true
@@ -95,14 +96,29 @@ export class Form3 extends Component {
         return (
             <div>
                 <Labels head="AERODROME ACTIVITIES" />
-                <CheckBox 
-                    name="State category of license required as defined in Aircraft Rules 1937?" 
-                    value1="Public Use"
-                    id1="Public-Use" 
-                    id2="Private-Use" 
-                    value2= "Private Use" 
-                    handleChange={this.handleChange('categoryState')} 
-                    check={this.state.category}/>
+                <div class="custom-control custom-checkbox mb-3">
+                    <h6>State category of licence required as defined in Aircraft Rules 1937?</h6>
+                    <input
+                        class="custom-control-input" 
+                        id="customCheck1"
+                        type="checkbox"
+                        value="Public Use"
+                        checked={this.state.categoryState === "Public Use"}
+                        onChange={this.handleChange('categoryState')}
+                    />
+                    <label class="custom-control-label" for='customCheck1'>Public Use</label>
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input
+                        class="custom-control-input" 
+                        id="customCheck2"
+                        type="checkbox"
+                        value="Private Use"
+                        checked={this.state.categoryState === "Private Use"}
+                        onChange={this.handleChange('categoryState')}
+                    />
+                    <label class="custom-control-label" for="customCheck2">Private Use</label>
+                </div>
                 <InputForm 
                     type={0} 
                     name="In case of private aerodrome, indicate the purpose for which the aerodrome will be used e.g. joy rides, air displays, miscellaneous instructional flying, private flying etc" 
@@ -116,12 +132,17 @@ export class Form3 extends Component {
                             id="customCheck3"
                             type="checkbox"
                             value="Yes"
+<<<<<<< HEAD
                             checked={this.state.onlyYourAircratf === "Yes"}
 <<<<<<< HEAD
                             onChange={this.handleChangeChekbox('onlyYourAircratf')}
 =======
                             onChange={this.handleChange('onlyYourAircratf')}
 >>>>>>> 263ede6a13a01a52bfb8cd9d8aee4d0f6996622c
+=======
+                            checked={this.state.onlyYourAircratf}
+                            onChange={this.handleChangeCheckbox('onlyYourAircratf')}
+>>>>>>> 5e4312df2f161aa083a24a4454dc33fe147879b8
                         />
                         <label class="custom-control-label" for="customCheck3">Yes</label>
                     </div>
@@ -131,18 +152,24 @@ export class Form3 extends Component {
                             id="customCheck4"
                             type="checkbox"
                             value="No"
+<<<<<<< HEAD
                             checked={this.state.onlyYourAircratf === "No"}
 <<<<<<< HEAD
                             onChange={this.handleChangeChekbox('onlyYourAircratf')}
 =======
                             onChange={this.handleChange('onlyYourAircratf')}
 >>>>>>> 263ede6a13a01a52bfb8cd9d8aee4d0f6996622c
+=======
+                            checked={this.state.onlyYourAircratf===false}
+                            onChange={this.handleChangeCheckbox('onlyYourAircratf')}
+>>>>>>> 5e4312df2f161aa083a24a4454dc33fe147879b8
                         />
                         <label class="custom-control-label" for="customCheck4">No</label>
                     </div>
                 </form>
                 <form>
                     <div class="custom-control custom-checkbox mb-3">
+<<<<<<< HEAD
                         <h6>Do you propose to use the aerodrome by own aircraft as well as other aircraft ?</h6>
                         <input
                             class="custom-control-input" 
@@ -172,14 +199,16 @@ export class Form3 extends Component {
                 </form>
                 <form>
                     <div class="custom-control custom-checkbox mb-3">
+=======
+>>>>>>> 5e4312df2f161aa083a24a4454dc33fe147879b8
                         <h6>If use by others aircraft, state whether prior permission or notice is required.</h6>
                         <input
                             class="custom-control-input" 
                             id="customCheck7"
                             type="checkbox"
                             value="Yes"
-                            checked={this.state.priorPermissionForOtherAircraft === "Yes"}
-                            onChange={this.handleChange('priorPermissionForOtherAircraft')}
+                            checked={this.state.priorPermissionForOtherAircraft}
+                            onChange={this.handleChangeCheckbox('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck7">Yes</label>
                     </div>
@@ -189,8 +218,8 @@ export class Form3 extends Component {
                             id="customCheck8"
                             type="checkbox"
                             value="No"
-                            checked={this.state.priorPermissionForOtherAircraft === "No"}
-                            onChange={this.handleChange('priorPermissionForOtherAircraft')}
+                            checked={this.state.priorPermissionForOtherAircraft === false}
+                            onChange={this.handleChangeCheckbox('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck8">No</label>
                     </div>
@@ -203,8 +232,8 @@ export class Form3 extends Component {
                             id="customCheck9"
                             type="checkbox"
                             value="Yes"
-                            checked={this.state.nightUse === "Yes"}
-                            onChange={this.handleChange('nightUse')}
+                            checked={this.state.allWeatherRequired}
+                            onChange={this.handleChangeCheckbox('allWeatherRequired')}
                         />
                         <label class="custom-control-label" for="customCheck9">Yes</label>
                     </div>
@@ -214,8 +243,8 @@ export class Form3 extends Component {
                             id="customCheck10"
                             type="checkbox"
                             value="No"
-                            checked={this.state.nightUse === "No"}
-                            onChange={this.handleChange('nightUse')}
+                            checked={this.state.allWeatherRequired === false}
+                            onChange={this.handleChangeCheckbox('allWeatherRequired')}
                         />
                         <label class="custom-control-label" for="customCheck10">No</label>
                     </div>
