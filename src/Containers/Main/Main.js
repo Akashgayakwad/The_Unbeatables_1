@@ -57,7 +57,7 @@ class Main extends Component{
                         </Route>
                         <Route path='/redirect' component={() => { 
                             window.location.href = 'http://3653ec57.ngrok.io/auth/google'; 
-                            // return <Redirect to="/card"/>;
+                            return <Redirect to="/card"/>;
                         }}/>
                         {// <Route path='' component={() => { 
                         //     // window.location.href = 'https://a1d4d44f.ngrok.io/auth/google';
