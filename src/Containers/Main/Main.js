@@ -21,6 +21,8 @@ import AuthCard from '../../Components/Authentication/AuthCard';
 import Error404 from './../../Components/Extras/Error404';
 import Requestform from './../../Components/RequestForm/Requestform';
 import  Loginsignup from './../../Components/Extras/Loginsignup';
+import Faq from './../../Components/Extras/Faq';
+import Home from  './../../Components/Extras/Home';
 
 class Main extends Component{
 
@@ -42,8 +44,11 @@ class Main extends Component{
 
         return(
             <BrowserRouter>
-                <div className="container" style={{height:"auto",marginTop:"100px",marginBottom:"50px"}}>
+                <div className="container" style={{height:"auto",marginTop:"100px",marginBottom:"50px", background:"/bg.jpg"}}>
                     <Switch>
+                    <Route exact path='/'>
+                            <Home/>
+                        </Route>
                         <Route exact path='/license'>
                             <Mainform/>
                         </Route>
@@ -64,6 +69,9 @@ class Main extends Component{
                         </Route>
                         <Route exact path='/login'>
                             <Login/>
+                        </Route>
+                        <Route exact path='/faq'>
+                            <Faq/>
                         </Route>
                         <Route exact path='/card'>
                             <AuthCard/>

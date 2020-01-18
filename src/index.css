@@ -3,11 +3,13 @@ body {
   padding: 0;
   padding: 25px;
   font-family: sans-serif;
+  background: url("/bg.jpg")  !important;
+  background-size: cover  !important;
+  background-repeat: no-repeat !important;
+  height: 100%  !important;
 }
 html {
   position: relative;
   min-height: 100%;
-}
-
-body {
+  height: 100%  !important;
 }
