@@ -4,7 +4,7 @@ import Labels from '../FormComponents/Labels'
 import ImageUpload from '../FormComponents/ImageUpload'
 import Signpad from '../../Signpad/Signpad'
 import uuid from 'uuid';
-
+import fileuploadimage from '../FormComponents/image_placeholder.jpg'
 export class Form2 extends Component {
     
     state = {
@@ -15,20 +15,21 @@ export class Form2 extends Component {
         "firstName":"",
         "lastName": "",
         "grid": "",
-        "elevationMeter": 0,
-        "elevationFeet": 0,
-        "orentationMeter": 0,
-        "orentationFeet": 0,
+        "elevationMeter": "",
+        "elevationFeet": "",
+        "orentationMeter": "",
+        "orentationFeet": "",
         "line1": "",
         "line": "",
         "city": "",
         "state": "",
         "country": "",
-        "postalcode": 0,
+        "postalcode": "",
         "telephoneNumber": "",
         "faxnumber":"",
         "email_telex_number": "",
         "state_district":"",
+        file:null,
         surveyMap:null, //to add in api
         runways: [{name : ""}], // to add in api
         sign:null // add to api
@@ -37,44 +38,51 @@ export class Form2 extends Component {
     handleSubmit = (e) => {
         const fields = {
             "$class": "org.example.airportlicensing.LisenceApplication",
-               "id": "2973",
-               "status": "Approved",
-               "operator": "resource:org.example.airportlicensing.Operator#shritesh.sj@gmail.com",
-               "aerodrome" : {
-                   "$class": "org.example.airportlicensing.Aerodrome",
-                   "id": uuid.v4(),
-                   "placeName": this.state.placeName,
-                   "situation": this.state.situation,
-                   "grid": this.state.grid,
-                   "elevationMeter": this.state.elevationMeter,
-                   "elevationFeet": this.state.elevationFeet,
-                   "orentationMeter": this.state.orentationMeter,
-                   "orentationFeet": this.state.orentationFeet,
-                   "address": {
-                       "$class": "org.example.airportlicensing.Address",
-                       "line1": this.state.line1,
-                       "line": this.state.line,
-                       "city": this.state.city,
-                       "state": this.state.state,
-                       "country": this.state.country,
-                       "postalcode": 0,
-                       }
-                   }
- }     
-        
+            "id": "11234",
+            "status": "Approved",
+            "operator": "resource:org.example.airportlicensing.Operator#1969",
+            "aerodrome" : {
+                "$class": "org.example.airportlicensing.Aerodrome",
+                "id": "11234",
+                "placeName": this.state.placeName,
+                "situation": this.state.situation,
+                "grid": this.state.grid,
+                "elevationMeter": this.state.elevationMeter,
+                "elevationFeet": this.state.elevationFeet,
+                "orentationMeter": this.state.orentationMeter,
+                "orentationFeet": this.state.orentationFeet,
+                "address": {
+                    "$class": "org.example.airportlicensing.Address",
+                    "line1": this.state.line1,
+                    "line": this.state.line,
+                    "city": this.state.city,
+                    "state": this.state.state,
+                    "country": this.state.country,
+                    "postalcode": this.state.postalcode
+                    },
+                "owner":{
+                    "$class": "org.example.airportlicensing.PersonWithoutIdentity",
+                    "firstName": "this.state.firstName",
+                    "lastName": "this.state.lastName",
+                    "phoneNumber": "this.state.phoneNumber",
+                    "email": "this.state.email"
+                    }
+            }
+        }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('http://3653ec57.ngrok.io/api/LisenceApplication', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
                     "Content-Type":"application/json"
                 },
-                method: 'POST',
-                body: JSON.stringify(fields)
+
+            method: 'POST',
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
-                console.log('sucess');
+                console.log('sucess',success);
             })
             .catch(error => console.log(error)
         );
@@ -86,9 +94,12 @@ export class Form2 extends Component {
         })
     }
 
-    handleChangeFile = input => (e) => {
+    handleChangeFile = (e) => {
+        const ab = e.target.files 
         this.setState({
-            [input] : e.target.file
+            file : ab,
+        }, () => {
+            console.log(this.state.file);
         })
     }
 
@@ -216,10 +227,17 @@ export class Form2 extends Component {
                     onChange={this.handleChange('grid')} 
                     placeholder="Grid reference in WGS 84" />
                 <h6>
-                    Attach a survey map, scale 1:10,000 showing by means of broken line the exact boundaries of the aerodrome         
-                </h6>
-                <br/>
-                    <ImageUpload handleChange={this.handleChangeFile('file')}/>
+                    Attach a survey map, scale 1:10,000 showing by means of broken line the exact boundaries of the aerodrome</h6>
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised"></div>
+                    <div>
+                        <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
+                        <span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span>
+                            <input type="file" name="file" onChange={this.handleChangeFile}/>
+                        </span>
+                    </div>
+                </div>
                 <br/>
                 <InputForm 
                     type={0} 
@@ -266,7 +284,8 @@ export class Form2 extends Component {
                 </div>
                 <br/>
                 <Signpad setImageURL={setImageURL}/>
-                <button className="btn btn-success" onClick={this.handleSubmit}>Submit</button>
+
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
     }

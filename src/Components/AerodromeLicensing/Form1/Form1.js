@@ -21,7 +21,7 @@ class Form1 extends Component {
         city: "", 
         state: "",
         country: "",
-        postalcode: 0,
+        postalcode: "",
         sign: null
     }
 
@@ -51,7 +51,6 @@ class Form1 extends Component {
                         "state": this.state.State,
                         "country": this.state.country,
                         "postalcode": this.state.postalcode,
-                        "id": x
                     },
                     "id": y
                 }
