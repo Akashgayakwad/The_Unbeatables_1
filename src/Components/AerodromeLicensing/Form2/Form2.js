@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import ImageUpload from '../FormComponents/ImageUpload'
+import Signpad from '../../Signpad/Signpad'
 
 export class Form2 extends Component {
     
@@ -28,7 +29,8 @@ export class Form2 extends Component {
         "email_telex_number": "",
         "state_district":"",
         surveyMap:null, //to add in api
-        runways: [{name : ""}] // to add in api
+        runways: [{name : ""}], // to add in api
+        sign:null
     }
 
     handleSubmit = (e) => {
@@ -111,6 +113,17 @@ export class Form2 extends Component {
     };
 
     render() {
+
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
+
         return (
             <div>
                 <Labels head="DETAILS OF AERODROME (as required to be shown on the license)" faded=""/>
@@ -247,6 +260,7 @@ export class Form2 extends Component {
                     <button class="btn btn-primary" onClick={this.handleAddRunway} type="button">Add Runway</button>
                 </div>
                 <br/>
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
     }

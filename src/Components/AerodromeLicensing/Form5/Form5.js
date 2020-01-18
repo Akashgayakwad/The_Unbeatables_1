@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import Date from '../FormComponents/Date'
+import Signpad from '../../Signpad/Signpad'
 import ImageUpload from '../FormComponents/ImageUpload'
 
 export class Form5 extends Component {
@@ -30,7 +31,7 @@ export class Form5 extends Component {
         DateofApprovalloc:new Date(),
         ReferenceofApprovalloc:"",
         fileloc:null,
-
+        sign:null
         
     }
 
@@ -85,6 +86,15 @@ export class Form5 extends Component {
     }
     
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
         return (
             <div>
                 <Labels head="PERMISSIONS AND APPROVALS" faded="Attach the attested copies, if not submitted earlier with CA93"/>
@@ -122,6 +132,7 @@ export class Form5 extends Component {
                 <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval"/>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalloc')} placeholder="Reference of Approval" />
                 <ImageUpload handleChange={this.handleChangeFile('fileloc')}/>
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
     }

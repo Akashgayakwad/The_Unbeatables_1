@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Date from '../FormComponents/Date'
 import Labels from '../FormComponents/Labels'
+import Signpad from '../../Signpad/Signpad'
+
 
 export class Form8 extends Component {
     
@@ -9,8 +11,8 @@ export class Form8 extends Component {
         challanno:"",
         amount:"",
         datedrawee: new Date(),
-        namedrawee:""
-        
+        namedrawee:"",
+        sign: null
     }
 
     handleSubmit = (e) => {
@@ -55,6 +57,15 @@ export class Form8 extends Component {
     }
     
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
         return (
             <div>
                 <Labels head="Details of fees" faded=""/>
@@ -65,10 +76,8 @@ export class Form8 extends Component {
                 }
                 <Date name="Date of drawing the fees" handleChange={this.handleChange('datedrawee')} placeholder="Date of drawing the fees"/>
                 <InputForm type={0} name="Name of the drawee bank" onChange={this.handleChange('namedrawee')} placeholder="Name of the drawee bank" />
+                <Signpad setImageURL={setImageURL}/>
                 
-                
-                
-
             </div>
         )
     }

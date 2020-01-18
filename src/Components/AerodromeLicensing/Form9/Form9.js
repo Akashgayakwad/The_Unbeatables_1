@@ -4,7 +4,7 @@ import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
 import Date from '../FormComponents/Date'
 import ImageUpload from '../FormComponents/ImageUpload'
-
+import Signpad from '../../Signpad/Signpad'
 
 export class Form9 extends Component {
     
@@ -13,6 +13,7 @@ export class Form9 extends Component {
         otherinfo:"",
         Date: new Date(),
         Name:"",
+        sign:null
     }
 
     handleSubmit = (e) => {
@@ -56,6 +57,15 @@ export class Form9 extends Component {
     }
     
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
         return (
             <div>
                 <Labels head="Any Other Information" faded="The information may include details in annex 1, 2 and 3"/>
@@ -67,8 +77,8 @@ export class Form9 extends Component {
                 {
                   //Signature and seal to be added
                   //<InputForm type={0} name="Position held" onChange={this.handleChange('PositionHeld')} placeholder="Reference of Approval" />
-              
-              }  
+                }  
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
 }   }
