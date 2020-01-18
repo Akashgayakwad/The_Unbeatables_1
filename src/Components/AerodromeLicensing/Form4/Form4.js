@@ -10,7 +10,7 @@ import BooleanCheckbox from '../FormComponents/BooleanCheckbox'
 export class Form4 extends Component {
     
     state = {
-        Ownership:null,
+        Ownership:true,
         popup:false,
         YourRights:"",
         FromDate: new Date(),
@@ -22,18 +22,17 @@ export class Form4 extends Component {
     handleChange = input => (e) => {
         const ab = e.target.value
         this.setState({
-            [input] : e.target.value
+            [input] : e.target.value === "true"
         },() => {
             if(input === "Ownership"){
-                console.log("hi",ab);
-                if(ab === "Yes") {
+                if(ab === "true") {
                     this.setState({
                         popup:false
                     },() => {
                         console.log(this.state.popup);
                     })
                 }
-                else if(ab === "No") {
+                else if(ab === "false") {
                     this.setState({
                         popup:true
                     },() => {
@@ -48,7 +47,7 @@ export class Form4 extends Component {
         const fields = {
             "controlAerodrome": {
                 "$class": "org.example.airportlicensing.ControlAerodrome",
-                "owner": true,
+                "owner": this.state.Ownership,
                 "rightsIfNotOver": this.state.YourRights,
                 "startingPeriod": this.state.FromDate,
                 "endingPeriod": this.state.ToDate,
@@ -84,6 +83,9 @@ export class Form4 extends Component {
             (<div>
                 <h6><strong>IF NO – Please state:</strong></h6>
                 <TextArea name="Details of the rights you hold over the land" onChange={this.handleChange('YourRights')} placeholder="Details of the rights you hold over the land"/>
+                <Date name="From" onChange={this.handleChange('FromDate')} placeholder="From"/>
+                <Date name="To" handleChange={this.handleChange('ToDate')} placeholder="To"/>
+                <Date name="Termination" handleChange={this.handleChange('Termination')} placeholder="Termination"/>
             </div>) : null)
     }
     
@@ -100,14 +102,34 @@ export class Form4 extends Component {
         return (
             <div>
                 <Labels head="CONTROL OF THE AERODROME" faded=""/>
+                <div class="custom-control custom-checkbox mb-3">
+                    <h6>Are you the owner of the aerodrome?</h6>
+                    <input
+                        class="custom-control-input" 
+                        id="Y"
+                        type="checkbox"
+                        value={true}
+                        checked={this.state.Ownership}
+                        onChange={this.handleChange("Ownership")}
+                    />
+                    <label class="custom-control-label" for="Y">Yes</label>
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input
+                        class="custom-control-input" 
+                        id="N"
+                        type="checkbox"
+                        value={false}
+                        checked={this.state.Ownership === false}
+                        onChange={this.handleChange("Ownership")}
+                    />
+                    <label class="custom-control-label" for="N">No</label>
+                </div>
                 {this.handlePopup(this.state.popup)}
                 <h6>
                 The period you hold these rights
                 </h6>
-                <Date name="From" handleChange={this.handleChange('FromDate')} placeholder="From"/>
-                <Date name="To" handleChange={this.handleChange('ToDate')} placeholder="To"/>
-                <Date name="Termination" handleChange={this.handleChange('Termination')} placeholder="Termination"/>
-                <Signpad setImageURL={setImageURL}/>
+                 <Signpad setImageURL={setImageURL}/>
             </div>
         )
 }   }
