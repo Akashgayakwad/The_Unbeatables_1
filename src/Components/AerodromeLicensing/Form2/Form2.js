@@ -30,7 +30,7 @@ export class Form2 extends Component {
         "state_district":"",
         surveyMap:null, //to add in api
         runways: [{name : ""}], // to add in api
-        sign:null
+        sign:null // add to api
     }
 
     handleSubmit = (e) => {
