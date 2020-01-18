@@ -3,8 +3,8 @@ import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import ImageUpload from '../FormComponents/ImageUpload'
 import Signpad from '../../Signpad/Signpad'
+import uuid from 'uuid';
 import fileuploadimage from '../FormComponents/image_placeholder.jpg'
-
 export class Form2 extends Component {
     
     state = {
@@ -76,6 +76,7 @@ export class Form2 extends Component {
                     "X-Access-Token":access_token,
                     "Content-Type":"application/json"
                 },
+
             method: 'POST',
             body: JSON.stringify(fields)
             })
@@ -283,6 +284,7 @@ export class Form2 extends Component {
                 </div>
                 <br/>
                 <Signpad setImageURL={setImageURL}/>
+
                 <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
