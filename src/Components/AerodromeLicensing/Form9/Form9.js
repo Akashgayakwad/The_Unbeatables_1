@@ -69,7 +69,7 @@ export class Form9 extends Component {
         return (
             <div>
                 <Labels head="Any Other Information" faded="The information may include details in annex 1, 2 and 3"/>
-                <TextArea name="Other Information" onChange={this.handleChange('otherinfo')} placeholder="Any other information"/>
+                <TextArea name="Other Information" handleChange={this.handleChange('otherinfo')} placeholder="Any other information"/>
                 <Date name="Date " handleChange={this.handleChange('Date')} placeholder="Date"/>
                 <InputForm type={0} name="Name" onChange={this.handleChange('Name')} placeholder="Reference of Approval" />
                 <Labels head="Position Held" faded="With Official seal"/>

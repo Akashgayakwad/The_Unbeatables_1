@@ -198,19 +198,19 @@ export class Form3 extends Component {
                 <TextArea 
                     name="If the answer to NIGHT Use is YES, Please provide details of proposed lighting along with the lighting plan." 
                     handleChange={this.handleChange('detailsOfProposedLighting')} 
-                    palceholder=" Details of proposed lighting along with lighting pan"/>
+                    placeholder=" Details of proposed lighting along with lighting pan"/>
                 <TextArea 
                     name="Please provide details of proposed CNS-ATM facilities." 
                     handleChange={this.handleChange('detailsCNS_ATN')} 
-                    palceholder=" Please provide details of proposed CNS-ATM facilities."/>
+                    placeholder=" Please provide details of proposed CNS-ATM facilities."/>
                 <TextArea 
                     name="Please provide details of proposed MET facilities." 
                     handleChange={this.handleChange('detailsMET_Facilities')} 
-                    palceholder=" Please provide details of proposed MET facilities"/>
+                    placeholder=" Please provide details of proposed MET facilities"/>
                 <TextArea 
                     name="Please give details of other proposed aviation activities (for example gliding, parachuting, micro lights)." 
                     handleChange={this.handleChange('otherAviationActivies')} 
-                    palceholder=" Please give details of other proposed aviation activities (for example gliding, parachuting, micro lights)."/>
+                    placeholder=" Please give details of other proposed aviation activities (for example gliding, parachuting, micro lights)."/>
                 <br/>
                 <h6><strong>Type and maximum total weight of the largest / heaviest aircraft for which the aerodrome is designed, including overall length and maximum fuselage width.</strong></h6>
                 <InputForm 
