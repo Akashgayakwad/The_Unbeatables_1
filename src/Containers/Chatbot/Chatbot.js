@@ -8,19 +8,30 @@ import './Chatbot.css';
 
 class Chatbot extends Component {
     componentDidMount() {
-        addResponseMessage("Hey there! I am Foxy. How can I help you?");
+        addResponseMessage("Hey there! I am Foxy. May I know your name?");
       }
       handleNewUserMessage = (newMessage) => {
         
-        axios.post('https://airport-licensing-server.shri99.now.sh/dialogflow', {
-          text: newMessage
-        })
-        .then(function (response) {
-          addResponseMessage(response);
-        })
-        .catch(function (error) {
-          addResponseMessage("Opps!Unable to connect to chat server at the moment.");
-        }); 
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("text", newMessage);
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: 'follow'
+        };
+        
+        fetch("https://airport-licensing-server.shri99.now.sh/dialogflow", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            addResponseMessage(result);
+            console.log(result);
+          })
+          .catch(error => console.log('error', error));
 
         // addLinkSnippet(    
         // {
