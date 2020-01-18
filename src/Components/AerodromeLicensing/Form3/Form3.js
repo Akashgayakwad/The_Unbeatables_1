@@ -83,7 +83,7 @@ export class Form3 extends Component {
             <div>
                 <Labels head="AERODROME ACTIVITIES" />
                 <CheckBox 
-                    name="GenderState category of licence required as defined in Aircraft Rules 1937?" 
+                    name="State category of license required as defined in Aircraft Rules 1937?" 
                     value1="Public Use"
                     id1="Public-Use" 
                     id2="Private-Use" 
@@ -102,8 +102,8 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck3"
                             type="checkbox"
-                            value={true}
-                            checked={this.state.onlyYourAircratf === true}
+                            value="Yes"
+                            checked={this.state.onlyYourAircratf === "Yes"}
                             onChange={this.handleChange('onlyYourAircratf')}
                         />
                         <label class="custom-control-label" for="customCheck3">Yes</label>
@@ -113,8 +113,8 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck4"
                             type="checkbox"
-                            value={false}
-                            checked={this.state.onlyYourAircratf === false}
+                            value="No"
+                            checked={this.state.onlyYourAircratf === "No"}
                             onChange={this.handleChange('onlyYourAircratf')}
                         />
                         <label class="custom-control-label" for="customCheck4">No</label>
@@ -129,7 +129,7 @@ export class Form3 extends Component {
                             type="checkbox"
                             value="Yes"
                             checked={this.state.otherA === "Yes"}
-                            onChange={this.handleChange()}
+                            onChange={this.handleChange('otherA')}
                         />
                         <label class="custom-control-label" for="customCheck5">Yes</label>
                     </div>
@@ -152,8 +152,8 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck7"
                             type="checkbox"
-                            value={true}
-                            checked={this.state.priorPermissionForOtherAircraft === true}
+                            value="Yes"
+                            checked={this.state.priorPermissionForOtherAircraft === "Yes"}
                             onChange={this.handleChange('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck7">Yes</label>
@@ -163,8 +163,8 @@ export class Form3 extends Component {
                             class="custom-control-input" 
                             id="customCheck8"
                             type="checkbox"
-                            value={false}
-                            checked={this.state.priorPermissionForOtherAircraft === false}
+                            value="No"
+                            checked={this.state.priorPermissionForOtherAircraft === "No"}
                             onChange={this.handleChange('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck8">No</label>
