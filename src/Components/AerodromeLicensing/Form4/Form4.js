@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Signpad from '../../Signpad/Signpad' 
 import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
 import Date from '../FormComponents/Date'
@@ -16,6 +16,7 @@ export class Form4 extends Component {
         FromDate: new Date(),
         ToDate: new Date(),
         Termination:new Date(),
+        sign:null
     }
 
     handleChange = input => (e) => {
@@ -87,6 +88,15 @@ export class Form4 extends Component {
     }
     
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
         return (
             <div>
                 <Labels head="CONTROL OF THE AERODROME" faded=""/>
@@ -97,6 +107,7 @@ export class Form4 extends Component {
                 <Date name="From" handleChange={this.handleChange('FromDate')} placeholder="From"/>
                 <Date name="To" handleChange={this.handleChange('ToDate')} placeholder="To"/>
                 <Date name="Termination" handleChange={this.handleChange('Termination')} placeholder="Termination"/>
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
 }   }

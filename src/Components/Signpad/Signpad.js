@@ -17,10 +17,10 @@ const Signpad = (props) =>{
     return(
         <div className="sign-pad">
             <Popup
-             modal
-              trigger={<button type="button" className="btn btn-default">Open Signature Pad</button>}
-              closeOnDocumentClick={false}
-              >
+                modal
+                trigger={<button type="button" className="btn btn-default">Open Signature Pad</button>}
+                closeOnDocumentClick={false}
+            >
                 {close =>(
                     <>
                         <SignaturePad

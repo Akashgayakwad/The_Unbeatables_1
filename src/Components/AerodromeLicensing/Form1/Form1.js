@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import axios from 'axios'
+import Signpad from '../../Signpad/Signpad'
 
 class Form1 extends Component {
     
@@ -20,6 +21,7 @@ class Form1 extends Component {
         "state": "",
         "country": "",
         "postalcode": 0,
+        sign: null
     }
 
     handleSubmit = (e) => {
@@ -70,6 +72,16 @@ class Form1 extends Component {
     }
     
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
+        
         return (
             <div>
                 <Labels head="DETAILS OF LICENCEE (as required to be shown on the license)" faded=""/>
@@ -139,7 +151,7 @@ class Form1 extends Component {
                     name="Nationality" 
                     onChange={this.handleChange('nationality')} 
                     placeholder="Nationality" />
-                
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
     }

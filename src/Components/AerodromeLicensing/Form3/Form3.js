@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import CheckBox from '../FormComponents/CheckBox'
-import CheckBoxOther from '../FormComponents/CheckBoxOther'
+import Signpad from '../../Signpad/Signpad'
 import TextArea from '../FormComponents/TextArea'
 
 
@@ -22,6 +22,7 @@ export class Form3 extends Component {
         "heaviestAircraftWeight": 0,
         "heaviestAircraftLength": 0,
         "heaviestAircraftWidth": 0,
+        sign:null
     }
 
     handleSubmit = (e) => {
@@ -68,6 +69,16 @@ export class Form3 extends Component {
     }
 
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
+
         return (
             <div>
                 <Labels head="AERODROME ACTIVITIES" />
@@ -218,6 +229,7 @@ export class Form3 extends Component {
                     type={0} name="Width" 
                     onChange={this.handleChange('heaviestAircraftTypeWidth')} 
                     placeholder="Width of Aircraft" />
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
     }

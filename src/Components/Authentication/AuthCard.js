@@ -17,9 +17,12 @@ export class AuthCard extends Component {
         }
     }
     
-    handleChange = (name) => (e) => {
+    handleChange = (e) => {
+        // console.log(e.target.files);
         this.setState({
-            [name] : e.target.file,
+            card : e.target.files,
+        }, () => {
+            console.log(this.state.card);
         })
     }
 
@@ -37,55 +40,64 @@ export class AuthCard extends Component {
     }
 
 
-    // fetch('https://example.com/profile', {
-    //     method: 'GET', 
-    //     headers: {
-    //         "X-Access-Token":access_token,
-    //         },
-    //     })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //         console.log('Success:', data);
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //     });
 
-    // fetch('http://3653ec57.ngrok.io/api/system/ping', {
-    //                     method: 'GET', 
-    //                     headers: {
-    //                         "X-Access-Token":access_token,
-    //                         "Access-Control-Allow-origin" : "*"
-    //                     },
-    //                 })
-    //                 .then((response) => response.json())
-    //                 .then((data) => {
-    //                     console.log('Success:', data);
-    //                 })
-    //                 .catch((error) => {
-    //                     console.error('Error:', error);
-    //                 });
+    // var data = new FormData();
+    // data.append("name", "restadmin@airport-licensing");
+    // data.append("card", "/home/kaushik/SIH/restadmin.card");
+    // 
+    // var xhr = new XMLHttpRequest();
+    // xhr.withCredentials = true;
+    // 
+    // xhr.addEventListener("readystatechange", function () {
+    //   if (this.readyState === 4) {
+        // console.log(this.responseText);
+    //   }
+    // });
+    // 
+    // xhr.open("POST", "http://172.22.137.166:3000/api/wallet/import");
+    // xhr.setRequestHeader("X-Access-Token", "yLHaWGB2HGtXihgoTcPnKsx3cKzf3CwQVl6KFZ1ZXnTKGdaprbsD3Tkwu2BZLJcs");
+    // xhr.setRequestHeader("cache-control", "no-cache");
+    // xhr.setRequestHeader("Postman-Token", "902b7db3-e7f1-47e3-ad29-bc1bdbd7945b");
+    // 
+    // xhr.send(data);
 
     handleSubmit(e) {
+        // access_token = sessionStorage.getItem('token')
         var data = new FormData();
-data.append("name", "restadmin@airport-licensing");
-data.append("card", "/home/kaushik/SIH/restadmin.card");
+        data.append("name", "restadmin@airport-licensing");
+        console.log(this.state.card[0]);
+        data.append("card",this.state.card[0] );
+        fetch('http://192.168.137.152:3000/api/wallet/import', {
+                    method: 'POST', 
+                    headers: {
+                        "X-Access-Token": "ALtYuknvuZsTfJ237MbLdAHIDogpNOy2yDs9Orap0ICVrvZIZEzxnsiDSlqZ9hHq",
+                        // "Access-Control-Allow-origin" : "*"
+                    },
+                    body: data
+                })
+                .then((response) => console.log(response))
+                .then((data) => {
+                    //system/ ping
+                    fetch('http://192.168.137.152:3000/api/system/ping', {
+                        method: 'GET', 
+                        headers: {
+                            "X-Access-Token": "ALtYuknvuZsTfJ237MbLdAHIDogpNOy2yDs9Orap0ICVrvZIZEzxnsiDSlqZ9hHq",
+                        },
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                    // end of fetch request
 
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
 
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === 4) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("POST", "http://3653ec57.ngrok.io/api/wallet/import");
-xhr.setRequestHeader("X-Access-Token", "yLHaWGB2HGtXihgoTcPnKsx3cKzf3CwQVl6KFZ1ZXnTKGdaprbsD3Tkwu2BZLJcs");
-xhr.setRequestHeader("cache-control", "no-cache");
-xhr.setRequestHeader("Postman-Token", "902b7db3-e7f1-47e3-ad29-bc1bdbd7945b");
-
-xhr.send(data);
     }
 
 
@@ -106,11 +118,13 @@ xhr.send(data);
                                 <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
                                     <span class="fileinput-new">Select File</span>
                                     <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="..." onClick={this.handleChange('card')}/>
+                                    <input type="file" name="..." onClick={this.handleChange}/>
                                 </span>
                                 <button type="button" onClick={(e) => {this.handleSubmit(e)}} class="btn btn-success btn-round fileinput-exists">Submit</button>
                             </div>
                         </div>
+             {       //   <input type="file" name="card" onClick={this.handleChange}/>
+            }
                     </div>
                 </div>
             </div>

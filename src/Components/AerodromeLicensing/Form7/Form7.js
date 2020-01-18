@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import TextArea from '../FormComponents/TextArea'
 import CheckBox from '../FormComponents/CheckBox'
-
+import Signpad from '../../Signpad/Signpad'
 
 export class Form7 extends Component {
     
     state = {
         RelevantSubmissionTime:"",
         popup:false,
-        ManualEnclosure:null
+        ManualEnclosure:null,
+        sign: null
+
     }
 
     handleChange = input => (e) => {
@@ -74,6 +76,15 @@ export class Form7 extends Component {
     }
     
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
         return (
             <div>
                 <h2>
@@ -107,6 +118,7 @@ export class Form7 extends Component {
                     </div>
                 </form>
                 {this.handlePopup(this.state.popup)}
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
 }   }
