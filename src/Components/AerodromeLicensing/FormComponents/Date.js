@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class Date extends Component {
+export class DateSelect extends Component {
     render() {
         return (
             <div>
@@ -10,7 +10,7 @@ export class Date extends Component {
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                         </div>
-                        <input class="flatpickr flatpickr-input form-control" onChange={this.props.handleChange} type="text" placeholder={this.props.placeholder}></input>
+                        <input class="flatpickr flatpickr-input form-control" value={this.props.value} onClick={this.props.handleChange} type="date" placeholder={this.props.placeholder}></input>
                     </div>
                 </div>
             </div>
@@ -18,4 +18,4 @@ export class Date extends Component {
     }
 }
 
-export default Date;
+export default DateSelect;

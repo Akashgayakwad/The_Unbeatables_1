@@ -177,6 +177,13 @@ export class Form6 extends Component {
             [input] : e.target.value
         })
     }
+
+    handleChangeFile = input => (e) => {
+      const ab = e.target.files
+      this.setState({
+          [input] : ab[0]
+      })
+  }
     
     render() {
         return (
@@ -193,7 +200,22 @@ export class Form6 extends Component {
                 <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusIncharge')} placeholder="Status/Designation" />
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberIncharge')} placeholder="Telephone Number" />
                 <h6>Please enclose Cirriculum Viate</h6>
-                <FileUpload handleChange={this.handleChangeFile('cvDaytoDayOperation')} />
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised"></div>
+                    <div>
+                        <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
+                        <span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span>
+                            <input type="file" name="cvDaytoDayOperation" value={this.state.cvDaytoDayOperation} onClick={(e) => {
+                              console.log(e.target.files);
+                              const ab = e.target.files
+                              this.setState({
+                                cvDaytoDayOperation: ab[0]
+                              })
+                            }}/>
+                        </span>
+                    </div>
+                </div>
                 {// create checkbox to aprrove if 6.2 is same or not
                 }
                 <Labels head="The person responsible for Aerodrome Safety." faded="(Please enclose a current Curriculum Vitae [CV])" />
@@ -202,7 +224,22 @@ export class Form6 extends Component {
                 <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusAerodromeSafety')} placeholder="Status/Designation" />
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberAerodromeSafety')} placeholder="Telephone Number" />
                 <h6>Please enclose Cirriculum Viate</h6>
-                <FileUpload handleChange={this.handleChangeFile('cvAerodromeSafety')} />
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                  <div class="fileinput-new thumbnail img-raised"></div>
+                  <div>
+                      <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
+                      <span class="fileinput-new">Select File</span>
+                      <span class="fileinput-exists">Change</span>
+                          <input type="file" name="cvAerodromeSafety" value={this.state.cvAerodromeSafety} onClick={(e) => {
+                            const ab = e.target.files
+                            console.log(ab);
+                            this.setState({
+                              cvAerodromeSafety: ab[0]
+                            })
+                          }}/>
+                      </span>
+                  </div>
+                </div>
 
                 <Labels head="Provider of the CNS - ATM" />
                 <InputForm type={0} name="First Name" onChange={this.handleChange('firstNameCNSATM')} placeholder="First Name" />

@@ -10,25 +10,25 @@ export class Form5 extends Component {
     state = {
         nameofApplicantdef:"",
         AddressofAuthoritydef:"",
-        DateofApprovaldef:new Date(),
+        DateofApprovaldef: "",
         ReferenceofApprovaldef:"",
         filedef:null,
         
         nameofApplicantha:"",
         AddressofAuthorityha:"",
-        DateofApprovalha:new Date(),
+        DateofApprovalha:"",
         ReferenceofApprovalha:"",
         fileha:null,
 
         nameofApplicantownland:"",
         AddressofAuthorityownland:"",
-        DateofApprovalownland:new Date(),
+        DateofApprovalownland: "",
         ReferenceofApprovalownland:"",
         fileownland:null,
 
         nameofApplicantloc:"",
         AddressofAuthorityloc:"",
-        DateofApprovalloc:new Date(),
+        DateofApprovalloc:"",
         ReferenceofApprovalloc:"",
         fileloc:null,
         sign:null
@@ -79,9 +79,39 @@ export class Form5 extends Component {
             [input] : e.target.value
         })
     }
-    handleChangeFile = input => (e) => {
+
+    handleChangeFileDef = (e) => {
+        const ab = e.target.files 
         this.setState({
-            [input] : e.target.file
+            filedef : ab[0]
+        })
+    }
+
+    handleChangeFileHa = (e) => {
+        const ab = e.target.files 
+        this.setState({
+            fileha : ab[0]
+        })
+    }
+
+    handleChangeFileHa = (e) => {
+        const ab = e.target.files 
+        this.setState({
+            fileha : ab[0]
+        })
+    }
+
+    handleChangeFileOwnLand = (e) => {
+        const ab = e.target.files 
+        this.setState({
+            fileha : ab[0]
+        })
+    }
+
+    handleChangeFileLoc = (e) => {
+        const ab = e.target.files 
+        this.setState({
+            fileha : ab[0]
         })
     }
     
@@ -103,35 +133,126 @@ export class Form5 extends Component {
                 </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthoritydef')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthoritydef')} placeholder="Address" />
-                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovaldef')} placeholder="Date of Approval"/>
+                <div>
+                    <div class="form-group">
+                    <h6>Date of Approval</h6>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                                this.setState({
+                                    DateofApprovaldef: e.target.value.toString()
+                                })
+                            }} type="date" placeholder={this.props.placeholder}></input>
+                        </div>
+                    </div>
+                </div>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovaldef')} placeholder="Reference of Approval" />
-                <ImageUpload handleChange={this.handleChangeFile('filedef')}/>
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised"></div>
+                    <div>
+                        <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
+                        <span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span>
+                            <input type="file" name="file" onClick={this.handleChangeFileDef}/>
+                        </span>
+                    </div>
+                </div>
                 
                 <h5>
                     Ministry of Home Affairs
                 </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityha')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityha')} placeholder="Address" />
-                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalha')} placeholder="Date of Approval"/>
+                <div>
+                    <div class="form-group">
+                    <h6>Date of Approval</h6>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                            this.setState({
+                                DateofApprovalha: e.target.value.toString()
+                            })
+                        }} type="date" placeholder="Date of Approval"></input>
+                        </div>
+                    </div>
+                </div>
                 <InputForm type={0} name="Refernce of Approval" onChange={this.handleChange('ReferenceofApprovalha')} placeholder="Reference of Approval" />
-                <ImageUpload handleChange={this.handleChangeFile('fileha')}/>
-                
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised"></div>
+                    <div>
+                        <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
+                        <span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span>
+                            <input type="file" name="fileha" onClick={this.handleChangeFileHa}/>
+                        </span>
+                    </div>
+                </div>
                 <h5>
                 Owner of the land
                 </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityownland')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityownland')} placeholder="Address" />
-                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalownland')} placeholder="Date of Approval"/>
+                <div>
+                    <div class="form-group">
+                    <h6>Date of Approval</h6>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                                this.setState({
+                                    DateofApprovalownland: e.target.value.toString()
+                                })
+                            }} type="date" placeholder={this.props.placeholder}></input>
+                        </div>
+                    </div>
+                </div>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalownland')} placeholder="Reference of Approval" />
-                <ImageUpload handleChange={this.handleChangeFile('fileownland')}/>
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised"></div>
+                    <div>
+                        <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
+                        <span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span>
+                            <input type="file" name="fileownland" onClick={this.handleChangeFileOwnLand}/>
+                        </span>
+                    </div>
+                </div>
                 <h5>
                 Local authority such as municipal corporation / committee or urban land development Board/ authority of the State or its Country and Town Planning Department
                 </h5>
                 <InputForm type={0} name="Name of authority" onChange={this.handleChange('nameofAuthorityloc')} placeholder="Name" />
                 <InputForm type={0} name="Address of authority" onChange={this.handleChange('AddressofAuthorityloc')} placeholder="Address" />
-                <Date name="Date of Approval" handleChange={this.handleChange('DateofApprovalloc')} placeholder="Date of Approval"/>
+                <div>
+                    <div class="form-group">
+                    <h6>Date of Approval</h6>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                            </div>
+                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                                this.setState({
+                                    DateofApprovalloc: e.target.value.toString()
+                                })
+                            }} type="date" placeholder={this.props.placeholder}></input>
+                        </div>
+                    </div>
+                </div>
                 <InputForm type={0} name="Reference of Approval" onChange={this.handleChange('ReferenceofApprovalloc')} placeholder="Reference of Approval" />
-                <ImageUpload handleChange={this.handleChangeFile('fileloc')}/>
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail img-raised"></div>
+                    <div>
+                        <span class="btn btn-raised btn-round btn-primary btn-simple btn-file">
+                        <span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span>
+                            <input type="file" name="fileloc" onClick={this.handleChangeFileLoc}/>
+                        </span>
+                    </div>
+                </div>
                 <Signpad setImageURL={setImageURL}/>
             </div>
         )

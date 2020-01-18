@@ -18,7 +18,6 @@ export class AuthCard extends Component {
     }
     
     handleChange = (e) => {
-        // console.log(e.target.files);
         this.setState({
             card : e.target.files,
         }, () => {
