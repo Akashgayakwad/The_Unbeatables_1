@@ -3,6 +3,7 @@ import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import ImageUpload from '../FormComponents/ImageUpload'
 import Signpad from '../../Signpad/Signpad'
+import uuid from 'uuid';
 
 export class Form2 extends Component {
     
@@ -35,37 +36,41 @@ export class Form2 extends Component {
 
     handleSubmit = (e) => {
         const fields = {
-            "aerodrome" : {
-                "$class": "org.example.airportlicensing.Aerodrome",
-                "id": "",
-                "placeName": this.state.placeName,
-                "situation": this.state.situation,
-                "grid": this.state.grid,
-                "elevationMeter": this.state.elevationMeter,
-                "elevationFeet": this.state.elevationFeet,
-                "orentationMeter": this.state.orentationMeter,
-                "orentationFeet": this.state.orentationFeet,
-                "address": {
-                    "$class": "org.example.airportlicensing.Address",
-                    "line1": this.state.line1,
-                    "line": this.state.line,
-                    "city": this.state.city,
-                    "state": this.state.State,
-                    "country": this.state.country,
-                    "postalcode": 0,
-                    "id": "",
-                    
-                    }
-            }
-        }
+            "$class": "org.example.airportlicensing.LisenceApplication",
+               "id": "2973",
+               "status": "Approved",
+               "operator": "resource:org.example.airportlicensing.Operator#shritesh.sj@gmail.com",
+               "aerodrome" : {
+                   "$class": "org.example.airportlicensing.Aerodrome",
+                   "id": uuid.v4(),
+                   "placeName": this.state.placeName,
+                   "situation": this.state.situation,
+                   "grid": this.state.grid,
+                   "elevationMeter": this.state.elevationMeter,
+                   "elevationFeet": this.state.elevationFeet,
+                   "orentationMeter": this.state.orentationMeter,
+                   "orentationFeet": this.state.orentationFeet,
+                   "address": {
+                       "$class": "org.example.airportlicensing.Address",
+                       "line1": this.state.line1,
+                       "line": this.state.line,
+                       "city": this.state.city,
+                       "state": this.state.state,
+                       "country": this.state.country,
+                       "postalcode": 0,
+                       }
+                   }
+ }     
+        
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
-            method: 'POST',
-            body: {fields}
+                method: 'POST',
+                body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
@@ -261,6 +266,7 @@ export class Form2 extends Component {
                 </div>
                 <br/>
                 <Signpad setImageURL={setImageURL}/>
+                <button className="btn btn-success" onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }

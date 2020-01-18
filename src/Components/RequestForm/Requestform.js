@@ -15,7 +15,7 @@ class Requestform extends Component{
     }
   render(){
     const handleUserRole = () =>{
-      this.setState({inspector:!this.state.inspector})
+      this.setState({inspector:!this.state.inspector,id_card:null})
     }
 
     return(
@@ -63,7 +63,7 @@ class Requestform extends Component{
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                           </div>
-                          <input type="text" class="form-control" placeholder="Email Here..." value={this.state.email} onChange={ (event)=> this.setState({email:event.target.files[0]})}/>
+                          <input type="text" class="form-control" placeholder="Email Here..." value={this.state.email} onChange={ (event)=> this.setState({email:event.target.value})}/>
                         </div>
                       </div>
 
@@ -82,7 +82,7 @@ class Requestform extends Component{
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-book-bookmark"></i></span>
                           </div>
-                          <input type="file" class="form-control" placeholder="Email Here..." value={this.state.id_card} onChange={ (event)=> this.setState({id_card:event.target.value})}/>
+                          <input type="file" class="form-control" placeholder="Upload ID Card..." value={this.state.id_card} onChange={ (event)=> this.setState({id_card:event.target.input.files[0]})}/>
                         </div>
                       </div>):null}
 
@@ -92,7 +92,7 @@ class Requestform extends Component{
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-book-bookmark"></i></span>
                           </div>
-                          <input type="file" class="form-control"/>
+                          <input type="file" class="form-control"  placeholder="Upload ID Card..." value={this.state.id_card} onChange={ (event)=> this.setState({id_card:event.target.value})}/>
                         </div>
                       </div>):null}
                       
@@ -102,13 +102,13 @@ class Requestform extends Component{
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-building"></i></span>
                           </div>
-                          <input type="file" class="form-control"/>
+                          <input type="file" class="form-control"  placeholder="Upload Project Doc..." value={this.state.proj_doc} onChange={ (event)=> this.setState({proj_doc:event.target.value})}/>
                         </div>
                       </div>
                       
                       <div class="form-group">
                         <label>Request Proposal</label>
-                        <textarea name="message" class="form-control" id="message" rows="6" placeholder="Write your request propsoal here"></textarea>
+                        <textarea name="message" class="form-control" id="message" rows="6" placeholder="Write your request propsoal here" value={this.state.proposal} onChange={ (event)=> this.setState({proposal:event.target.value})}></textarea>
                       </div>
                       <div class="row">
                         <div class="col-md-6">

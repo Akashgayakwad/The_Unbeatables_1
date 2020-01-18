@@ -3,6 +3,7 @@ import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import axios from 'axios'
 import Signpad from '../../Signpad/Signpad'
+import uuid from 'uuid';
 
 class Form1 extends Component {
     
@@ -24,8 +25,16 @@ class Form1 extends Component {
         sign: null
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = () => {
+        console.log("api called");
+        let x = uuid.v4();
+        let y = uuid.v4();
+        let z = uuid.v4();
+        console.log(x,y,z);
         const fields = {
+            "$class":"org.example.airportlicensing.LisenceApplication",
+            "id":z,
+            "status":"Approved",
             "aerodrome" : {
                 "owner": {
                     "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -42,15 +51,15 @@ class Form1 extends Component {
                         "state": this.state.State,
                         "country": this.state.country,
                         "postalcode": this.state.postalcode,
-                        "id": ""
+                        "id": x
                     },
-                    "id": ""
+                    "id": y
                 }
             }
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication', {
             headers: {
                     "X-Access-Token":access_token,
                 },
@@ -147,6 +156,7 @@ class Form1 extends Component {
                     onChange={this.handleChange('nationality')} 
                     placeholder="Nationality" />
                 <Signpad setImageURL={setImageURL}/>
+                <button className="btn btn-success" onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }
