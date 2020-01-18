@@ -30,15 +30,21 @@ class Header extends Component{
 
                         <ul className="navbar-nav ml-lg-auto">
                             <li className="nav-item">
-                                <a className="nav-link nav-link-icon" href="#">
-                                    <i className="ni ni-favourite-28"></i>
-                                    <span className="nav-link-inner--text">Discover</span>
+                                <a className="nav-link nav-link-icon" href="/">
+                                    <i className="ni ni-shop"></i>
+                                    <span className="nav-link-inner--text">Home</span>
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link nav-link-icon" href="#">
-                                    <i className="ni ni-single-02"></i>
-                                    <span className="nav-link-inner--text">Profile</span>
+                                <a className="nav-link nav-link-icon" href="/faq">
+                                    <i className="ni ni-collection"></i>
+                                    <span className="nav-link-inner--text">Faq</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link nav-link-icon" href="/dashboard">
+                                    <i className="ni ni-world-2"></i>
+                                    <span className="nav-link-inner--text">Dashboard</span>
                                 </a>
                             </li>
                             <li className="nav-item dropdown">
@@ -47,10 +53,10 @@ class Header extends Component{
                                     <span className="nav-link-inner--text">Login &#x2BC6;</span>
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-                                    <a className="dropdown-item" href="#">Employee Login</a>
-                                    <a className="dropdown-item" href="#">AO Login</a>
+                                    <a className="dropdown-item" href="/login">Login</a>
+                                    <a className="dropdown-item" href="/request">Network Access Request</a>
                                     <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">SignUp</a>
+                                    <a className="dropdown-item" href="/logout">Log Out</a>
                                     <div className="dropdown-divider"></div>
                                     <a className="dropdown-item" href="#">Reset Password</a>
                                 </div>

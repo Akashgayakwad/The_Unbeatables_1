@@ -137,19 +137,8 @@ export class Form6 extends Component {
                   "firstName": "string",
                   "lastName": "string",
                   "phoneNumber": "string",
-                  "email": "string",
                   "designation": "string",
-                  "address": {
-                    "$class": "org.example.airportlicensing.Address",
-                    "line1": "string",
-                    "line": "string",
-                    "city": "string",
-                    "state": "string",
-                    "country": "string",
-                    "postalcode": 0,
-                    "id": "string"
-                  },
-                  "id": "string"
+                  "id": ""
                 },
                 "dayToDayRFF": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",

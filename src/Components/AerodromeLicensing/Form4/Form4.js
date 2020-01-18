@@ -102,6 +102,7 @@ export class Form4 extends Component {
         return (
             <div>
                 <Labels head="CONTROL OF THE AERODROME" faded=""/>
+
                 <div class="custom-control custom-checkbox mb-3">
                     <h6>Are you the owner of the aerodrome?</h6>
                     <input
@@ -120,11 +121,12 @@ export class Form4 extends Component {
                         id="N"
                         type="checkbox"
                         value={false}
-                        checked={this.state.Ownership === false}
+                        checked={this.state.Ownership}
                         onChange={this.handleChange("Ownership")}
                     />
                     <label class="custom-control-label" for="N">No</label>
                 </div>
+
                 {this.handlePopup(this.state.popup)}
                 <h6>
                 The period you hold these rights
