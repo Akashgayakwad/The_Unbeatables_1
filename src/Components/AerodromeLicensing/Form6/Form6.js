@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
+import FileUpload from '../FormComponents/FileUpload'
 
 export class Form6 extends Component {
     
@@ -16,9 +17,14 @@ export class Form6 extends Component {
         lastNameMETS:"", // create two names first and last name
         firstNameCNSATM:"", // create two names first and last name
         lastNameCNSATM:"", // create two names first and last name
-        nameCNS:"", // create two names first and last name
-        nameRFF:"", // create two names first and last name
-        nameMET:"", // create two names first and last name
+        firstnameATM:"", //create two names first name and last
+        lastNameATM:"",
+        firstNameCNS:"", // create two names first and last name
+        lastNameCNS:"",
+        firstNameRFF:"", // create two names first and last name
+        lastNameRFF:"",
+        firstnameDaytoDayMET:"", // create two names first and last name
+        lastNameDaytoDayMET:"",
         addressLine1METS:"",
         addressLine2METS:"",
         addressCityMETS:"",
@@ -31,20 +37,22 @@ export class Form6 extends Component {
         addressStateCNSATM:"",
         addressCountryCNSATM:"",
         adressPostalCodeCNSATM:"",
-        numberBoardMenber:"", 
+        numberBoardMember:"", 
         numberIncharge:"", 
         numberAerodromeSafety:"", 
         numberATM:"", // create two names first and last name
         numberCNS:"", // create two names first and last name
         numberRFF:"", // create two names first and last name
-        numberMET:"", // create two names first and last name
+        numberDaytoDayMET:"", // create two names first and last name
         statusBoardMember:"", 
         statusIncharge:"", 
         statusAerodromeSafety:"", 
         statusATM:"", 
         statusCNS:"",
         statusRFF:"",
-        statusMET:"",
+        statusDaytoDayMET:"",
+        cvAerodromeSafety:null,
+        cvDaytoDayOperation:null,
     }
 
 // 0 for normal input Form
@@ -93,13 +101,13 @@ export class Form6 extends Component {
                     "state": this.state.addressStateCNSATM,
                     "country": this.state.addressCountryCNSATM,
                     "postalcode": this.state.adressPostalCodeCNSATM,
-                    "id": "string"
+                    "id": ""
                   },
-                  "id": "string"
+                  "id": ""
                 },
                 "providerMET": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
-                  "firstName": this.state.firstnameMETS,
+                  "firstName": this.state.firstNameMETS,
                   "lastName": this.state.lastNameMETS,
                   "address": {
                     "$class": "org.example.airportlicensing.Address",
@@ -111,74 +119,40 @@ export class Form6 extends Component {
                     "postalcode": this.state.adressPostalCodeMETS,
                     "id": ""
                   },
-                  "id": "string"
+                  "id": ""
                 },
                 "dayToDayATM": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
-                  "firstName": "string",
-                  "lastName": "string",
-                  "phoneNumber": "string",
-                  "email": "string",
-                  "designation": "string",
-                  "address": {
-                    "$class": "org.example.airportlicensing.Address",
-                    "line1": "string",
-                    "line": "string",
-                    "city": "string",
-                    "state": "string",
-                    "country": "string",
-                    "postalcode": 0,
-                    "id": "string"
-                  },
-                  "id": "string"
+                  "firstName": this.state.firstNameATM,
+                  "lastName": this.state.lastNameATM,
+                  "phoneNumber": this.state.numberATM,
+                  "designation": this.state.statusATM,
+                  "id": ""
                 },
                 "dayToDayCNS": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
-                  "firstName": "string",
-                  "lastName": "string",
-                  "phoneNumber": "string",
-                  "designation": "string",
+                  "firstName": this.state.firstNameCNS,
+                  "lastName": this.state.lastNameCNS,
+                  "phoneNumber": this.state.numberCNS,
+                  "designation": this.state.statusCNS,
                   "id": ""
                 },
                 "dayToDayRFF": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
-                  "firstName": "string",
-                  "lastName": "string",
-                  "phoneNumber": "string",
-                  "email": "string",
-                  "designation": "string",
-                  "address": {
-                    "$class": "org.example.airportlicensing.Address",
-                    "line1": "string",
-                    "line": "string",
-                    "city": "string",
-                    "state": "string",
-                    "country": "string",
-                    "postalcode": 0,
-                    "id": "string"
-                  },
-                  "id": "string"
+                  "firstName": this.state.firstNameCNS,
+                  "lastName": this.state.lastNameCNS,
+                  "phoneNumber": this.state.numberCNS,
+                  "designation": this.state.statusCNS,
+                  "id": ""
                 },
                 "dayToDayMET": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
-                  "firstName": "string",
-                  "lastName": "string",
-                  "phoneNumber": "string",
-                  "email": "string",
-                  "designation": "string",
-                  "address": {
-                    "$class": "org.example.airportlicensing.Address",
-                    "line1": "string",
-                    "line": "string",
-                    "city": "string",
-                    "state": "string",
-                    "country": "string",
-                    "postalcode": 0,
-                    "id": "string"
-                  },
-                  "id": "string"
+                  "firstName": this.state.firstNameDaytoDayMET,
+                  "lastName": this.state.lasttNameDaytoDayMET,
+                  "phoneNumber": this.state.numberDaytoDayMET,
+                  "designation": this.state.statusDaytoDayMET,
                 },
-                "id": "string"
+                "id": ""
               },
         }
 
@@ -218,6 +192,8 @@ export class Form6 extends Component {
                 <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameofIncharge')} placeholder="Last Name" />
                 <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusIncharge')} placeholder="Status/Designation" />
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberIncharge')} placeholder="Telephone Number" />
+                <h6>Please enclose Cirriculum Viate</h6>
+                <FileUpload handleChange={this.handleChangeFile('cvDaytoDayOperation')} />
                 {// create checkbox to aprrove if 6.2 is same or not
                 }
                 <Labels head="The person responsible for Aerodrome Safety." faded="(Please enclose a current Curriculum Vitae [CV])" />
@@ -225,7 +201,9 @@ export class Form6 extends Component {
                 <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameAerodromeSafety')} placeholder="Last Name" />
                 <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusAerodromeSafety')} placeholder="Status/Designation" />
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberAerodromeSafety')} placeholder="Telephone Number" />
-                
+                <h6>Please enclose Cirriculum Viate</h6>
+                <FileUpload handleChange={this.handleChangeFile('cvAerodromeSafety')} />
+
                 <Labels head="Provider of the CNS - ATM" />
                 <InputForm type={0} name="First Name" onChange={this.handleChange('firstNameCNSATM')} placeholder="First Name" />
                 <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameCNSATM')} placeholder="Last Name" />
@@ -245,24 +223,28 @@ export class Form6 extends Component {
                 <InputForm type={0} name="Country" onChange={this.handleChange('addressCountryMETS')} placeholder="Country" />
 
                 <Labels head="The person responsible for overseeing the day to day provisions of the Air Traffic Management" />
-                <InputForm type={0} name="Name" onChange={this.handleChange('nameCNS')} placeholder="Name" />
-                <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusCNS')} placeholder="Satus/Designation" />
-                <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberCNS')} placeholder="Telephone Number" />
+                <InputForm type={0} name="First Name" onChange={this.handleChange('firstNameATM')} placeholder="First Name" />
+                <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameATM')} placeholder=" Last Name" />
+                <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusATM')} placeholder="Satus/Designation" />
+                <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberATM')} placeholder="Telephone Number" />
                 
                 <Labels head="The person responsible for overseeing the day to day provisions of CNS" />                
-                <InputForm type={0} name="Name" onChange={this.handleChange('nameRFF')} placeholder="Name" />
+                <InputForm type={0} name="First Name" onChange={this.handleChange('firstNameCNS')} placeholder="First Name" />
+                <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameCNS')} placeholder="Last Name" />
+                <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusCNS')} placeholder="Satus/Designation" />
+                <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberCNS')} placeholder="Telephone Number" />
+
+                <Labels head="The person responsible for overseeing the day to day provisions of RFF"  />
+                <InputForm type={0} name="First Name" onChange={this.handleChange('firstNameRFF')} placeholder="First Name" />
+                <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameRFF')} placeholder="Last Name" />
                 <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusRFF')} placeholder="Satus/Designation" />
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberRFF')} placeholder="Telephone Number" />
 
-                <Labels head="The person responsible for overseeing the day to day provisions of RFF"  />
-                <InputForm type={0} name="Name" onChange={this.handleChange('nameMET')} placeholder="Name" />
-                <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusMET')} placeholder="Satus/Designation" />
-                <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberMET')} placeholder="Telephone Number" />
-
                 <Labels head="The person responsible for overseeing the day to day provisions of MET services"  />
-                <InputForm type={0} name="Name" onChange={this.handleChange('nameMET')} placeholder="Name" />
-                <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusMET')} placeholder="Satus/Designation" />
-                <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberMET')} placeholder="Telephone Number" />
+                <InputForm type={0} name="First Name" onChange={this.handleChange('firstNameDaytoDayMET')} placeholder="First Name" />
+                <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameDaytoDayMET')} placeholder="Last Name" />
+                <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusDaytoDayMET')} placeholder="Satus/Designation" />
+                <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberDaytoDayMET')} placeholder="Telephone Number" />
 
             </div>
         )
