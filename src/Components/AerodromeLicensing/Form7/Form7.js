@@ -8,7 +8,7 @@ export class Form7 extends Component {
     state = {
         RelevantSubmissionTime:"",
         popup:false,
-        ManualEnclosure:""
+        ManualEnclosure:null
     }
 
     handleChange = input => (e) => {
@@ -32,6 +32,31 @@ export class Form7 extends Component {
         })
     }
 
+    handleSubmit = (e) => {
+        const fields = {
+            "manual": {
+                "$class": "org.example.airportlicensing.AerodromeManual",
+                "manualEnclosed": this.state.ManualEnclosure,
+                "dateToBeSubmitted": this.state.RelevantSubmissionTime,
+                "id": ""
+            }
+        }
+
+        const access_token = sessionStorage.getItem('token');
+        fetch('', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
+            method: 'POST',
+            body: {fields}
+            })
+            .then(response => response.json())
+            .then(success => {
+                console.log('sucess');
+            })
+            .catch(error => console.log(error)
+        );
+    }
 
     handleChangeFile = input => (e) => {
         this.setState({
@@ -44,7 +69,7 @@ export class Form7 extends Component {
             (<div>
                 <h6><strong>If no please indicate when this is likely to be submitted to DGCA.</strong></h6>
                 <h6>An Aerodrome Licence will not be granted until an acceptable aerodrome Manual has been received by DGCA</h6>
-                <TextArea name="Details of the rights you hold over the land" onChange={this.handleChange('YourRights')} placeholder="Details of the rights you hold over the land"/>
+                <TextArea name="Relevant Submission Time" onChange={this.handleChange('RelevantSubmissionTime')} placeholder="Relevant Submission Time"/>
             </div>) : null)
     }
     
@@ -55,11 +80,33 @@ export class Form7 extends Component {
                 AERODROME MANUAL
                 </h2>
                 <br/>
-                <h6><strong>Is an Aerodrome Manual enclosed with this application?</strong></h6>
                 <h6>(Ref Rule 81)</h6>
-                <CheckBox name="Manual Enclosure" value1="Yes" id1="Yes" value2= "No" id2= "No" handleChange={this.handleChange('ManualEnclosure')} check={this.state.ManualEnclosure}/>
+                <form>
+                    <div class="custom-control custom-checkbox mb-3">
+                    <h6><strong>Is an Aerodrome Manual enclosed with this application?</strong></h6>
+                        <input
+                            class="custom-control-input" 
+                            id="customCheck3"
+                            type="checkbox"
+                            value={true}
+                            checked={this.state.ManualEnclosure === true}
+                            onChange={this.handleChange('ManualEnclosure')}
+                        />
+                        <label class="custom-control-label" for="customCheck3">Yes</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input
+                            class="custom-control-input" 
+                            id="customCheck4"
+                            type="checkbox"
+                            value={false}
+                            checked={this.state.ManualEnclosure === false}
+                            onChange={this.handleChange('ManualEnclosure')}
+                        />
+                        <label class="custom-control-label" for="customCheck4">No</label>
+                    </div>
+                </form>
                 {this.handlePopup(this.state.popup)}
-                <TextArea name="Relevant Submission Time" onChange={this.handleChange('RelevantSubmissionTime')} placeholder="Relevant Submission Time"/>
             </div>
         )
 }   }

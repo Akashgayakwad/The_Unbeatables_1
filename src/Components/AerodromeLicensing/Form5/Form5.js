@@ -5,7 +5,7 @@ import Date from '../FormComponents/Date'
 import ImageUpload from '../FormComponents/ImageUpload'
 
 export class Form5 extends Component {
-    
+    // Remove all the unnecesaary properties, match it with the fields object in hanlesubmit function
     state = {
         nameofApplicantdef:"",
         AddressofAuthoritydef:"",
@@ -34,11 +34,44 @@ export class Form5 extends Component {
         
     }
 
-// 0 for normal input Form
-// 1 form under evaluation but needs any change
-// 2 for sucessful Form only readme 
-// 3 for incorrect form needs change with the error
-// 4 for incorect and rejected so diabled with the error
+    // 0 for normal input Form
+    // 1 form under evaluation but needs any change
+    // 2 for sucessful Form only readme 
+    // 3 for incorrect form needs change with the error
+    // 4 for incorect and rejected so diabled with the error
+    
+    handleSubmit = (e) => {
+        const fields = {
+            //match from here
+            "approvals": {
+                "$class": "org.example.airportlicensing.PermissionsAndApprovals",
+                "Defencefile": this.state.filedef,
+                "dateApprovalOfMinistryOfDefense": this.state.DateofApprovaldef,
+                "HomeAffairsfile": this.state.fileha,
+                "dateApprovalOfMinistryOfHomeAffairs": this.AddressofAuthorityha,
+                "Ownerfile": this.state.fileownland,
+                "dateApprovalOfOwnerOfLand": this.state.DateofApprovalloc,
+                "Localfile": this.state.fileloc,
+                "dateApprovalOfLocalAuthority": this.state.DateofApprovalownland,
+                "id": ""
+            }
+        }
+    
+        const access_token = sessionStorage.getItem('token');
+        fetch('', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
+            method: 'POST',
+            body: {fields}
+            })
+            .then(response => response.json())
+            .then(success => {
+                console.log('sucess');
+            })
+            .catch(error => console.log(error)
+        );
+    }
 
     handleChange = input => (e) => {
         this.setState({

@@ -13,6 +13,35 @@ export class Form8 extends Component {
         
     }
 
+    handleSubmit = (e) => {
+        const fields = {
+            "feeDetails": {
+                "$class": "org.example.airportlicensing.FeeDetails",
+                "challanNo": this.state.challanno,
+                "amount": this.state.amount,
+                "dateOfFeeDeposit": this.state.datedrawee,
+                "nameOfDraweeBank": this.state.namedrawee,
+                "operator": {},
+                "id": ""
+            },
+        }
+
+        const access_token = sessionStorage.getItem('token');
+        fetch('', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
+            method: 'POST',
+            body: {fields}
+            })
+            .then(response => response.json())
+            .then(success => {
+                console.log('sucess');
+            })
+            .catch(error => console.log(error)
+        );
+    }
+
 // 0 for normal input Form
 // 1 form under evaluation but needs any change
 // 2 for sucessful Form only readme 
@@ -33,7 +62,6 @@ export class Form8 extends Component {
                 <InputForm type={0} name="Amount" onChange={this.handleChange('amount')} placeholder="Amount" />
                 {
                     //Attach a sheet showing the calculation of amount as per runway length)
-
                 }
                 <Date name="Date of drawing the fees" handleChange={this.handleChange('datedrawee')} placeholder="Date of drawing the fees"/>
                 <InputForm type={0} name="Name of the drawee bank" onChange={this.handleChange('namedrawee')} placeholder="Name of the drawee bank" />

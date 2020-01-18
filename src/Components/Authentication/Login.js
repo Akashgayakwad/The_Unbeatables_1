@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import GoogleLogin from 'react-google-login';
-import {Redirect,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export class Login extends Component {
 
@@ -10,42 +9,21 @@ export class Login extends Component {
         this.state = {
             redirectToReferrer:false
         }
-
-        this.login = this.login.bind(this)
-    }
-
-    login(res) {
-        let postData = res.accessToken;
-        sessionStorage.setItem("token",postData);
-        this.setState({
-            redirectToReferrer:true
-        }, ()=>{
-            // console.log(localStorage.getItem("token"));
-        })
     }
 
     render() {
-
-        const responseGoogle = (response) => {
-            this.login(response)
-        }
-
-        switch(this.state.redirectToReferrer) {
-            case true : 
-                return(<Redirect to="/redirect"/>)
-            case false :
-                return (
-                    <div>
-                        <GoogleLogin
-                            clientId="986425972874-05q35aimn5sfpfqbqeiof3qdu63ht3ug.apps.googleusercontent.com"
-                            buttonText="Login"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        />
-                    </div>
-                )
-        }
+        return (
+            <div>
+                <Link to="/redirect">
+                    <a href="" class="btn btn-neutral btn-icon">
+                        <span class="btn-inner--icon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/64px-Google_%22G%22_Logo.svg.png" />
+                        </span>
+                    <span class="btn-inner--text">Google</span>
+                    </a>
+                </Link>
+            </div>
+        )
     }
 }
 

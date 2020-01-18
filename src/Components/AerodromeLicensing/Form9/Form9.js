@@ -13,9 +13,35 @@ export class Form9 extends Component {
         otherinfo:"",
         Date: new Date(),
         Name:"",
-       
+    }
 
-        
+    handleSubmit = (e) => {
+        const fields = {
+            "feeDetails": {
+                "$class": "org.example.airportlicensing.FeeDetails",
+                "challanNo": this.state.challanno,
+                "amount": this.state.amount,
+                "dateOfFeeDeposit": this.state.datedrawee,
+                "nameOfDraweeBank": this.state.namedrawee,
+                "operator": {},
+                "id": ""
+            },
+        }
+
+        const access_token = sessionStorage.getItem('token');
+        fetch('', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
+            method: 'POST',
+            body: {fields}
+            })
+            .then(response => response.json())
+            .then(success => {
+                console.log('sucess');
+            })
+            .catch(error => console.log(error)
+        );
     }
 
     handleChange = input => (e) => {
