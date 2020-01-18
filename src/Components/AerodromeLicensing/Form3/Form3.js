@@ -82,7 +82,7 @@ export class Form3 extends Component {
                 <InputForm 
                     type={0} 
                     name="In case of private aerodrome, indicate the purpose for which the aerodrome will be used e.g. joy rides, air displays, miscellaneous instructional flying, private flying etc" 
-                    onChange={this.handleChange('privatePurpose')} 
+                    onChange={this.handleChange('purposeOfPrivate')} 
                     placeholder="Purpose"/>
                 <form>
                     <div class="custom-control custom-checkbox mb-3">
@@ -186,37 +186,37 @@ export class Form3 extends Component {
                 </form>
                 <TextArea 
                     name="If the answer to NIGHT Use is YES, Please provide details of proposed lighting along with the lighting plan." 
-                    handleChange={this.handleChange('nightDetails')} 
+                    handleChange={this.handleChange('detailsOfProposedLighting')} 
                     palceholder=" Details of proposed lighting along with lighting pan"/>
                 <TextArea 
                     name="Please provide details of proposed CNS-ATM facilities." 
-                    handleChange={this.handleChange('CNS_ATM')} 
+                    handleChange={this.handleChange('detailsCNS_ATN')} 
                     palceholder=" Please provide details of proposed CNS-ATM facilities."/>
                 <TextArea 
                     name="Please provide details of proposed MET facilities." 
-                    handleChange={this.handleChange('met')} 
+                    handleChange={this.handleChange('detailsMET_Facilities')} 
                     palceholder=" Please provide details of proposed MET facilities"/>
                 <TextArea 
                     name="Please give details of other proposed aviation activities (for example gliding, parachuting, micro lights)." 
-                    handleChange={this.handleChange('aviation')} 
+                    handleChange={this.handleChange('otherAviationActivies')} 
                     palceholder=" Please give details of other proposed aviation activities (for example gliding, parachuting, micro lights)."/>
                 <br/>
                 <h6><strong>Type and maximum total weight of the largest / heaviest aircraft for which the aerodrome is designed, including overall length and maximum fuselage width.</strong></h6>
                 <InputForm 
                     type={0} name="Type" 
-                    onChange={this.handleChange('typeAircraft')} 
+                    onChange={this.handleChange('heaviestAircraftType')} 
                     placeholder="Type of Aircraft" />
                 <InputForm 
                     type={0} name="Weight" 
-                    onChange={this.handleChange('weightAircraft')} 
+                    onChange={this.handleChange('heaviestAircraftWeight')} 
                     placeholder="Weight of Aircraft" />
                 <InputForm 
                     type={0} name="Length" 
-                    onChange={this.handleChange('lengthAircraft')} 
+                    onChange={this.handleChange('heaviestAircraftLength')} 
                     placeholder="Length of Aircraft" />
                 <InputForm 
                     type={0} name="Width" 
-                    onChange={this.handleChange('widthAircraft')} 
+                    onChange={this.handleChange('heaviestAircraftTypeWidth')} 
                     placeholder="Width of Aircraft" />
             </div>
         )
