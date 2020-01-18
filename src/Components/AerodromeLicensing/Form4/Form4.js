@@ -4,12 +4,13 @@ import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
 import Date from '../FormComponents/Date'
 import CheckBox from '../FormComponents/CheckBox'
+import BooleanCheckbox from '../FormComponents/BooleanCheckbox'
 
 
 export class Form4 extends Component {
     
     state = {
-        Ownership:"",
+        Ownership:null,
         popup:false,
         YourRights:"",
         FromDate: new Date(),
@@ -42,6 +43,35 @@ export class Form4 extends Component {
         })
     }
 
+    handleSubmit = (e) => {
+        const fields = {
+            "controlAerodrome": {
+                "$class": "org.example.airportlicensing.ControlAerodrome",
+                "owner": true,
+                "rightsIfNotOver": this.state.YourRights,
+                "startingPeriod": this.state.FromDate,
+                "endingPeriod": this.state.ToDate,
+                "termination": this.state.Termination,
+                "id": ""
+            },
+        }
+
+        const access_token = sessionStorage.getItem('token');
+        fetch('', {
+            headers: {
+                    "X-Access-Token":access_token,
+                },
+            method: 'POST',
+            body: {fields}
+            })
+            .then(response => response.json())
+            .then(success => {
+                console.log('sucess');
+            })
+            .catch(error => console.log(error)
+        );
+    }
+
     handleChangeFile = input => (e) => {
         this.setState({
             [input] : e.target.file
@@ -60,7 +90,6 @@ export class Form4 extends Component {
         return (
             <div>
                 <Labels head="CONTROL OF THE AERODROME" faded=""/>
-                <CheckBox name="Are you owner of the Aerodrome?" id1="Yes" id2="No" value1="Yes" value2= "No" handleChange={this.handleChange('Ownership')} check={this.state.Ownership}/>
                 {this.handlePopup(this.state.popup)}
                 <h6>
                 The period you hold these rights

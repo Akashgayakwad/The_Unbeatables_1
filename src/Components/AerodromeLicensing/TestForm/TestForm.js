@@ -16,7 +16,7 @@ class TestForm extends Component {
     state = {
         nameofApplicant:"",
         checkBox:"",
-        file:null,
+        file:'',
         gender:"",
         typo:"",
         date: new Date(),
@@ -24,6 +24,12 @@ class TestForm extends Component {
     }
 
     handleChange = input => (e) => {
+        let files = e.target.files
+        let reader = new FileReader()
+        reader.readAsDataURL(files[0])
+        reader.onload=(e) => {
+            console.warn(e.target.result)
+        }
         this.setState({
             [input] : e.target.value
         })
@@ -31,7 +37,9 @@ class TestForm extends Component {
 
     handleChangeFile = input => (e) => {
         this.setState({
-            [input] : e.target.file
+            [input] : e.target.files
+        },() => {
+            console.log(e.target.value);
         })
     }
 
@@ -56,7 +64,7 @@ class TestForm extends Component {
     render() {
         return (
             <div>
-                <Dropdown/>
+                <FileUpload handleChange={this.handleChangeFile('file')}/>
             </div>
         )
     }

@@ -23,43 +23,73 @@ export class AuthCard extends Component {
         })
     }
 
+    componentDidMount() {
+        axios.get(`https://airport-licensing-server.shri99.now.sh/token`)
+        .then(res => {
+            const auth = res.data; 
+            const {_id} = auth;
+            console.log(_id);
+            sessionStorage.setItem('token',_id)
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+
+    // fetch('https://example.com/profile', {
+    //     method: 'GET', 
+    //     headers: {
+    //         "X-Access-Token":access_token,
+    //         },
+    //     })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         console.log('Success:', data);
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
+
+    // fetch('http://3653ec57.ngrok.io/api/system/ping', {
+    //                     method: 'GET', 
+    //                     headers: {
+    //                         "X-Access-Token":access_token,
+    //                         "Access-Control-Allow-origin" : "*"
+    //                     },
+    //                 })
+    //                 .then((response) => response.json())
+    //                 .then((data) => {
+    //                     console.log('Success:', data);
+    //                 })
+    //                 .catch((error) => {
+    //                     console.error('Error:', error);
+    //                 });
+
     handleSubmit(e) {
-        const {name , card} = this.state;
-        const access_token = sessionStorage.getItem('token');
-        console.log(access_token);
-        fetch('http://3653ec57.ngrok.io/api/wallet/import', {
-            headers: {
-                    "X-Access-Token":access_token,
-                },
-            method: 'POST',
-            body: {
-                "card":card,
-                "name":name}
-            })
-            .then(response => response.json())
-            .then(success => {
-                console.log('sucess');
-                // axios.get(`http://3653ec57.ngrok.io/api/system/ping`)
-                //     .then(res => {
-                //     const {participant,identity,version} = res.data; 
-                //     this.setState({ participant,identity,version}, 
-                //         this.setState({
-                //             redirectToReferrer : true
-                //         }));
-                //     })
-                //     .catch(error => {
-                //         console.log(error);
-                //     })
-            })
-            .catch(error => console.log(error)
-        );
+        var data = new FormData();
+data.append("name", "restadmin@airport-licensing");
+data.append("card", "/home/kaushik/SIH/restadmin.card");
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "http://3653ec57.ngrok.io/api/wallet/import");
+xhr.setRequestHeader("X-Access-Token", "yLHaWGB2HGtXihgoTcPnKsx3cKzf3CwQVl6KFZ1ZXnTKGdaprbsD3Tkwu2BZLJcs");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("Postman-Token", "902b7db3-e7f1-47e3-ad29-bc1bdbd7945b");
+
+xhr.send(data);
     }
 
 
     render() {
-        if(this.state.redirectToReferrer) {
-            return (<Redirect to="/dashboard"/>)
-        }
 
         return (
             <div>
