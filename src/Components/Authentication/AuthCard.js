@@ -66,7 +66,7 @@ export class AuthCard extends Component {
         var data = new FormData();
         data.append("name", "restadmin@airport-licensing");
         console.log(this.state.card[0]);
-        data.append("card",this.state.card[0] );
+        data.append("card",this.state.card[0]);
         fetch('http://192.168.137.152:3000/api/wallet/import', {
                     method: 'POST', 
                     headers: {

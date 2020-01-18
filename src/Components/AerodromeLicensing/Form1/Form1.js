@@ -8,19 +8,19 @@ class Form1 extends Component {
     
     state = {
         type:0,
-        "firstName":"",
-        "lastName": "",
-        "telephoneNumber": "",
-        "faxnumber":"",
-        "email_telex_number": "",
-        "nationality": "",
-        "designation": "",
-        "line1": "",
-        "line": "",
-        "city": "", 
-        "state": "",
-        "country": "",
-        "postalcode": 0,
+        firstName:"",
+        lastName: "",
+        telephoneNumber: "",
+        faxnumber:"",
+        email_telex_number: "",
+        nationality: "",
+        designation: "",
+        line1: "",
+        line: "",
+        city: "", 
+        state: "",
+        country: "",
+        postalcode: 0,
         sign: null
     }
 

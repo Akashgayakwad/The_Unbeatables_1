@@ -12,7 +12,6 @@ class InputForm extends Component {
 // 4 for incorect and rejected so diabled with the error
 
     render() {
-        const handleType = () => {
             switch(this.props.type) {
                 case 0:
                     return (<div class="form-group">
@@ -20,7 +19,7 @@ class InputForm extends Component {
                                 <input 
                                     type="text" 
                                     class="form-control" 
-                                    onChange={this.props.handleChange} 
+                                    onChange={this.props.onChange} 
                                     id="exampleFormControlInput1" 
                                     placeholder={this.props.placeholder} 
                                     ></input>
@@ -31,7 +30,7 @@ class InputForm extends Component {
                                 <input 
                                     type="text" 
                                     class="form-control" 
-                                    onChange={this.props.handleChange} 
+                                    onChange={this.props.onChange} 
                                     value={this.props.value} 
                                     id="exampleFormControlInput1" 
                                     placeholder={this.props.placeholder} 
@@ -53,7 +52,7 @@ class InputForm extends Component {
                                 <input 
                                     type="text" 
                                     value={this.props.value} 
-                                    onChange={this.props.handleChange} 
+                                    onChange={this.props.onChange} 
                                     placeholder="Error Input" 
                                     class="form-control form-control-alternative is-invalid" 
                                     ></input>
@@ -63,7 +62,7 @@ class InputForm extends Component {
                                 <h6>{this.props.name}</h6>
                                 <input 
                                     type="text" 
-                                    onChange={this.props.handleChange} 
+                                    onChange={this.props.onChange} 
                                     value={this.props.value} 
                                     placeholder="Error Input" 
                                     class="form-control form-control-alternative is-invalid" 
@@ -71,13 +70,6 @@ class InputForm extends Component {
                                 ></input>
                             </div>)
             }
-        }
-
-        return (
-            <div>
-                {handleType()}
-            </div>
-        )
     }
 }
 
