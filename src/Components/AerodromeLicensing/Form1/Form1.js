@@ -138,11 +138,6 @@ class Form1 extends Component {
                     placeholder="Telephone Number" />
                 <InputForm 
                     type={this.state.type} 
-                    name="Fax Number" 
-                    onChange={this.handleChange('faxnumber')} 
-                    placeholder="Fax Number"/>
-                <InputForm 
-                    type={this.state.type} 
                     name="Email/Telex Number" 
                     onChange={this.handleChange('email_telex_number')} 
                     placeholder="Email/Telex Number" />

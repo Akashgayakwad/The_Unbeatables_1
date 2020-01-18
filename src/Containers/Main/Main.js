@@ -14,15 +14,15 @@ import FormRenew from '../../Components/AerodromeLicensing/FormRenew/FormRenew';
 import Form4 from '../../Components/AerodromeLicensing/Form4/Form4';
 import Form7 from '../../Components/AerodromeLicensing/Form7/Form7';
 import Form9 from '../../Components/AerodromeLicensing/Form9/Form9';
-import TestForm from '../../Components/AerodromeLicensing/TestForm/TestForm';
 import TableForm from '../../Components/AerodromeLicensing/TableForm/TableForm.js';
-import Login from '../../Components/Authentication/Login';
 import AuthCard from '../../Components/Authentication/AuthCard';
 import Error404 from './../../Components/Extras/Error404';
 import Requestform from './../../Components/RequestForm/Requestform';
 import Loginsignup from './../../Components/Extras/Loginsignup';
 import Faq from './../../Components/Extras/Faq';
 import Home from  './../../Components/Extras/Home';
+import DefectForm from '../../Components/AerodromeLicensing/DefectForm/DefectForm';
+import DetailsForm from '../../Components/AerodromeLicensing/DetailsForm/DetailsForm';
 
 class Main extends Component{
 
@@ -109,6 +109,12 @@ class Main extends Component{
                         </Route>
                         <Route exact path='/formrenew'>
                             <FormRenew/>
+                        </Route>
+                        <Route exact path='/defectform'>
+                            <DefectForm />
+                        </Route>
+                        <Route exact path='/detailsform'>
+                            <DetailsForm/>
                         </Route>
                         <Route path='*'>
                             <Error404/>
