@@ -172,7 +172,7 @@ export class Form2 extends Component {
                 <InputForm 
                     type={0} 
                     name="Country" 
-                    onChange={this.handleChange('state')} 
+                    onChange={this.handleChange('country')} 
                     placeholder="country" />
                 
                 <InputForm 

@@ -14,18 +14,18 @@ export class Form7 extends Component {
     }
 
     handleChange = input => (e) => {
-        let ab = e.target.value
+        const ab = e.target.value
         this.setState({
-            [input] : e.target.value
+            [input] : e.target.value === "true"
         },() => {
             if(input === "ManualEnclosure"){
                 console.log("hi",ab);
-                if(ab === "Yes") {
+                if(ab === "true") {
                     this.setState({
                         popup:false
                     })
                 }
-                else if(ab === "No") {
+                else if(ab === "false") {
                     this.setState({
                         popup:true
                     })
