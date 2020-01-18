@@ -15,16 +15,16 @@ export class Form2 extends Component {
         "firstName":"",
         "lastName": "",
         "grid": "",
-        "elevationMeter": 0,
-        "elevationFeet": 0,
-        "orentationMeter": 0,
-        "orentationFeet": 0,
+        "elevationMeter": "",
+        "elevationFeet": "",
+        "orentationMeter": "",
+        "orentationFeet": "",
         "line1": "",
         "line": "",
         "city": "",
         "state": "",
         "country": "",
-        "postalcode": 0,
+        "postalcode": "",
         "telephoneNumber": "",
         "faxnumber":"",
         "email_telex_number": "",
@@ -37,9 +37,13 @@ export class Form2 extends Component {
 
     handleSubmit = (e) => {
         const fields = {
+            "$class": "org.example.airportlicensing.LisenceApplication",
+            "id": "11234",
+            "status": "Approved",
+            "operator": "resource:org.example.airportlicensing.Operator#1969",
             "aerodrome" : {
                 "$class": "org.example.airportlicensing.Aerodrome",
-                "id": "",
+                "id": "11234",
                 "placeName": this.state.placeName,
                 "situation": this.state.situation,
                 "grid": this.state.grid,
@@ -52,26 +56,32 @@ export class Form2 extends Component {
                     "line1": this.state.line1,
                     "line": this.state.line,
                     "city": this.state.city,
-                    "state": this.state.State,
+                    "state": this.state.state,
                     "country": this.state.country,
-                    "postalcode": 0,
-                    "id": "",
-                    
+                    "postalcode": this.state.postalcode
+                    },
+                "owner":{
+                    "$class": "org.example.airportlicensing.PersonWithoutIdentity",
+                    "firstName": "this.state.firstName",
+                    "lastName": "this.state.lastName",
+                    "phoneNumber": "this.state.phoneNumber",
+                    "email": "this.state.email"
                     }
             }
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
-                console.log('sucess');
+                console.log('sucess',success);
             })
             .catch(error => console.log(error)
         );
@@ -273,6 +283,7 @@ export class Form2 extends Component {
                 </div>
                 <br/>
                 <Signpad setImageURL={setImageURL}/>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
     }

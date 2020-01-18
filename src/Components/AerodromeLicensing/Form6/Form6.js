@@ -79,7 +79,6 @@ export class Form6 extends Component {
                   "lastName": this.state.lastNameofIncharge,
                   "phoneNumber": this.state.numberIncharge,
                   "designation": this.state.statusIncharge,
-                  "id": ""
                 },
                 "areodromeSaftey": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -87,7 +86,6 @@ export class Form6 extends Component {
                   "lastName": this.state.lastNameAerodromeSafety,
                   "phoneNumber": this.state.numberAerodromeSafety,
                   "designation": this.state.statusAerodromeSafety,
-                  "id": ""
                 },
                 "providerCNSATM": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -101,7 +99,6 @@ export class Form6 extends Component {
                     "state": this.state.addressStateCNSATM,
                     "country": this.state.addressCountryCNSATM,
                     "postalcode": this.state.adressPostalCodeCNSATM,
-                    "id": ""
                   },
                   "id": ""
                 },

@@ -11,17 +11,17 @@ export class Form3 extends Component {
     state={
         "categoryState": "",
         "purposeOfPrivate": "",
-        "onlyYourAircratf": null,
-        "priorPermissionForOtherAircraft": null,
-        "allWeatherRequired": null,
+        "onlyYourAircratf": "",
+        "priorPermissionForOtherAircraft": "",
+        "allWeatherRequired": "",
         "detailsOfProposedLighting": "",
         "detailsCNS_ATN": "",
         "detailsMET_Facilities": "",
         "otherAviationActivies": "",
         "heaviestAircraftType": "",
-        "heaviestAircraftWeight": 0,
-        "heaviestAircraftLength": 0,
-        "heaviestAircraftWidth": 0,
+        "heaviestAircraftWeight": "",
+        "heaviestAircraftLength": "",
+        "heaviestAircraftWidth": "",
         sign:null
     }
 
@@ -66,20 +66,6 @@ export class Form3 extends Component {
         this.setState({
             [input] : e.target.value
         })
-    }
-
-    handleChangeCheckbox = input => (e) => {
-        console.log(e.target.value);
-        if(e.target.value === "Yes") {
-            this.setState({
-                [input] : true
-            })
-        }
-        else if(e.target.value === "No") {
-            this.setState({
-                [input] : false
-            })
-        }
     }
 
     render() {
@@ -132,8 +118,8 @@ export class Form3 extends Component {
                             id="customCheck3"
                             type="checkbox"
                             value="Yes"
-                            checked={this.state.onlyYourAircratf}
-                            onChange={this.handleChangeCheckbox('onlyYourAircratf')}
+                            checked={this.state.onlyYourAircratf === "Yes"}
+                            onChange={this.handleChange('onlyYourAircratf')}
                         />
                         <label class="custom-control-label" for="customCheck3">Yes</label>
                     </div>
@@ -143,8 +129,8 @@ export class Form3 extends Component {
                             id="customCheck4"
                             type="checkbox"
                             value="No"
-                            checked={this.state.onlyYourAircratf===false}
-                            onChange={this.handleChangeCheckbox('onlyYourAircratf')}
+                            checked={this.state.onlyYourAircratf=== "No"}
+                            onChange={this.handleChange('onlyYourAircratf')}
                         />
                         <label class="custom-control-label" for="customCheck4">No</label>
                     </div>
@@ -157,8 +143,8 @@ export class Form3 extends Component {
                             id="customCheck7"
                             type="checkbox"
                             value="Yes"
-                            checked={this.state.priorPermissionForOtherAircraft}
-                            onChange={this.handleChangeCheckbox('priorPermissionForOtherAircraft')}
+                            checked={this.state.priorPermissionForOtherAircraft === "Yes"}
+                            onChange={this.handleChange('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck7">Yes</label>
                     </div>
@@ -168,8 +154,8 @@ export class Form3 extends Component {
                             id="customCheck8"
                             type="checkbox"
                             value="No"
-                            checked={this.state.priorPermissionForOtherAircraft === false}
-                            onChange={this.handleChangeCheckbox('priorPermissionForOtherAircraft')}
+                            checked={this.state.priorPermissionForOtherAircraft === "No"}
+                            onChange={this.handleChange('priorPermissionForOtherAircraft')}
                         />
                         <label class="custom-control-label" for="customCheck8">No</label>
                     </div>
@@ -182,8 +168,8 @@ export class Form3 extends Component {
                             id="customCheck9"
                             type="checkbox"
                             value="Yes"
-                            checked={this.state.allWeatherRequired}
-                            onChange={this.handleChangeCheckbox('allWeatherRequired')}
+                            checked={this.state.allWeatherRequired === "Yes"}
+                            onChange={this.handleChange('allWeatherRequired')}
                         />
                         <label class="custom-control-label" for="customCheck9">Yes</label>
                     </div>
@@ -193,8 +179,8 @@ export class Form3 extends Component {
                             id="customCheck10"
                             type="checkbox"
                             value="No"
-                            checked={this.state.allWeatherRequired === false}
-                            onChange={this.handleChangeCheckbox('allWeatherRequired')}
+                            checked={this.state.allWeatherRequired === "No"}
+                            onChange={this.handleChange('allWeatherRequired')}
                         />
                         <label class="custom-control-label" for="customCheck10">No</label>
                     </div>
