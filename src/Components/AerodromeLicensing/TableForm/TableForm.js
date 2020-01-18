@@ -3,6 +3,7 @@ import Date from '../FormComponents/Date'
 import Labels from '../FormComponents/Labels'
 import InputForm from '../FormComponents/InputForm'
 import './tableForm.css'
+import Signpad from '../../Signpad/Signpad'
 
 export class TableForm extends Component {
 
@@ -180,6 +181,7 @@ export class TableForm extends Component {
             Date: new Date(),
             DateAssessment: new Date(),
             nameofAeroOp:"",
+            sign:null
         }
     }
 
@@ -215,6 +217,15 @@ export class TableForm extends Component {
     }
 
     render() {
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
         
         return (
             <div>
@@ -256,12 +267,7 @@ export class TableForm extends Component {
                         </tbody>
                     </table>
             <Date name="Date " handleChange={this.handleChangeName('Date')} placeholder="Date"/>
-            {
-                //Signature to be added
-            }
-                
-            
-
+            <Signpad setImageURL={setImageURL}/>
             </div>
 
     )

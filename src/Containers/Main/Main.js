@@ -10,7 +10,7 @@ import Form3 from '../../Components/AerodromeLicensing/Form3/Form3';
 import Form5 from '../../Components/AerodromeLicensing/Form5/Form5';
 import Form6 from '../../Components/AerodromeLicensing/Form6/Form6';
 import Form8 from '../../Components/AerodromeLicensing/Form8/Form8';
-import formRenew from '../../Components/AerodromeLicensing/formRenew/formRenew';
+import FormRenew from '../../Components/AerodromeLicensing/FormRenew/FormRenew';
 import Form4 from '../../Components/AerodromeLicensing/Form4/Form4';
 import Form7 from '../../Components/AerodromeLicensing/Form7/Form7';
 import Form9 from '../../Components/AerodromeLicensing/Form9/Form9';
@@ -20,7 +20,7 @@ import Login from '../../Components/Authentication/Login';
 import AuthCard from '../../Components/Authentication/AuthCard';
 import Error404 from './../../Components/Extras/Error404';
 import Requestform from './../../Components/RequestForm/Requestform';
-import  Loginsignup from './../../Components/Extras/Loginsignup';
+import Loginsignup from './../../Components/Extras/Loginsignup';
 import Faq from './../../Components/Extras/Faq';
 import Home from  './../../Components/Extras/Home';
 
@@ -46,7 +46,7 @@ class Main extends Component{
             <BrowserRouter>
                 <div className="container" style={{height:"auto",marginTop:"100px",marginBottom:"50px", background:"/bg.jpg"}}>
                     <Switch>
-                    <Route exact path='/'>
+                        <Route exact path='/'>
                             <Home/>
                         </Route>
                         <Route exact path='/license'>
@@ -59,17 +59,8 @@ class Main extends Component{
                             window.location.href = 'http://3653ec57.ngrok.io/auth/google'; 
                             return <Redirect to="/card"/>;
                         }}/>
-                        {// <Route path='' component={() => { 
-                        //     // window.location.href = 'https://a1d4d44f.ngrok.io/auth/google';
-                        //     // console.log(sessionStorage.getItem('token'));
-                        //     return <Redirect to="/card"/>;
-                        // }}/>
-                        }
                         <Route exact path="/dashboard">
                             <Dashboard/>
-                        </Route>
-                        <Route exact path='/login'>
-                            <Login/>
                         </Route>
                         <Route exact path='/faq'>
                             <Faq/>
@@ -113,14 +104,11 @@ class Main extends Component{
                         <Route exact path='/form9'>
                             <Form9/>
                         </Route>
-                        <Route exact path='/tableform'>
+                        <Route exact path='/checklist'>
                             <TableForm/>
                         </Route>
-                        <Route exact path='/testform'>
-                            <TestForm/>
-                        </Route>
-                        <Route exact path='/testform'>
-                            <formRenew/>
+                        <Route exact path='/formrenew'>
+                            <FormRenew/>
                         </Route>
                         <Route path='*'>
                             <Error404/>

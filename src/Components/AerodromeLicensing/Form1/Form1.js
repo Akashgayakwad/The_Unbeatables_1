@@ -55,11 +55,11 @@ class Form1 extends Component {
                     "X-Access-Token":access_token,
                 },
             method: 'POST',
-            body: {fields}
+            body: fields
             })
             .then(response => response.json())
             .then(success => {
-                console.log('sucess');
+                console.log('sucess',success);
             })
             .catch(error => console.log(error)
         );

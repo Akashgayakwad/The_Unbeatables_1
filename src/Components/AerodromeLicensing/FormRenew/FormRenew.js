@@ -3,7 +3,10 @@ import InputForm from '../FormComponents/InputForm'
 import FileUpload from '../FormComponents/FileUpload'
 import Date from '../FormComponents/Date'
 import Labels from '../FormComponents/Labels'
-export class formRenew  extends Component{
+import Signpad from '../../Signpad/Signpad'
+
+export class FormRenew  extends Component{
+    
     state={
         aerodromeLicense:"",
         nameAerodrome:"",
@@ -21,6 +24,7 @@ export class formRenew  extends Component{
         Amount:"",       
         draweeBank:"",
         DateDraweeBank:"",
+        sign:null
     }
 
     handleChange = input => (e) => {
@@ -36,6 +40,16 @@ export class formRenew  extends Component{
     }
 
     render(){
+        const setImageURL = (imageURL) =>{
+            const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
+            if(imageURL!==whiteURL && imageURL!==this.state.sign)
+            {
+                this.setState({sign:imageURL},()=>{
+                    console.log(this.state.sign);
+                });    
+            }
+        };
+
         return(
             <div>
                 <Labels head="Application for Renewal of Aerodrome License" />
@@ -107,8 +121,9 @@ export class formRenew  extends Component{
                     name="Date"
                     handleChange={this.handleChange('DateDraweeBank')}
                     placeholder="Date" />
+                <Signpad setImageURL={setImageURL}/>
             </div>
         )
     }
 }
-export default formRenew
+export default FormRenew;

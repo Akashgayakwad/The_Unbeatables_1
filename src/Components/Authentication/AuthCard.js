@@ -50,13 +50,12 @@ export class AuthCard extends Component {
                     method: 'POST', 
                     headers: {
                         "X-Access-Token": access_token,
-                        // "Access-Control-Allow-origin" : "*"
                     },
                     body: data
                 })
                 .then((response) => console.log(response))
                 .then((data) => {
-                    //system/ ping
+                    //system/ ping.
                     fetch('http://3653ec57.ngrok.io/api/system/ping', {
                         method: 'GET', 
                         headers: {
