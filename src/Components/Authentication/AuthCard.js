@@ -62,15 +62,15 @@ export class AuthCard extends Component {
     // xhr.send(data);
 
     handleSubmit(e) {
-        // access_token = sessionStorage.getItem('token')
+        const access_token = sessionStorage.getItem('token')
         var data = new FormData();
-        data.append("name", "restadmin@airport-licensing");
+        // data.append("name", "restadmin@airport-licensing");
         console.log(this.state.card[0]);
         data.append("card",this.state.card[0]);
-        fetch('http://192.168.137.152:3000/api/wallet/import', {
+        fetch('http://3653ec57.ngrok.io/api/wallet/import', {
                     method: 'POST', 
                     headers: {
-                        "X-Access-Token": "ALtYuknvuZsTfJ237MbLdAHIDogpNOy2yDs9Orap0ICVrvZIZEzxnsiDSlqZ9hHq",
+                        "X-Access-Token": access_token,
                         // "Access-Control-Allow-origin" : "*"
                     },
                     body: data
@@ -78,15 +78,17 @@ export class AuthCard extends Component {
                 .then((response) => console.log(response))
                 .then((data) => {
                     //system/ ping
-                    fetch('http://192.168.137.152:3000/api/system/ping', {
+                    fetch('http://3653ec57.ngrok.io/api/system/ping', {
                         method: 'GET', 
                         headers: {
-                            "X-Access-Token": "ALtYuknvuZsTfJ237MbLdAHIDogpNOy2yDs9Orap0ICVrvZIZEzxnsiDSlqZ9hHq",
+                            "X-Access-Token": access_token,
                         },
                     })
                     .then((response) => response.json())
                     .then((data) => {
                         console.log('Success:', data);
+                        console.log(data.participant);
+                        sessionStorage.setItem('participant',data.participant);
                     })
                     .catch((error) => {
                         console.error('Error:', error);
