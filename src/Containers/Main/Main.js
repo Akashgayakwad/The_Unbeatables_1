@@ -104,16 +104,16 @@ class Main extends Component{
                         <Route exact path='/form9'>
                             <Form9/>
                         </Route>
-                        <Route exact path='/checklist'>
+                        <Route exact path='/checklist/:id'>
                             <TableForm/>
                         </Route>
                         <Route exact path='/formrenew'>
                             <FormRenew/>
                         </Route>
-                        <Route exact path='/defectform'>
+                        <Route exact path='/defectform/:id'>
                             <DefectForm />
                         </Route>
-                        <Route exact path='/detailsform'>
+                        <Route exact path='/detailsform/1'>
                             <DetailsForm/>
                         </Route>
                         <Route path='*'>

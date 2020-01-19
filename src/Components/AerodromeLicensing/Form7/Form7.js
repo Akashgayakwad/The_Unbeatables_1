@@ -99,8 +99,8 @@ export class Form7 extends Component {
                             class="custom-control-input" 
                             id="customCheck3"
                             type="checkbox"
-                            value={true}
-                            checked={this.state.ManualEnclosure === true}
+                            value="Yes"
+                            checked={this.state.ManualEnclosure === "Yes"}
                             onChange={this.handleChange('ManualEnclosure')}
                         />
                         <label class="custom-control-label" for="customCheck3">Yes</label>
@@ -110,8 +110,8 @@ export class Form7 extends Component {
                             class="custom-control-input" 
                             id="customCheck4"
                             type="checkbox"
-                            value={false}
-                            checked={this.state.ManualEnclosure === false}
+                            value="No"
+                            checked={this.state.ManualEnclosure === "No"}
                             onChange={this.handleChange('ManualEnclosure')}
                         />
                         <label class="custom-control-label" for="customCheck4">No</label>
