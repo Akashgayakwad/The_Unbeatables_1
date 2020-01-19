@@ -129,10 +129,35 @@ export class Form3 extends Component {
                             id="customCheck4"
                             type="checkbox"
                             value="No"
-                            checked={this.state.onlyYourAircratf=== "No"}
+                            checked={this.state.onlyYourAircratf === "No"}
                             onChange={this.handleChange('onlyYourAircratf')}
                         />
                         <label class="custom-control-label" for="customCheck4">No</label>
+                    </div>
+                </form>
+                <form>
+                    <div class="custom-control custom-checkbox mb-3">
+                        <h6>Do you propose to use the aerodrome by own aircraft as well as other aircraft ?</h6>
+                        <input
+                            class="custom-control-input" 
+                            id="customCheck5"
+                            type="checkbox"
+                            value="Yes"
+                            checked={this.state.otherA === "Yes"}
+                            onChange={this.handleChange('otherA')}
+                        />
+                        <label class="custom-control-label" for="customCheck5">Yes</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input
+                            class="custom-control-input" 
+                            id="customCheck6"
+                            type="checkbox"
+                            value="No"
+                            checked={this.state.otherA === "No"}
+                            onChange={this.handleChange('otherA')}
+                        />
+                        <label class="custom-control-label" for="customCheck6">No</label>
                     </div>
                 </form>
                 <form>
