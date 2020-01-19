@@ -1,37 +1,13 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 export class DefectForm extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            List:[
-                {
-                    particulars: "bsjhabsd",
-                    value:"aoubfiuasfb",
-                    defect:true,
-                    reason:"kjajskdbajksd"
-                },
-                {
-                    particulars: "abnsabsdsbdn",
-                    value:"ajsbnjkasbn",
-                    defect:false,
-                    reason:""
-                },
-                {
-                    particulars: "bsjhabsd",
-                    value:"aoubfiuasfb",
-                    defect:true,
-                    reason:"lorem ipsum"
-                },
-                {
-                    particulars: "abnsabsdsbdn",
-                    value:"ajsbnjkasbn",
-                    defect:false,
-                    reason:""
-                }
-            ]
+            List:[]
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -44,6 +20,19 @@ export class DefectForm extends Component {
                 List : List
             })
         }
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:2000/data`)
+        .then(res => {
+            console.log(res.data.List);
+            this.setState({
+                List: res.data.List
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }
 
     
@@ -144,7 +133,7 @@ export class DefectForm extends Component {
                                                 </div>
                                                 <div class="col col-lg-2">
                                                     <button type="button" class="btn btn-icon btn-2 btn-danger" data-container="body" data-toggle="popover" data-placement="top" data-content={element.reason}>
-                                                        Error
+                                                        Defect
                                                     </button>
                                                 </div>
                                                 <div class="collapse" id={"collapseExample"+i}>

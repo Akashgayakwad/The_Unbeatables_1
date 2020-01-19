@@ -1,24 +1,13 @@
 import React, { Component } from 'react'
+import axios from "axios"
+import './tableForm.css'
 
 export class DetailsForm extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            List:[
-                {
-                    particulars: "bsjhabsd",
-                    value:"aoubfiuasfb",
-                    defect:false,
-                    reason:""
-                },
-                {
-                    particulars: "abnsabsdsbdn",
-                    value:"ajsbnjkasbn",
-                    defect:false,
-                    reason:""
-                }
-            ]
+            List:[]
         }
     }
 
@@ -35,6 +24,19 @@ export class DetailsForm extends Component {
             List : List
         }, () => {
             console.log(this.state.List[i].defect);
+        })
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:2001/data`)
+        .then(res => {
+            console.log(res.data.List);
+            this.setState({
+                List: res.data.List
+            })
+        })
+        .catch(error => {
+            console.log(error);
         })
     }
 
@@ -70,7 +72,7 @@ export class DetailsForm extends Component {
                 <tbody>
                     {this.state.List.map((item,i) => {return(<tr>
                         <td class="text-center">{i+1}</td>
-                        <td class="text-center">{item.particulars}</td>
+                        <td class="text-center" id="item-name">{item.particulars}</td>
                         <td class="text-center">{item.value}</td>
                         <td class="text-center">
                             <div class="custom-control custom-checkbox mb-3">
