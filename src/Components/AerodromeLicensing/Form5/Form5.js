@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
-import Date from '../FormComponents/Date'
 import Signpad from '../../Signpad/Signpad'
-import ImageUpload from '../FormComponents/ImageUpload'
+import {Redirect} from 'react-router'
+
 
 export class Form5 extends Component {
     // Remove all the unnecesaary properties, match it with the fields object in hanlesubmit function
@@ -31,7 +31,8 @@ export class Form5 extends Component {
         DateofApprovalloc:"",
         ReferenceofApprovalloc:"",
         fileloc:null,
-        sign:null
+        sign:null,
+        redirect:false
         
     }
 
@@ -42,6 +43,7 @@ export class Form5 extends Component {
     // 4 for incorect and rejected so diabled with the error
     
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
         const fields = {
             //match from here
             "approvals": {
@@ -54,21 +56,25 @@ export class Form5 extends Component {
                 "dateApprovalOfOwnerOfLand": this.state.DateofApprovalloc,
                 "Localfile": this.state.fileloc,
                 "dateApprovalOfLocalAuthority": this.state.DateofApprovalownland,
-                "id": ""
+                "id": id
             }
         }
     
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
+                this.setState({
+                    redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -116,6 +122,9 @@ export class Form5 extends Component {
     }
     
     render() {
+        if(this.state.redirect) {
+            return (<Redirect to='/form6'/>)
+        }
         const setImageURL = (imageURL) =>{
             const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
             if(imageURL!==whiteURL && imageURL!==this.state.sign)
@@ -140,11 +149,14 @@ export class Form5 extends Component {
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                             </div>
-                            <input class="flatpickr flatpickr-input form-control" onChange={(e) => {
+                            <input type="date" name="DateofApprovaldef" class="flatpickr flatpickr-input form-control" onChange={(e) => {
                                 this.setState({
                                     DateofApprovaldef: e.target.value.toString()
+                                },() => {
+                                    console.log(this.state.DateofApprovaldef);
+                                    
                                 })
-                            }} type="date" placeholder={this.props.placeholder}></input>
+                            }} placeholder="Date of Approval"></input>
                         </div>
                     </div>
                 </div>
@@ -254,6 +266,7 @@ export class Form5 extends Component {
                     </div>
                 </div>
                 <Signpad setImageURL={setImageURL}/>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
     }

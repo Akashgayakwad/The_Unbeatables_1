@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TextArea from '../FormComponents/TextArea'
 import CheckBox from '../FormComponents/CheckBox'
 import Signpad from '../../Signpad/Signpad'
+import {Redirect} from 'react-router'
 
 export class Form7 extends Component {
     
@@ -9,8 +10,8 @@ export class Form7 extends Component {
         RelevantSubmissionTime:"",
         popup:false,
         ManualEnclosure:null,
-        sign: null
-
+        sign: null,
+        redirect:false
     }
 
     handleChange = input => (e) => {
@@ -35,26 +36,31 @@ export class Form7 extends Component {
     }
 
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
         const fields = {
             "manual": {
                 "$class": "org.example.airportlicensing.AerodromeManual",
                 "manualEnclosed": this.state.ManualEnclosure,
                 "dateToBeSubmitted": this.state.RelevantSubmissionTime,
-                "id": ""
+                "id": id
             }
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
+                this.setState({
+                    redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -76,6 +82,11 @@ export class Form7 extends Component {
     }
     
     render() {
+
+        if(this.state.redirect) {
+            return (<Redirect to='/form8'/>)
+        }
+
         const setImageURL = (imageURL) =>{
             const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
             if(imageURL!==whiteURL && imageURL!==this.state.sign)
@@ -119,6 +130,7 @@ export class Form7 extends Component {
                 </form>
                 {this.handlePopup(this.state.popup)}
                 <Signpad setImageURL={setImageURL}/>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
 }   }

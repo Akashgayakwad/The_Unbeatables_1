@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import FileUpload from '../FormComponents/FileUpload'
+import {Redirect} from 'react-router'
 
 export class Form6 extends Component {
     
@@ -53,6 +54,7 @@ export class Form6 extends Component {
         statusDaytoDayMET:"",
         cvAerodromeSafety:null,
         cvDaytoDayOperation:null,
+        redirect:false
     }
 
 // 0 for normal input Form
@@ -62,6 +64,7 @@ export class Form6 extends Component {
 // 4 for incorect and rejected so diabled with the error
 
     handleSubmit = (e) => {
+      const id = sessionStorage.getItem('id')
         const fields = {
             "mangement": {
                 "$class": "org.example.airportlicensing.AerodromeManagementPersonnel",
@@ -71,7 +74,7 @@ export class Form6 extends Component {
                     "lastName": this.state.lastNameofBoardMember,
                     "phoneNumber": this.state.numberBoardMenber,
                     "designation": this.state.statusBoardMember,
-                    "id": ""
+                    "id": id
                 },
                 "dayToDayIncharge": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -100,7 +103,7 @@ export class Form6 extends Component {
                     "country": this.state.addressCountryCNSATM,
                     "postalcode": this.state.adressPostalCodeCNSATM,
                   },
-                  "id": ""
+                  "id": id
                 },
                 "providerMET": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -114,9 +117,9 @@ export class Form6 extends Component {
                     "state": this.state.addressCityMETS,
                     "country": this.state.addressCountryMETS,
                     "postalcode": this.state.adressPostalCodeMETS,
-                    "id": ""
+                    "id": id
                   },
-                  "id": ""
+                  "id": id
                 },
                 "dayToDayATM": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -124,7 +127,7 @@ export class Form6 extends Component {
                   "lastName": this.state.lastNameATM,
                   "phoneNumber": this.state.numberATM,
                   "designation": this.state.statusATM,
-                  "id": ""
+                  "id": id
                 },
                 "dayToDayCNS": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -132,7 +135,7 @@ export class Form6 extends Component {
                   "lastName": this.state.lastNameCNS,
                   "phoneNumber": this.state.numberCNS,
                   "designation": this.state.statusCNS,
-                  "id": ""
+                  "id": id
                 },
                 "dayToDayRFF": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -140,7 +143,7 @@ export class Form6 extends Component {
                   "lastName": this.state.lastNameCNS,
                   "phoneNumber": this.state.numberCNS,
                   "designation": this.state.statusCNS,
-                  "id": ""
+                  "id": id
                 },
                 "dayToDayMET": {
                   "$class": "org.example.airportlicensing.PersonWithoutIdentity",
@@ -149,21 +152,25 @@ export class Form6 extends Component {
                   "phoneNumber": this.state.numberDaytoDayMET,
                   "designation": this.state.statusDaytoDayMET,
                 },
-                "id": ""
+                "id": id
               },
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
+                this.setState({
+                  redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -183,6 +190,9 @@ export class Form6 extends Component {
   }
     
     render() {
+      if(this.state.redirect) {
+        return (<Redirect to='/form7'/>)
+      }
         return (
             <div>
                 <Labels head="Board Member/ Managing Director or person having specific responsibility for safety." faded="(To be completed only where the applicant is a company/ corporate/society)" />
@@ -279,7 +289,7 @@ export class Form6 extends Component {
                 <InputForm type={0} name="Last Name" onChange={this.handleChange('lastNameDaytoDayMET')} placeholder="Last Name" />
                 <InputForm type={0} name="Status/Designation" onChange={this.handleChange('statusDaytoDayMET')} placeholder="Satus/Designation" />
                 <InputForm type={0} name="Telephone Number" onChange={this.handleChange('numberDaytoDayMET')} placeholder="Telephone Number" />
-
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
     }

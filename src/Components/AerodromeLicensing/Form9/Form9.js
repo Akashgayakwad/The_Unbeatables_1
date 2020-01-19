@@ -5,6 +5,7 @@ import TextArea from '../FormComponents/TextArea'
 import Date from '../FormComponents/Date'
 import ImageUpload from '../FormComponents/ImageUpload'
 import Signpad from '../../Signpad/Signpad'
+import {Redirect} from 'react-router'
 
 export class Form9 extends Component {
     
@@ -13,10 +14,12 @@ export class Form9 extends Component {
         otherinfo:"",
         Date: "",
         Name:"",
-        sign:null
+        sign:null,
+        redirect:false
     }
 
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
         const fields = {
             "feeDetails": {
                 "$class": "org.example.airportlicensing.FeeDetails",
@@ -25,21 +28,25 @@ export class Form9 extends Component {
                 "dateOfFeeDeposit": this.state.datedrawee,
                 "nameOfDraweeBank": this.state.namedrawee,
                 "operator": {},
-                "id": ""
+                "id": id
             },
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
+                this.setState({
+                    redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -57,6 +64,10 @@ export class Form9 extends Component {
     }
     
     render() {
+        if(this.state.redirect) {
+            return (<Redirect to='/form9'/>)
+        }
+
         const setImageURL = (imageURL) =>{
             const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
             if(imageURL!==whiteURL && imageURL!==this.state.sign)
@@ -66,6 +77,7 @@ export class Form9 extends Component {
                 });    
             }
         };
+        
         return (
             <div>
                 <Labels head="Any Other Information" faded="The information may include details in annex 1, 2 and 3"/>
@@ -109,6 +121,7 @@ export class Form9 extends Component {
                   //<InputForm type={0} name="Position held" onChange={this.handleChange('PositionHeld')} placeholder="Reference of Approval" />
                 }  
                 <Signpad setImageURL={setImageURL}/>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
 }   }

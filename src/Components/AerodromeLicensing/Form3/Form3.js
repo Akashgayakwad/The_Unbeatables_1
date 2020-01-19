@@ -4,6 +4,7 @@ import Labels from '../FormComponents/Labels'
 import CheckBox from '../FormComponents/CheckBox'
 import Signpad from '../../Signpad/Signpad'
 import TextArea from '../FormComponents/TextArea'
+import {Redirect} from 'react-router'
 
 
 export class Form3 extends Component {
@@ -22,10 +23,12 @@ export class Form3 extends Component {
         "heaviestAircraftWeight": "",
         "heaviestAircraftLength": "",
         "heaviestAircraftWidth": "",
-        sign:null
+        sign:null,
+        redirect:false
     }
 
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
         const fields = {
             "aerodromeActivities": {
                 "$class": "org.example.airportlicensing.AerodromeActivities",
@@ -42,21 +45,25 @@ export class Form3 extends Component {
                 "heaviestAircraftWeight": this.heaviestAircraftWeight,
                 "heaviestAircraftLength": this.state.heaviestAircraftLength,
                 "heaviestAircraftWidth": this.state.heaviestAircraftWidth,
-                "id": ""
-            },
+                "id": id
+            }
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
+                this.setState({
+                    redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -69,6 +76,10 @@ export class Form3 extends Component {
     }
 
     render() {
+        if(this.state.redirect) {
+            return (<Redirect to='/form4'/>)
+        }
+
         const setImageURL = (imageURL) =>{
             const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
             if(imageURL!==whiteURL && imageURL!==this.state.sign)
@@ -220,6 +231,7 @@ export class Form3 extends Component {
                     onChange={this.handleChange('heaviestAircraftTypeWidth')} 
                     placeholder="Width of Aircraft" />
                 <Signpad setImageURL={setImageURL}/>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
     }

@@ -3,7 +3,7 @@ import InputForm from '../FormComponents/InputForm'
 import Date from '../FormComponents/Date'
 import Labels from '../FormComponents/Labels'
 import Signpad from '../../Signpad/Signpad'
-
+import {Redirect} from 'react-router'
 
 export class Form8 extends Component {
     
@@ -12,10 +12,12 @@ export class Form8 extends Component {
         amount:"",
         datedrawee: "",
         namedrawee:"",
-        sign: null
+        sign: null,
+        redirect:false
     }
 
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
         const fields = {
             "feeDetails": {
                 "$class": "org.example.airportlicensing.FeeDetails",
@@ -24,21 +26,25 @@ export class Form8 extends Component {
                 "dateOfFeeDeposit": this.state.datedrawee,
                 "nameOfDraweeBank": this.state.namedrawee,
                 "operator": {},
-                "id": ""
+                "id": id
             },
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
+                this.setState({
+                    redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -57,6 +63,10 @@ export class Form8 extends Component {
     }
     
     render() {
+        if(this.state.redirect) {
+            return (<Redirect to='/form9'/>)
+        }
+
         const setImageURL = (imageURL) =>{
             const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
             if(imageURL!==whiteURL && imageURL!==this.state.sign)
@@ -91,7 +101,7 @@ export class Form8 extends Component {
                 </div>
                 <InputForm type={0} name="Name of the drawee bank" onChange={this.handleChange('namedrawee')} placeholder="Name of the drawee bank" />
                 <Signpad setImageURL={setImageURL}/>
-                
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
     }

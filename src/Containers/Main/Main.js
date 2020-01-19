@@ -49,16 +49,16 @@ class Main extends Component{
                         <Route exact path='/'>
                             <Home/>
                         </Route>
+                        <Route path='/redirect' component={() => { 
+                            window.location.href = 'http://3653ec57.ngrok.io/auth/google'; 
+                            return <Redirect to="/card"/>;
+                        }}/>
                         <Route exact path='/license'>
                             <Mainform/>
                         </Route>
                         <Route exact path='/login'>
                             <Loginsignup/>
                         </Route>
-                        <Route path='/redirect' component={() => { 
-                            window.location.href = 'http://3653ec57.ngrok.io/auth/google'; 
-                            return <Redirect to="/card"/>;
-                        }}/>
                         <Route exact path="/dashboard">
                             <Dashboard/>
                         </Route>

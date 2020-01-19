@@ -39,7 +39,7 @@ export class AuthCard extends Component {
     }
 
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         const access_token = sessionStorage.getItem('token')
         var data = new FormData();
         // data.append("name", "restadmin@airport-licensing");

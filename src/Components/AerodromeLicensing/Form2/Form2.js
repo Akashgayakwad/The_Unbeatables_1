@@ -4,7 +4,7 @@ import Labels from '../FormComponents/Labels'
 import ImageUpload from '../FormComponents/ImageUpload'
 import Signpad from '../../Signpad/Signpad'
 import fileuploadimage from '../FormComponents/image_placeholder.jpg'
-
+import {Redirect} from 'react-router'
 export class Form2 extends Component {
     
     state = {
@@ -32,18 +32,20 @@ export class Form2 extends Component {
         file:null,
         surveyMap:null, //to add in api
         runways: [{name : ""}], // to add in api
-        sign:null // add to api
+        sign:null, // add to api
+        redirect:false
     }
 
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
         const fields = {
             "$class": "org.example.airportlicensing.LisenceApplication",
-            "id": "11234",
+            "id": id,
             "status": "Approved",
-            "operator": "resource:org.example.airportlicensing.Operator#1969",
+            //"operator": "resource:org.example.airportlicensing.Operator#1969",
             "aerodrome" : {
                 "$class": "org.example.airportlicensing.Aerodrome",
-                "id": "11234",
+                "id": id,
                 "placeName": this.state.placeName,
                 "situation": this.state.situation,
                 "grid": this.state.grid,
@@ -82,6 +84,9 @@ export class Form2 extends Component {
             .then(response => response.json())
             .then(success => {
                 console.log('sucess',success);
+                this.setState({
+                    redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -128,6 +133,10 @@ export class Form2 extends Component {
     };
 
     render() {
+
+        if(this.state.redirect) {
+            return (<Redirect to='/form3'/>)
+        }
 
         const setImageURL = (imageURL) =>{
             const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
@@ -283,7 +292,7 @@ export class Form2 extends Component {
                 </div>
                 <br/>
                 <Signpad setImageURL={setImageURL}/>
-                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Submit</button>
             </div>
         )
     }

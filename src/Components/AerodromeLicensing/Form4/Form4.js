@@ -4,6 +4,7 @@ import Labels from '../FormComponents/Labels'
 import TextArea from '../FormComponents/TextArea'
 import CheckBox from '../FormComponents/CheckBox'
 import BooleanCheckbox from '../FormComponents/BooleanCheckbox'
+import {Redirect} from 'react-router'
 
 
 export class Form4 extends Component {
@@ -15,7 +16,8 @@ export class Form4 extends Component {
         FromDate: "",
         ToDate: "",
         Termination: "",
-        sign:null
+        sign:null,
+        redirect:false
     }
 
     handleChange = input => (e) => {
@@ -43,6 +45,7 @@ export class Form4 extends Component {
     }
 
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
         const fields = {
             "controlAerodrome": {
                 "$class": "org.example.airportlicensing.ControlAerodrome",
@@ -51,22 +54,26 @@ export class Form4 extends Component {
                 "startingPeriod": this.state.FromDate,
                 "endingPeriod": this.state.ToDate,
                 "termination": this.state.Termination,
-                "id": ""
+                "id": id
             },
         }
         
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication/', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: {fields}
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess');
+                this.setState({
+                    redirect:true
+                })
             })
             .catch(error => console.log(error)
         );
@@ -132,6 +139,10 @@ export class Form4 extends Component {
     }
     
     render() {
+        if(this.state.redirect) {
+            return (<Redirect to='/form5'/>)
+        }
+
         const setImageURL = (imageURL) =>{
             const whiteURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQYV2NgAAIAAAUAAarVyFEAAAAASUVORK5CYII=";
             if(imageURL!==whiteURL && imageURL!==this.state.sign)
@@ -141,6 +152,7 @@ export class Form4 extends Component {
                 });    
             }
         };
+
         return (
             <div>
                 <Labels head="CONTROL OF THE AERODROME" faded=""/>
@@ -173,6 +185,7 @@ export class Form4 extends Component {
                 The period you hold these rights
                 </h6>
                 <Signpad setImageURL={setImageURL}/>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Success</button>
             </div>
         )
 }   }

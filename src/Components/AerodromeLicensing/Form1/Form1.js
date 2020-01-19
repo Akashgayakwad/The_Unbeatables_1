@@ -3,6 +3,8 @@ import InputForm from '../FormComponents/InputForm'
 import Labels from '../FormComponents/Labels'
 import axios from 'axios'
 import Signpad from '../../Signpad/Signpad'
+import uuid from 'uuid'
+import { Redirect } from 'react-router';
 
 class Form1 extends Component {
     
@@ -21,47 +23,62 @@ class Form1 extends Component {
         state: "",
         country: "",
         postalcode: "",
-        sign: null
+        sign: null,
+        success: false
     }
 
     handleSubmit = (e) => {
+        const id = sessionStorage.getItem('id')
+        console.log(id);
         const fields = {
-            "aerodrome" : {
-                "owner": {
-                    "$class": "org.example.airportlicensing.PersonWithoutIdentity",
-                    "firstName": this.state.firstName,
-                    "lastName": this.state.lastName,
-                    "phoneNumber": this.state.phoneNumber,
-                    "email": this.state.email,
-                    "designation": this.state.designation,
-                    "address": {
-                        "$class": "org.example.airportlicensing.Address",
-                        "line1": this.state.addressLine1,
-                        "line": this.state.addressLine2,
-                        "city": this.state.city, 
-                        "state": this.state.State,
-                        "country": this.state.country,
-                        "postalcode": this.state.postalcode,
-                    },
-                    "id": ""
-                }
-            }
+            "$class": "org.example.airportlicensing.LisenceApplication",
+            "id": id,
+            "status": "Approved",
+            "operator":"resource:org.example.airportlicensing.Operator#uc@gmail.com"          
+            // "aerodrome" : {
+            //     "$class": "org.example.airportlicensing.Aerodrome",
+            //     "placeName":  "string",
+            //     "id": id,
+            //     "owner": {
+            //         "$class": "org.example.airportlicensing.PersonWithoutIdentity",
+            //         "firstName": this.state.firstName,
+            //         "lastName": this.state.lastName,
+            //         "phoneNumber": this.state.phoneNumber,
+            //         "email": this.state.email,
+            //         "designation": this.state.designation,
+            //         "address": {
+            //             "$class": "org.example.airportlicensing.Address",
+            //             "line1": this.state.addressLine1,
+            //             "line": this.state.addressLine2,
+            //             "city": this.state.city, 
+            //             "state": this.state.State,
+            //             "country": this.state.country,
+            //             "postalcode": this.state.postalcode
+            //         }
+            //     }
+            // }
         }
 
         const access_token = sessionStorage.getItem('token');
-        fetch('', {
+        fetch('http://3653ec57.ngrok.io/api/LisenceApplication', {
             headers: {
                     "X-Access-Token":access_token,
+                    "Content-Type":"application/json"
                 },
             method: 'POST',
-            body: fields
+            body: JSON.stringify(fields)
             })
             .then(response => response.json())
             .then(success => {
                 console.log('sucess',success);
+                this.setState({success: true});
             })
             .catch(error => console.log(error)
         );
+    }
+    
+    componentDidMount() {
+        sessionStorage.setItem('id',uuid.v4().toString())
     }
     
     handleChange = input => (e) => {
@@ -80,7 +97,9 @@ class Form1 extends Component {
                 });    
             }
         };
-        
+        if (this.state.success) {
+            return <Redirect to='/form2' />
+        }
         return (
             <div>
                 <Labels head="DETAILS OF LICENCEE (as required to be shown on the license)" faded=""/>
@@ -94,7 +113,6 @@ class Form1 extends Component {
                     name="Last Name of applicant" 
                     onChange={this.handleChange('lastName')} 
                     placeholder="Last Name"/>
-
                 <h6>
                     Address of applicant
                 </h6>
@@ -146,6 +164,7 @@ class Form1 extends Component {
                     onChange={this.handleChange('nationality')} 
                     placeholder="Nationality" />
                 <Signpad setImageURL={setImageURL}/>
+                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Submit</button>
             </div>
         )
     }
