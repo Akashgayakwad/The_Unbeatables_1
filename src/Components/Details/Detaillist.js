@@ -59,7 +59,10 @@ class Detaillist extends Component{
              return (
                         <div>
                             <Link to="/dashboard" className="btn btn-info mb-3">Back</Link>
-                            <Link to="/sign" className="btn btn-primary mb-3 float-right">Edit</Link>
+                            <Link to="/defectform/1" className="btn btn-primary mb-3 float-right">Edit</Link>
+                            <Link to="/detailsform/1" className="btn btn-primary mb-3 float-right">DGCA</Link>
+                            <Link to="/checklist/1"><button class="btn btn-primary float-right">Checklist</button></Link>
+
                             <table class="table">
                                 <thead>
                                     <tr>

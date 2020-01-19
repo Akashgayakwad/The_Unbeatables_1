@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 export class DefectForm extends Component {
 
@@ -50,6 +51,7 @@ export class DefectForm extends Component {
         return (
             <div>
             <div class="nav-wrapper">
+            <Link to="/details/1"><button class="btn btn-success">Back</button></Link>
                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link mb-sm-3 mb-md-0 active" 

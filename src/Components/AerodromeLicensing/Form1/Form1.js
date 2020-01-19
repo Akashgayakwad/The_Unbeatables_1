@@ -27,36 +27,67 @@ class Form1 extends Component {
         success: false
     }
 
+    // handleSubmit = (e) => {
+    //     const id = sessionStorage.getItem('id')
+    //     console.log(id);
+    //     const fields = {
+    //         "$class": "org.example.airportlicensing.LisenceApplication",
+    //         "id": id,
+    //         "status": "Approved",
+    //         "operator":"resource:org.example.airportlicensing.Operator#uc@gmail.com"          
+    //         // "aerodrome" : {
+    //         //     "$class": "org.example.airportlicensing.Aerodrome",
+    //         //     "placeName":  "string",
+    //         //     "id": id,
+    //         //     "owner": {
+    //         //         "$class": "org.example.airportlicensing.PersonWithoutIdentity",
+    //         //         "firstName": this.state.firstName,
+    //         //         "lastName": this.state.lastName,
+    //         //         "phoneNumber": this.state.phoneNumber,
+    //         //         "email": this.state.email,
+    //         //         "designation": this.state.designation,
+    //         //         "address": {
+    //         //             "$class": "org.example.airportlicensing.Address",
+    //         //             "line1": this.state.addressLine1,
+    //         //             "line": this.state.addressLine2,
+    //         //             "city": this.state.city, 
+    //         //             "state": this.state.State,
+    //         //             "country": this.state.country,
+    //         //             "postalcode": this.state.postalcode
+    //         //         }
+    //         //     }
+    //         // }
+    //     }
     handleSubmit = (e) => {
-        const id = sessionStorage.getItem('id')
-        console.log(id);
+        console.log("api called");
+        let x = uuid.v4();
+        let y = uuid.v4();
+        let z = uuid.v4();
+        console.log(x,y,z);
         const fields = {
-            "$class": "org.example.airportlicensing.LisenceApplication",
-            "id": id,
-            "status": "Approved",
-            "operator":"resource:org.example.airportlicensing.Operator#uc@gmail.com"          
-            // "aerodrome" : {
-            //     "$class": "org.example.airportlicensing.Aerodrome",
-            //     "placeName":  "string",
-            //     "id": id,
-            //     "owner": {
-            //         "$class": "org.example.airportlicensing.PersonWithoutIdentity",
-            //         "firstName": this.state.firstName,
-            //         "lastName": this.state.lastName,
-            //         "phoneNumber": this.state.phoneNumber,
-            //         "email": this.state.email,
-            //         "designation": this.state.designation,
-            //         "address": {
-            //             "$class": "org.example.airportlicensing.Address",
-            //             "line1": this.state.addressLine1,
-            //             "line": this.state.addressLine2,
-            //             "city": this.state.city, 
-            //             "state": this.state.State,
-            //             "country": this.state.country,
-            //             "postalcode": this.state.postalcode
-            //         }
-            //     }
-            // }
+            "$class":"org.example.airportlicensing.LisenceApplication",
+            "id":z,
+            "status":"Approved",
+            "aerodrome" : {
+                "owner": {
+                    "$class": "org.example.airportlicensing.PersonWithoutIdentity",
+                    "firstName": this.state.firstName,
+                    "lastName": this.state.lastName,
+                    "phoneNumber": this.state.phoneNumber,
+                    "email": this.state.email,
+                    "designation": this.state.designation,
+                    "address": {
+                        "$class": "org.example.airportlicensing.Address",
+                        "line1": this.state.addressLine1,
+                        "line": this.state.addressLine2,
+                        "city": this.state.city, 
+                        "state": this.state.State,
+                        "country": this.state.country,
+                        "postalcode": this.state.postalcode,
+                    },
+                    "id": y
+                }
+            }
         }
 
         const access_token = sessionStorage.getItem('token');
@@ -97,9 +128,11 @@ class Form1 extends Component {
                 });    
             }
         };
+
         if (this.state.success) {
             return <Redirect to='/form2' />
         }
+        
         return (
             <div>
                 <Labels head="DETAILS OF LICENCEE (as required to be shown on the license)" faded=""/>
@@ -164,7 +197,7 @@ class Form1 extends Component {
                     onChange={this.handleChange('nationality')} 
                     placeholder="Nationality" />
                 <Signpad setImageURL={setImageURL}/>
-                <button type="button" onClick={this.handleSubmit} class="btn btn-success">Submit</button>
+                <button className="btn btn-success" onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }

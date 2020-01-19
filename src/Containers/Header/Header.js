@@ -42,6 +42,12 @@ class Header extends Component{
                                 </a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link nav-link-icon" href="/history">
+                                    <i className="ni ni-collection"></i>
+                                    <span className="nav-link-inner--text">History</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link nav-link-icon" href="/dashboard">
                                     <i className="ni ni-world-2"></i>
                                     <span className="nav-link-inner--text">Dashboard</span>
