@@ -38,7 +38,7 @@ export class Form2 extends Component {
     handleSubmit = (e) => {
         const fields = {
             "$class": "org.example.airportlicensing.LisenceApplication",
-            "id": "11234",
+            "id": uuid.v4().toString(),
             "status": "Approved",
             "operator": "resource:org.example.airportlicensing.Operator#1969",
             "aerodrome" : {

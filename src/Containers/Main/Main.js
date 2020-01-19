@@ -4,6 +4,7 @@ import Dashboard from './../../Components/Dashboard/Dashboard';
 import Signpad from './../../Components/Signpad/Signpad';
 import Mainform from '../../Components/AerodromeLicensing/Mainform';
 import Detaillist from './../../Components/Details/Detaillist';
+import HistoryList from './../../Components/History/Historylist';
 import Form1 from '../../Components/AerodromeLicensing/Form1/Form1';
 import Form2 from '../../Components/AerodromeLicensing/Form2/Form2';
 import Form3 from '../../Components/AerodromeLicensing/Form3/Form3';
@@ -61,6 +62,9 @@ class Main extends Component{
                         }}/>
                         <Route exact path="/dashboard">
                             <Dashboard/>
+                        </Route>
+                        <Route exact path='/history'>
+                            <HistoryList/>
                         </Route>
                         <Route exact path='/faq'>
                             <Faq/>
